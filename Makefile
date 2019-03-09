@@ -6,7 +6,7 @@
 #    By: imorimot <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/03/02 16:26:57 by imorimot          #+#    #+#              #
-#    Updated: 2019/03/08 12:57:21 by imorimot         ###   ########.fr        #
+#    Updated: 2019/03/09 17:39:20 by imorimot         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,7 +32,7 @@ SRC_NAME = ft_memset.c ft_bzero.c ft_memcpy.c ft_memccpy.c ft_memmove.c \
 		   ft_lstnew.c ft_lstdelone.c ft_lstdel.c ft_lstadd.c ft_lstiter.c \
 		   ft_lstmap.c \
 		   ft_isspace.c ft_isupper.c ft_islower.c ft_strtolower.c ft_strtoupper.c \
-		   ft_strmap_uc.c ft_strrev.c
+		   ft_strmap_uc.c ft_strrev.c ft_strndup.c
 
 #	Source full name
 SRC = $(addprefix $(SRC_PATH)/, $(SRC_NAME))
