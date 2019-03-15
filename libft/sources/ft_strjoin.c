@@ -6,11 +6,11 @@
 /*   By: imorimot <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/16 17:39:33 by imorimot          #+#    #+#             */
-/*   Updated: 2018/11/23 15:56:12 by imorimot         ###   ########.fr       */
+/*   Updated: 2019/03/09 17:12:27 by imorimot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../includes/libft.h"
 
 char	*ft_strjoin(char const *s1, char const *s2)
 {

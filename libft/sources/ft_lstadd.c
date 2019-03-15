@@ -6,11 +6,11 @@
 /*   By: imorimot <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/21 15:06:44 by imorimot          #+#    #+#             */
-/*   Updated: 2018/11/21 15:34:58 by imorimot         ###   ########.fr       */
+/*   Updated: 2019/03/09 17:04:34 by imorimot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../includes/libft.h"
 
 void	ft_lstadd(t_list **alst, t_list *new)
 {

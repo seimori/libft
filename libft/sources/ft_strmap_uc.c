@@ -6,11 +6,11 @@
 /*   By: imorimot <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/16 16:57:41 by imorimot          #+#    #+#             */
-/*   Updated: 2018/11/28 13:09:35 by imorimot         ###   ########.fr       */
+/*   Updated: 2019/03/09 17:12:52 by imorimot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../includes/libft.h"
 
 char	*ft_strmap_uc(char const *s, int (*f)(int))
 {

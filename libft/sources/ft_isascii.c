@@ -6,11 +6,11 @@
 /*   By: imorimot <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/14 17:13:11 by imorimot          #+#    #+#             */
-/*   Updated: 2018/11/21 20:23:07 by imorimot         ###   ########.fr       */
+/*   Updated: 2019/03/09 17:03:01 by imorimot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../includes/libft.h"
 
 int		ft_isascii(int c)
 {

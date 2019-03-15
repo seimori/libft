@@ -6,11 +6,11 @@
 /*   By: imorimot <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/28 12:49:13 by imorimot          #+#    #+#             */
-/*   Updated: 2018/11/28 13:11:57 by imorimot         ###   ########.fr       */
+/*   Updated: 2019/03/09 17:14:58 by imorimot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../includes/libft.h"
 
 char	*ft_strtolower(char *s)
 {

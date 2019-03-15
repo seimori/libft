@@ -6,11 +6,11 @@
 /*   By: imorimot <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/14 16:56:59 by imorimot          #+#    #+#             */
-/*   Updated: 2018/11/21 20:15:33 by imorimot         ###   ########.fr       */
+/*   Updated: 2019/03/09 17:02:45 by imorimot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../includes/libft.h"
 
 int		ft_isalpha(int c)
 {

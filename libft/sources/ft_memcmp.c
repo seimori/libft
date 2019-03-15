@@ -6,11 +6,11 @@
 /*   By: imorimot <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/12 16:57:07 by imorimot          #+#    #+#             */
-/*   Updated: 2018/11/23 14:53:43 by imorimot         ###   ########.fr       */
+/*   Updated: 2019/03/09 17:08:08 by imorimot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <string.h>
+#include "../includes/libft.h"
 
 int		ft_memcmp(const void *s1, const void *s2, size_t n)
 {

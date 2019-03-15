@@ -6,12 +6,12 @@
 /*   By: imorimot <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/17 14:24:26 by imorimot          #+#    #+#             */
-/*   Updated: 2018/11/28 18:55:41 by imorimot         ###   ########.fr       */
+/*   Updated: 2019/03/09 17:14:21 by imorimot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
-#include "libft.h"
+#include "../includes/libft.h"
 
 static size_t	ft_strsize(char const *s, char c)
 {

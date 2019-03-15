@@ -6,11 +6,11 @@
 /*   By: imorimot <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/23 14:14:13 by imorimot          #+#    #+#             */
-/*   Updated: 2018/11/23 14:14:35 by imorimot         ###   ########.fr       */
+/*   Updated: 2019/03/09 17:02:27 by imorimot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../includes/libft.h"
 
 void	ft_bzero(void *s, size_t n)
 {

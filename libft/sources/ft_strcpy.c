@@ -6,11 +6,11 @@
 /*   By: imorimot <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/12 17:52:49 by imorimot          #+#    #+#             */
-/*   Updated: 2018/11/23 14:17:12 by imorimot         ###   ########.fr       */
+/*   Updated: 2019/03/09 17:11:27 by imorimot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../includes/libft.h"
 
 char	*ft_strcpy(char *dst, const char *src)
 {

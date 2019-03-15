@@ -6,11 +6,11 @@
 /*   By: imorimot <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/09 18:39:09 by imorimot          #+#    #+#             */
-/*   Updated: 2018/11/22 17:18:32 by imorimot         ###   ########.fr       */
+/*   Updated: 2019/03/09 17:07:08 by imorimot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "string.h"
+#include "../includes/libft.h"
 
 void	*ft_memccpy(void *dst, const void *src, int c, size_t n)
 {

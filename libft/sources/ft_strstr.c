@@ -6,11 +6,11 @@
 /*   By: imorimot <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/13 17:26:48 by imorimot          #+#    #+#             */
-/*   Updated: 2018/11/22 15:11:33 by imorimot         ###   ########.fr       */
+/*   Updated: 2019/03/09 17:14:42 by imorimot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../includes/libft.h"
 
 char	*ft_strstr(const char *haystack, const char *needle)
 {

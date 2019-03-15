@@ -6,11 +6,11 @@
 /*   By: imorimot <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/14 14:18:04 by imorimot          #+#    #+#             */
-/*   Updated: 2018/11/14 14:53:59 by imorimot         ###   ########.fr       */
+/*   Updated: 2019/03/09 17:11:18 by imorimot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../includes/libft.h"
 
 int		ft_strcmp(const char *s1, const char *s2)
 {

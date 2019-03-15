@@ -6,11 +6,11 @@
 /*   By: imorimot <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/14 17:32:32 by imorimot          #+#    #+#             */
-/*   Updated: 2018/11/22 15:13:56 by imorimot         ###   ########.fr       */
+/*   Updated: 2019/03/09 17:15:21 by imorimot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../includes/libft.h"
 
 int		ft_toupper(int c)
 {

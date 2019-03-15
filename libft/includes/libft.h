@@ -6,7 +6,7 @@
 /*   By: imorimot <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/12 15:26:56 by imorimot          #+#    #+#             */
-/*   Updated: 2018/11/28 14:14:33 by imorimot         ###   ########.fr       */
+/*   Updated: 2019/03/09 17:15:54 by imorimot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,5 +91,6 @@ char				*ft_strtolower(char *s);
 char				*ft_strtoupper(char *s);
 char				*ft_strmap_uc(char const *s, int (*f)(int));
 char				*ft_strrev(char *s);
+char				*ft_strndup(const char *s1, size_t n);
 
 #endif
