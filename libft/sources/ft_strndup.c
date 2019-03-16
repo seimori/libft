@@ -1,33 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_arg_10_14.c                                    :+:      :+:    :+:   */
+/*   ft_strndup.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: imorimot <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/03/15 15:55:28 by imorimot          #+#    #+#             */
-/*   Updated: 2019/03/15 15:56:00 by imorimot         ###   ########.fr       */
+/*   Created: 2019/03/09 16:52:05 by imorimot          #+#    #+#             */
+/*   Updated: 2019/03/09 17:17:12 by imorimot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/printf.h"
+#include <stdlib.h>
+#include "../includes/libft.h"
 
-void		*get_unsignedlonglongint(va_list args)
+char	*ft_strndup(const char *s1, size_t n)
 {
-	return (&(va_args(args, unsigned long long int)));
-}
+	char	*str;
 
-void		*get_float(va_list args)
-{
-	return (&(va_args(args, float)));
-}
-
-void		*get_double(va_list args)
-{
-	return (&(va_args(args, double)));
-}
-
-void		*get_longdouble(va_list args)
-{
-	return (&(va_args(args, long double)));
+	if (!(str = (char*)malloc(sizeof(*str) * (n + 1))))
+		return (NULL);
+	ft_strncpy(str, s1, n);
+	return (str);
 }

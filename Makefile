@@ -11,7 +11,7 @@ SRC_PATH = sources
 SRC_NAME = printf.c vprintf.c print_args.c initializers.c \
 		   printers.c tools.c fillers.c identifiers.c get_typeindex.c \
 		   identifiers_conversion.c identifiers_intconversion.c \
-		   get_arg_00_04.c get_arg_05_09.c get_arg_10_14.c get_arg_14_15.c
+		   get_arg_01.c
 
 #	Source full name
 SRC = $(addprefix $(SRC_PATH)/, $(SRC_NAME))

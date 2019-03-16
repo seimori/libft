@@ -6,7 +6,7 @@
 /*   By: imorimot <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/09 14:12:49 by imorimot          #+#    #+#             */
-/*   Updated: 2019/03/15 16:29:46 by imorimot         ###   ########.fr       */
+/*   Updated: 2019/03/16 19:17:01 by imorimot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void			*print_args(const char *format, va_list args)
 	int			i;
 	int			args_count;
 	void		*arg;
-	fp_arg		get_arg;
+	fp_arg		*get_arg;
 
 	i = 0;
 	args_count = 0;
@@ -47,7 +47,7 @@ void			*print_args(const char *format, va_list args)
 			specs = initialize_specs();
 			i += fill_specs(format + i, &specs);
 			specs->typeindex = get_typeindex(specs);
-			arg = get_arg(args);
+			arg = get_arg[0](args);
 		}
 		else if (format[i] != '\0')
 			i++;
@@ -61,6 +61,9 @@ int				main(void)
 	void		*arg;
 
 	arg = ft_printf("hello%d", 42);
+	ft_putchar('\n');
+	ft_putnbr(*(int*)arg);
+	ft_putchar('\n');
 }
 /*
 **	Test specs

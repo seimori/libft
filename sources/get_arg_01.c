@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_arg_05_09.c                                    :+:      :+:    :+:   */
+/*   get_arg_01.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: imorimot <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/15 15:54:57 by imorimot          #+#    #+#             */
-/*   Updated: 2019/03/16 19:00:51 by imorimot         ###   ########.fr       */
+/*   Updated: 2019/03/16 19:35:22 by imorimot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,38 +14,58 @@
 
 void		*get_int(va_list args)
 {
-	int		i;
+	int				*arg;
 
-	i = va_args(args, int);
-	return (&i);
+	if (!(arg = (int*)malloc(sizeof(int))))
+		malloc_error();
+	*arg = va_arg(args, int);
+	return (arg);
 }
 
 void		*get_longint(va_list args)
 {
-	return (&(va_args(args, long int)));
+	long int		*arg;
+
+	if (!(arg = (long int*)malloc(sizeof(long int))))
+		malloc_error();
+	*arg = va_arg(args, long int);
+	return (arg);
 }
 
 void		*get_longlongint(va_list args)
 {
-	return (&(va_args(args, long long int)));
+	long long int	*arg;
+
+	if (!(arg = (long long int*)malloc(sizeof(long long int))))
+		malloc_error();
+	*arg = va_arg(args, long long int);
+	return (arg);
 }
 
 void		*get_double(va_list args)
 {
-	return (&(va_args(args, double)));
+	double			*arg;
+
+	if (!(arg = (double*)malloc(sizeof(double))))
+		malloc_error();
+	*arg = va_arg(args, double);
+	return (arg);
 }
 
 void		*get_longdouble(va_list args)
 {
-	return (&(va_args(args, long double)));
-}
+	long double		*arg;
 
-void		*get_string(va_list args)
-{
-	return (&(va_args(args, char*)));
+	if (!(arg = (long double*)malloc(sizeof(long double))))
+		malloc_error();
+	*arg = va_arg(args, long double);
+	return (arg);
 }
 
 void		*get_pointer(va_list args)
 {
-	return (&(va_args(args, void*)));
+	void			*arg;
+
+	arg = va_arg(args, void*);
+	return (arg);
 }

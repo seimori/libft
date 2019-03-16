@@ -6,7 +6,7 @@
 /*   By: imorimot <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/08 12:45:30 by imorimot          #+#    #+#             */
-/*   Updated: 2019/03/15 16:30:37 by imorimot         ###   ########.fr       */
+/*   Updated: 2019/03/16 19:25:12 by imorimot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,11 @@ typedef void			*(*fp_arg)(va_list);
 //int						ft_printf(const char *format, ...);
 void						*ft_printf(const char *format, ...);
 void						*ft_vprintf(const char *format, va_list args);
+
+/*
+**	errors.c
+*/
+void					malloc_error(void);
 
 /*
 **	print_args.c
@@ -96,24 +101,17 @@ int						is_intconversion(t_specs *specs);
 int						is_unsignedintconversion(t_specs *specs);
 
 /*
-**	get_arg_**_**.c
+**	get_arg_01.c
 */
-void					*get_char(va_list args);
-void					*get_signedchar(va_list args);
-void					*get_unsignedchar(va_list args);
-void					*get_shortint(va_list args);
-void					*get_unsignedshortint(va_list args);
 void					*get_int(va_list args);
-void					*get_unsignedint(va_list args);
+/*
 void					*get_longint(va_list args);
-void					*get_unsignedlongint(va_list args);
 void					*get_longlongint(va_list args);
-void					*get_unsignedlonglongint(va_list args);
-void					*get_float(va_list args);
 void					*get_double(va_list args);
 void					*get_longdouble(va_list args);
 void					*get_string(va_list args);
 void					*get_pointer(va_list args);
+*/
 
 
 #endif
