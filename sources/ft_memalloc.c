@@ -6,7 +6,7 @@
 /*   By: imorimot <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/16 11:31:04 by imorimot          #+#    #+#             */
-/*   Updated: 2019/03/09 17:05:40 by imorimot         ###   ########.fr       */
+/*   Updated: 2019/03/22 19:16:29 by imorimot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	*ft_memalloc(size_t size)
 
 	i = 0;
 	if (!(mem = malloc(size)))
-		return (NULL);
+		exit(EXIT_FAILURE);
 	c_mem = (char*)mem;
 	while (i < size)
 	{
