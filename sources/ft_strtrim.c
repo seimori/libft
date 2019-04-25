@@ -6,7 +6,7 @@
 /*   By: imorimot <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/16 17:51:00 by imorimot          #+#    #+#             */
-/*   Updated: 2019/03/09 17:15:11 by imorimot         ###   ########.fr       */
+/*   Updated: 2019/04/25 17:29:17 by imorimot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@ char	*ft_strtrim(char const *s)
 			return (ft_strdup(""));
 	}
 	end = ft_strlen(s) - 1;
-	while (end > start &&
-			(s[end] == ' ' || s[end] == '\n' || s[end] == '\t'))
+	while (end > start
+			&& (s[end] == ' ' || s[end] == '\n' || s[end] == '\t'))
 		end--;
 	return (ft_strsub(s, start, end - start + 1));
 }
