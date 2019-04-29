@@ -8,10 +8,12 @@ SRC_PATH = sources
 #	!!!!!To change!!!!!!
 #	List of source files
 #	!!!!!!!!!!!!!!!!!!!!
-SRC_NAME = printf.c vprintf.c print_args.c initializers.c \
+SRC_NAME = printf.c print_args.c initializers.c \
 		   printers.c tools.c fillers.c identifiers.c get_typeindex.c \
 		   identifiers_conversion.c identifiers_intconversion.c \
-		   get_arg_01.c
+		   get_arg_01.c \
+		   \
+		   main.c
 
 #	Source full name
 SRC = $(addprefix $(SRC_PATH)/, $(SRC_NAME))
@@ -24,6 +26,12 @@ OBJ_NAME = $(SRC_NAME:.c=.o)
 
 #	Object full name
 OBJ = $(addprefix $(OBJ_PATH)/, $(OBJ_NAME))
+
+#	!!!!!To change!!!!
+#	Include files path
+#	!!!!!!!!!!!!!!!!!!
+
+INC = includes/printf.h
 
 #	Include files path
 INC_PATH = includes
@@ -55,7 +63,7 @@ CFLAGS = -Werror -Wall -Wextra
 #	Rules
 #
 
-.PHONY: all, clean, fclean, re
+.PHONY: all, clean, fclean, re, norm
 
 all: $(NAME)
 
@@ -75,12 +83,14 @@ $(OBJ_PATH)/%.o: $(SRC_PATH)/%.c
 clean:
 	rm -fv $(OBJ)
 	@rmdir $(OBJ_PATH) 2> /dev/null || true
+	$(MAKE) -C $(LIB_PATH) clean
 
 fclean: clean
 	rm -fv $(NAME)
+	$(MAKE) -C $(LIB_PATH) fclean
 
 re: fclean all
 
 norm:
 	norminette $(SRC)
-	norminette $(INC_PATH)/*.h
+	norminette $(INC)

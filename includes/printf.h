@@ -6,7 +6,7 @@
 /*   By: imorimot <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/08 12:45:30 by imorimot          #+#    #+#             */
-/*   Updated: 2019/03/16 19:25:12 by imorimot         ###   ########.fr       */
+/*   Updated: 2019/04/29 19:05:34 by imorimot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,14 +28,33 @@ typedef struct			s_specs
 	int					typeindex;
 }						t_specs;
 
-typedef void			*(*fp_arg)(va_list);
+typedef union					u_arg
+{
+	char						c;
+	signed char					hhi;
+	unsigned char				hhu;
+	short int					hi;
+	unsigned short int			hu;
+	int							i;
+	unsigned int				u;
+	long int					li;
+	unsigned long int			lu;
+	long long int				lli;
+	unsigned long long int		llu;
+	float						f;
+	double						lf;
+	long double					Lf;
+	char						*s;
+	void						*p;
+}								t_arg;
+
+typedef void					(*fp_arg)(t_arg);
 
 /*
 **	printf.c
 */
-//int						ft_printf(const char *format, ...);
-void						*ft_printf(const char *format, ...);
-void						*ft_vprintf(const char *format, va_list args);
+void					ft_printf(const char *format, ...);
+void					ft_vprintf(const char *format, va_list args);
 
 /*
 **	errors.c
@@ -45,9 +64,7 @@ void					malloc_error(void);
 /*
 **	print_args.c
 */
-void					*print_args(const char *format, va_list args);
-//t_specs					*print_args(const char *format, va_list args);
-//t_specs						*print_args(const char *format);
+void					print_arg(va_list args, t_specs *specs);
 
 /*
 **	initializers.c

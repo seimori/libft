@@ -6,7 +6,7 @@
 /*   By: imorimot <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/09 14:12:49 by imorimot          #+#    #+#             */
-/*   Updated: 2019/03/16 19:17:01 by imorimot         ###   ########.fr       */
+/*   Updated: 2019/04/29 19:11:34 by imorimot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,19 +25,40 @@ int				fill_specs(const char *s, t_specs **specs)
 	return (i);
 }
 
-void			*print_args(const char *format, va_list args)
-//t_specs			*print_args(const char *format, va_list args)
-//t_specs				*print_args(const char *format)
+void			print_char(t_arg arg)
+{
+	ft_putchar(arg.c);
+}
+
+void			print_int(t_arg arg)
+{
+	ft_putnbr(arg.i);
+}
+
+void			print_arg(va_list args, t_specs *specs)
+{
+	fp_arg		print[16];
+	t_arg		arg;
+
+	(void)specs;
+	print[0] = &print_char;
+	print[5] = &print_int;
+	arg = (t_arg)va_arg(args, t_arg);
+	print[specs->typeindex](arg);
+	ft_putchar('\n');
+}
+
+void			ft_vprintf(const char *format, va_list args)
 {
 	t_specs		*specs;
 	int			i;
 	int			args_count;
-	void		*arg;
-	fp_arg		*get_arg;
+	//void		*arg;
+	//fp_arg		*get_arg;
 
 	i = 0;
 	args_count = 0;
-	get_arg = initialize_get_arg();
+	//get_arg = initialize_get_arg();
 	while (format[i] != '\0')
 	{
 		i += print_til_percent(format + i);
@@ -47,69 +68,9 @@ void			*print_args(const char *format, va_list args)
 			specs = initialize_specs();
 			i += fill_specs(format + i, &specs);
 			specs->typeindex = get_typeindex(specs);
-			arg = get_arg[0](args);
+			print_arg(args, specs);
 		}
 		else if (format[i] != '\0')
 			i++;
 	}
-	return (arg);
-	//return (specs);
 }
-
-int				main(void)
-{
-	void		*arg;
-
-	arg = ft_printf("hello%d", 42);
-	ft_putchar('\n');
-	ft_putnbr(*(int*)arg);
-	ft_putchar('\n');
-}
-/*
-**	Test specs
-*/
-/*
-int				main(void)
-{
-	t_specs	*specs;
-
-	specs = print_args("hello%ssalut");
-	//specs = print_args("%d");
-	ft_putchar('\n');
-	if (specs->flags)
-	{
-		ft_putstr("flags: ");
-		ft_putstr(specs->flags);
-		ft_putchar('\n');
-	}
-	if (specs->fieldwidth)
-	{
-		ft_putstr("fieldwidth: ");
-		ft_putstr(specs->fieldwidth);
-		ft_putchar('\n');
-	}
-	if (specs->precision)
-	{
-		ft_putstr("precision: ");
-		ft_putstr(specs->precision);
-		ft_putchar('\n');
-	}
-	if (specs->lengthmodifier)
-	{
-		ft_putstr("lengthmodifier: ");
-		ft_putstr(specs->lengthmodifier);
-		ft_putchar('\n');
-	}
-	if (specs->conversion)
-	{
-		ft_putstr("conversion: ");
-		ft_putstr(specs->conversion);
-		ft_putchar('\n');
-	}
-	ft_putstr("typeindex: ");
-	ft_putnbr(specs->typeindex);
-	ft_putchar('\n');
-
-	return (0);
-}
-*/
