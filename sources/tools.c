@@ -6,7 +6,7 @@
 /*   By: imorimot <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/11 18:10:59 by imorimot          #+#    #+#             */
-/*   Updated: 2019/03/11 18:23:04 by imorimot         ###   ########.fr       */
+/*   Updated: 2019/05/02 17:10:55 by imorimot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,7 @@ char			*ft_str_append(char *s, char c)
 	{
 		temp = s;
 		temp_len = ft_strlen(temp);
-		if (!(s = (char*)malloc(temp_len + 1 + 1)))
-			return (NULL);
+		s = ft_memalloc(temp_len + 1 + 1);
 		ft_strcpy(s, temp);
 		s[temp_len] = c;
 		s[temp_len + 1] = '\0';

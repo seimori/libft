@@ -8,10 +8,9 @@ SRC_PATH = sources
 #	!!!!!To change!!!!!!
 #	List of source files
 #	!!!!!!!!!!!!!!!!!!!!
-SRC_NAME = printf.c print_args.c initializers.c \
-		   printers.c tools.c fillers.c identifiers.c get_typeindex.c \
+SRC_NAME = printf.c vprintf.c print_args.c \
+		   tools.c fillers.c identifiers.c get_typeindex.c \
 		   identifiers_conversion.c identifiers_intconversion.c \
-		   get_arg_01.c \
 		   \
 		   main.c
 

@@ -6,7 +6,7 @@
 /*   By: imorimot <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/08 12:45:30 by imorimot          #+#    #+#             */
-/*   Updated: 2019/04/29 19:05:34 by imorimot         ###   ########.fr       */
+/*   Updated: 2019/05/02 17:34:12 by imorimot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,25 +57,9 @@ void					ft_printf(const char *format, ...);
 void					ft_vprintf(const char *format, va_list args);
 
 /*
-**	errors.c
-*/
-void					malloc_error(void);
-
-/*
 **	print_args.c
 */
 void					print_arg(va_list args, t_specs *specs);
-
-/*
-**	initializers.c
-*/
-t_specs					*initialize_specs(void);
-fp_arg					*initialize_get_arg(void);
-
-/*
-**	printers.c
-*/
-int						print_til_percent(const char *s);
 
 /*
 **	tools.c
