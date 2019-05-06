@@ -6,7 +6,7 @@
 /*   By: imorimot <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/08 14:48:38 by imorimot          #+#    #+#             */
-/*   Updated: 2019/05/06 16:15:31 by imorimot         ###   ########.fr       */
+/*   Updated: 2019/05/06 16:53:05 by imorimot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,12 +32,11 @@ static t_specs	*initialize_specs(void)
 
 	specs = (t_specs*)ft_memalloc(sizeof(t_specs));
 	specs->flags = NULL;
-	specs->fieldwidth = NULL;
-	specs->precision = NULL;
+	specs->width = 0;
+	specs->precision = 0;
 	specs->lengthmodifier = NULL;
 	specs->conversion = NULL;
 	specs->typeindex = -1;
-	specs->width = 0;
 	return (specs);
 }
 
@@ -48,7 +47,7 @@ static int		fill_specs(const char *s, t_specs *specs, va_list args)
 	i = 1;
 	i += fill_flags(s + i, specs);
 	i += fill_width(s + i, specs, args);
-	i += fill_precision(s + i, specs);
+	i += fill_precision(s + i, specs, args);
 	i += fill_lengthmodifier(s + i, specs);
 	i += fill_conversion(s[i], specs);
 	specs->typeindex = get_typeindex(specs);

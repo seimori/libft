@@ -6,7 +6,7 @@
 /*   By: imorimot <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/11 18:10:59 by imorimot          #+#    #+#             */
-/*   Updated: 2019/05/06 15:58:01 by imorimot         ###   ########.fr       */
+/*   Updated: 2019/05/06 16:50:56 by imorimot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,4 +49,16 @@ int					ft_pow(int n, int pow)
 		i++;
 	}
 	return (n);
+}
+
+int				ft_antoi(const char *s, int length)
+{
+	char		*temp;
+	int			i;
+
+	temp = ft_strnew(length + 1);
+	temp = ft_strncpy(temp, s, length);
+	i = ft_atoi(temp);
+	free(temp);
+	return (i);
 }

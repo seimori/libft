@@ -6,7 +6,7 @@
 /*   By: imorimot <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/08 12:45:30 by imorimot          #+#    #+#             */
-/*   Updated: 2019/05/06 16:16:44 by imorimot         ###   ########.fr       */
+/*   Updated: 2019/05/06 16:51:13 by imorimot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,11 +29,10 @@
 typedef struct					s_specs
 {
 	char						*flags;
-	char						*fieldwidth;
-	char						*precision;
+	int							width;
+	int							precision;
 	char						*lengthmodifier;
 	char						*conversion;
-	int							width;
 	int							typeindex;
 }								t_specs;
 
@@ -75,6 +74,7 @@ void					print_arg(va_list args, t_specs *specs);
 */
 char					*ft_str_append(char *s, char c);
 int						ft_pow(int n, int pow);
+int						ft_antoi(const char *s, int length);
 
 
 /*
@@ -87,7 +87,7 @@ int						get_typeindex(t_specs *specs);
 */
 int						fill_flags(const char *s, t_specs *specs);
 int						fill_width(const char *s, t_specs *specs, va_list args);
-int						fill_precision(const char *s, t_specs *specs);
+int						fill_precision(const char *s, t_specs *specs, va_list args);
 int						fill_lengthmodifier(const char *s, t_specs *specs);
 int						fill_conversion(char c, t_specs *specs);
 

@@ -6,7 +6,7 @@
 /*   By: imorimot <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/11 18:25:29 by imorimot          #+#    #+#             */
-/*   Updated: 2019/05/06 16:15:41 by imorimot         ###   ########.fr       */
+/*   Updated: 2019/05/06 16:53:13 by imorimot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,24 +28,20 @@ int				fill_flags(const char *s, t_specs *specs)
 int				fill_width(const char *s, t_specs *specs, va_list args)
 {
 	int			i;
-	char		*temp;
 
 	i = 0;
 	if (s[i] == '*')
 	{
 		specs->width = va_arg(args, int);
-		return (1);
+		return (i + 1);
 	}
 	while (ft_isdigit(s[i]))
 		i++;
-	temp = ft_strnew(i + 1);
-	ft_strncpy(temp, s, i);
-	specs->width = ft_atoi(temp);
-	free(temp);
+	specs->width = ft_antoi(s, i);
 	return (i);
 }
 
-int				fill_precision(const char *s, t_specs *specs)
+int				fill_precision(const char *s, t_specs *specs, va_list args)
 {
 	int			i;
 
@@ -53,27 +49,16 @@ int				fill_precision(const char *s, t_specs *specs)
 	if (s[i] == '.')
 	{
 		i++;
-		if (s[i] == '-')
+		if (s[i] == '*')
 		{
-			i++;
-			specs->precision = ft_strdup("0");
-			while (ft_isdigit(s[i]))
-					i++;
+			specs->precision = va_arg(args, int);
+			return (i + 1);
 		}
-		else if (!ft_isdigit(s[i]))
-			specs->precision = ft_strdup("0");
-		else
-		{
-			while (ft_isdigit(s[i]))
-			{
-				specs->precision = ft_str_append(specs->precision,
-						s[i]);
+		while (ft_isdigit(s[i]))
 				i++;
-			}
-		}
+		specs->precision = ft_antoi(s + 1, i - 1);
 	}
 	return (i);
-
 }
 
 int				fill_lengthmodifier(const char *s, t_specs *specs)
