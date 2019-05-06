@@ -6,7 +6,7 @@
 /*   By: imorimot <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/11 18:10:59 by imorimot          #+#    #+#             */
-/*   Updated: 2019/05/02 17:10:55 by imorimot         ###   ########.fr       */
+/*   Updated: 2019/05/06 15:58:01 by imorimot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,4 +34,19 @@ char			*ft_str_append(char *s, char c)
 		free(temp);
 	}
 	return (s);
+}
+
+int					ft_pow(int n, int pow)
+{
+	int			i;
+
+	i = 1;
+	if (pow == 0)
+		return (1);
+	while (i < pow)
+	{
+		n *= n;
+		i++;
+	}
+	return (n);
 }

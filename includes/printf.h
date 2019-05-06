@@ -6,7 +6,7 @@
 /*   By: imorimot <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/08 12:45:30 by imorimot          #+#    #+#             */
-/*   Updated: 2019/05/02 17:34:12 by imorimot         ###   ########.fr       */
+/*   Updated: 2019/05/06 16:16:44 by imorimot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,15 +18,24 @@
 # include <stdarg.h>
 # include "../libft/includes/libft.h"
 
-typedef struct			s_specs
+# include <stdio.h>//
+
+# define SUCCESS 1
+# define FAILURE 0
+
+# define CHAR 0
+# define INT 5
+
+typedef struct					s_specs
 {
-	char				*flags;
-	char				*fieldwidth;
-	char				*precision;
-	char				*lengthmodifier;
-	char				*conversion;
-	int					typeindex;
-}						t_specs;
+	char						*flags;
+	char						*fieldwidth;
+	char						*precision;
+	char						*lengthmodifier;
+	char						*conversion;
+	int							width;
+	int							typeindex;
+}								t_specs;
 
 typedef union					u_arg
 {
@@ -48,7 +57,7 @@ typedef union					u_arg
 	void						*p;
 }								t_arg;
 
-typedef void					(*fp_arg)(t_arg);
+typedef void					(*fp_arg)(t_arg, t_specs*);
 
 /*
 **	printf.c
@@ -65,6 +74,8 @@ void					print_arg(va_list args, t_specs *specs);
 **	tools.c
 */
 char					*ft_str_append(char *s, char c);
+int						ft_pow(int n, int pow);
+
 
 /*
 **	get_typeindex.c
@@ -74,17 +85,16 @@ int						get_typeindex(t_specs *specs);
 /*
 **	fillers.c
 */
-int						fill_flags(const char *s, t_specs **specs);
-int						fill_fieldwidth(const char *s, t_specs **specs);
-int						fill_precision(const char *s, t_specs **specs);
-int						fill_lengthmodifier(const char *s, t_specs **specs);
-int						fill_conversion(char c, t_specs **specs);
+int						fill_flags(const char *s, t_specs *specs);
+int						fill_width(const char *s, t_specs *specs, va_list args);
+int						fill_precision(const char *s, t_specs *specs);
+int						fill_lengthmodifier(const char *s, t_specs *specs);
+int						fill_conversion(char c, t_specs *specs);
 
 /*
 **	identifiers.c
 */
 int						is_flag(char c);
-int						is_fieldwidth(char c);
 int						is_conversion(char c);
 
 /*
@@ -100,19 +110,5 @@ int						is_floatconversion(t_specs *specs);
 */
 int						is_intconversion(t_specs *specs);
 int						is_unsignedintconversion(t_specs *specs);
-
-/*
-**	get_arg_01.c
-*/
-void					*get_int(va_list args);
-/*
-void					*get_longint(va_list args);
-void					*get_longlongint(va_list args);
-void					*get_double(va_list args);
-void					*get_longdouble(va_list args);
-void					*get_string(va_list args);
-void					*get_pointer(va_list args);
-*/
-
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: imorimot <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/08 14:48:38 by imorimot          #+#    #+#             */
-/*   Updated: 2019/05/02 17:34:29 by imorimot         ###   ########.fr       */
+/*   Updated: 2019/05/06 16:15:31 by imorimot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,20 +37,21 @@ static t_specs	*initialize_specs(void)
 	specs->lengthmodifier = NULL;
 	specs->conversion = NULL;
 	specs->typeindex = -1;
+	specs->width = 0;
 	return (specs);
 }
 
-static int		fill_specs(const char *s, t_specs **specs)
+static int		fill_specs(const char *s, t_specs *specs, va_list args)
 {
 	int			i;
 
 	i = 1;
 	i += fill_flags(s + i, specs);
-	i += fill_fieldwidth(s + i, specs);
+	i += fill_width(s + i, specs, args);
 	i += fill_precision(s + i, specs);
 	i += fill_lengthmodifier(s + i, specs);
 	i += fill_conversion(s[i], specs);
-	(*specs)->typeindex = get_typeindex(*specs);
+	specs->typeindex = get_typeindex(specs);
 	return (i);
 }
 
@@ -69,7 +70,7 @@ void			ft_vprintf(const char *format, va_list args)
 		{
 			args_count++;
 			specs = initialize_specs();
-			i += fill_specs(format + i, &specs);
+			i += fill_specs(format + i, specs, args);
 			print_arg(args, specs);
 		}
 		else if (format[i] != '\0')
