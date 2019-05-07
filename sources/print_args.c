@@ -6,7 +6,7 @@
 /*   By: imorimot <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/09 14:12:49 by imorimot          #+#    #+#             */
-/*   Updated: 2019/05/06 15:35:40 by imorimot         ###   ########.fr       */
+/*   Updated: 2019/05/07 18:32:47 by imorimot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,7 @@ void			print_char(t_arg arg, t_specs *specs)
 
 void			print_int(t_arg arg, t_specs *specs)
 {
-	(void)specs;
-	ft_putnbr(arg.i);
+	ft_putint_width(arg.i, specs->width);
 }
 
 static fp_arg	*initialize_print(void)

@@ -6,7 +6,7 @@
 /*   By: imorimot <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/08 12:45:30 by imorimot          #+#    #+#             */
-/*   Updated: 2019/05/06 16:51:13 by imorimot         ###   ########.fr       */
+/*   Updated: 2019/05/07 18:31:38 by imorimot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,11 @@ typedef void					(*fp_arg)(t_arg, t_specs*);
 */
 void					ft_printf(const char *format, ...);
 void					ft_vprintf(const char *format, va_list args);
+
+/*
+**	putint.c
+*/
+void					ft_putint_width(int n, int width);
 
 /*
 **	print_args.c
