@@ -6,7 +6,7 @@
 /*   By: imorimot <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/09 14:12:49 by imorimot          #+#    #+#             */
-/*   Updated: 2019/05/07 18:32:47 by imorimot         ###   ########.fr       */
+/*   Updated: 2019/05/09 13:14:27 by imorimot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,9 @@ void			print_char(t_arg arg, t_specs *specs)
 	ft_putchar(arg.c);
 }
 
-void			print_int(t_arg arg, t_specs *specs)
+void			print_i(t_arg arg, t_specs *specs)
 {
-	ft_putint_width(arg.i, specs->width);
+	put_int_decimal(arg.i, specs->width);
 }
 
 static fp_arg	*initialize_print(void)
@@ -43,7 +43,7 @@ static fp_arg	*initialize_print(void)
 
 	print = (fp_arg*)ft_memalloc(sizeof(fp_arg) * 16);
 	print[CHAR] = &print_char;
-	print[INT] = &print_int;
+	print[INT] = &print_i;
 	return (print);
 }
 

@@ -11,7 +11,7 @@ SRC_PATH = sources
 SRC_NAME = printf.c vprintf.c print_args.c \
 		   tools.c fillers.c identifiers.c get_typeindex.c \
 		   identifiers_conversion.c identifiers_intconversion.c \
-		   putint.c \
+		   put_int.c \
 		   \
 		   main.c
 

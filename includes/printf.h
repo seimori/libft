@@ -6,7 +6,7 @@
 /*   By: imorimot <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/08 12:45:30 by imorimot          #+#    #+#             */
-/*   Updated: 2019/05/07 18:31:38 by imorimot         ###   ########.fr       */
+/*   Updated: 2019/05/09 13:10:12 by imorimot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,9 +65,9 @@ void					ft_printf(const char *format, ...);
 void					ft_vprintf(const char *format, va_list args);
 
 /*
-**	putint.c
+**	put_int.c
 */
-void					ft_putint_width(int n, int width);
+void					put_int_decimal(int n, int width);
 
 /*
 **	print_args.c
