@@ -6,7 +6,7 @@
 /*   By: imorimot <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/08 14:48:38 by imorimot          #+#    #+#             */
-/*   Updated: 2019/05/06 16:53:05 by imorimot         ###   ########.fr       */
+/*   Updated: 2019/05/10 14:02:10 by imorimot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ static t_specs	*initialize_specs(void)
 	t_specs	*specs;
 
 	specs = (t_specs*)ft_memalloc(sizeof(t_specs));
-	specs->flags = NULL;
+	specs->flags = 0;
 	specs->width = 0;
 	specs->precision = 0;
 	specs->lengthmodifier = NULL;

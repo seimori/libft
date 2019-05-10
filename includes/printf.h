@@ -6,7 +6,7 @@
 /*   By: imorimot <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/08 12:45:30 by imorimot          #+#    #+#             */
-/*   Updated: 2019/05/09 13:10:12 by imorimot         ###   ########.fr       */
+/*   Updated: 2019/05/10 13:52:26 by imorimot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,12 +23,18 @@
 # define SUCCESS 1
 # define FAILURE 0
 
+# define MINUS 1 << 0
+# define PLUS 1 << 1
+# define SPACE 1 << 2
+# define ZERO 1 << 3
+# define HASH 1 << 4
+
 # define CHAR 0
 # define INT 5
 
 typedef struct					s_specs
 {
-	char						*flags;
+	unsigned char				flags;
 	int							width;
 	int							precision;
 	char						*lengthmodifier;

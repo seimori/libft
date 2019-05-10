@@ -6,7 +6,7 @@
 /*   By: imorimot <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/11 18:25:29 by imorimot          #+#    #+#             */
-/*   Updated: 2019/05/06 16:53:13 by imorimot         ###   ########.fr       */
+/*   Updated: 2019/05/10 13:55:44 by imorimot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,16 @@ int				fill_flags(const char *s, t_specs *specs)
 	i = 0;
 	while (is_flag(s[i]))
 	{
-		specs->flags = ft_str_append(specs->flags, s[i]);
+		if (s[i] == '-')
+			specs->flags |= MINUS;
+		if (s[i] == '+')
+			specs->flags |= PLUS;
+		if (s[i] == ' ')
+			specs->flags |= SPACE;
+		if (s[i] == '0')
+			specs->flags |= ZERO;
+		if (s[i] == '#')
+			specs->flags |= HASH;
 		i++;
 	}
 	return (i);
