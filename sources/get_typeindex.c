@@ -6,7 +6,7 @@
 /*   By: imorimot <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/14 16:26:39 by imorimot          #+#    #+#             */
-/*   Updated: 2019/03/14 18:16:41 by imorimot         ###   ########.fr       */
+/*   Updated: 2019/05/11 16:45:01 by imorimot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,60 +34,62 @@
 **	15: void*
 */
 
-int			get_int_typeindex(t_specs *specs)
+static int	get_int_typeindex(t_specs *specs)
 {
 	if (!specs->lengthmodifier)
-		return (5);
-	if (ft_strequ("hh", specs->lengthmodifier))
-		return (1);
-	if (ft_strequ("h", specs->lengthmodifier))
-		return (3);
-	if (ft_strequ("l", specs->lengthmodifier))
-		return (7);
-	if (ft_strequ("ll", specs->lengthmodifier))
-		return (9);
-	return (-1);
+		return (I);
+	if (specs->lengthmodifier & HH)
+		return (HHI);
+	if (specs->lengthmodifier & H)
+		return (HI);
+	if (specs->lengthmodifier & L)
+		return (LI);
+	if (specs->lengthmodifier & LL)
+		return (LLI);
+	return (ERROR);
 }
 
-int			get_unsignedint_typeindex(t_specs *specs)
+static int	get_unsignedint_typeindex(t_specs *specs)
 {
 	if (!specs->lengthmodifier)
-		return (6);
-	if (ft_strequ("hh", specs->lengthmodifier))
-		return (2);
-	if (ft_strequ("h", specs->lengthmodifier))
-		return (4);
-	if (ft_strequ("l", specs->lengthmodifier))
-		return (8);
-	if (ft_strequ("ll", specs->lengthmodifier))
-		return (10);
-	return (-1);
+		return (U);
+	if (specs->lengthmodifier & HH)
+		return (HHU);
+	if (specs->lengthmodifier & H)
+		return (HU);
+	if (specs->lengthmodifier & L)
+		return (LU);
+	if (specs->lengthmodifier & LL)
+		return (LLU);
+	return (ERROR);
 }
 
-int			get_float_typeindex(t_specs *specs)
+static int	get_float_typeindex(t_specs *specs)
 {
 	if (!specs->lengthmodifier)
-		return (11);
-	if (ft_strequ("l", specs->lengthmodifier))
-		return (12);
-	if (ft_strequ("ll", specs->lengthmodifier))
-		return (13);
-	return (-1);
+		return (F);
+	if (specs->lengthmodifier & L)
+		return (LF);
+	if (specs->lengthmodifier & LL)
+		return (BIG_L_F);
+	return (ERROR);
 }
 
 int			get_typeindex(t_specs *specs)
 {
-	if (is_charconversion(specs))
-		return (0);
-	if (is_stringconversion(specs))
-		return (14);
-	if (is_pointerconversion(specs))
-		return (15);
-	if (is_intconversion(specs))
+	if (specs->conversion == 'c')
+		return (C);
+	if (specs->conversion == 's')
+		return (S);
+	if (specs->conversion == 'p')
+		return (P);
+	if (specs->conversion == 'd' || specs->conversion == 'i'
+			|| specs->conversion == 'o' || specs->conversion == 'x'
+			|| specs->conversion == 'X')
 		return (get_int_typeindex(specs));
-	if (is_unsignedintconversion(specs))
+	if (specs->conversion == 'u')
 		return (get_unsignedint_typeindex(specs));
-	if (is_floatconversion(specs))
+	if (specs->conversion == 'f')
 		return (get_float_typeindex(specs));
-	return (-1);
+	return (ERROR);
 }

@@ -6,7 +6,7 @@
 /*   By: imorimot <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/09 14:12:49 by imorimot          #+#    #+#             */
-/*   Updated: 2019/05/09 13:14:27 by imorimot         ###   ########.fr       */
+/*   Updated: 2019/05/11 16:43:54 by imorimot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,8 @@ static fp_arg	*initialize_print(void)
 	fp_arg		*print;
 
 	print = (fp_arg*)ft_memalloc(sizeof(fp_arg) * 16);
-	print[CHAR] = &print_char;
-	print[INT] = &print_i;
+	print[C] = &print_char;
+	print[I] = &print_i;
 	return (print);
 }
 

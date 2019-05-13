@@ -6,7 +6,7 @@
 /*   By: imorimot <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/11 18:25:29 by imorimot          #+#    #+#             */
-/*   Updated: 2019/05/10 13:55:44 by imorimot         ###   ########.fr       */
+/*   Updated: 2019/05/11 16:20:14 by imorimot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ int				fill_precision(const char *s, t_specs *specs, va_list args)
 			return (i + 1);
 		}
 		while (ft_isdigit(s[i]))
-				i++;
+			i++;
 		specs->precision = ft_antoi(s + 1, i - 1);
 	}
 	return (i);
@@ -76,26 +76,24 @@ int				fill_lengthmodifier(const char *s, t_specs *specs)
 	{
 		if (s[1] == 'h')
 		{
-			specs->lengthmodifier = ft_strdup("hh");
+			specs->lengthmodifier |= HH;
 			return (2);
 		}
-		specs->lengthmodifier = ft_strdup("h");
+		specs->lengthmodifier |= H;
 		return (1);
 	}
 	if (s[0] == 'l')
 	{
 		if (s[1] == 'l')
 		{
-			specs->lengthmodifier = ft_strdup("ll");
+			specs->lengthmodifier |= LL;
 			return (2);
 		}
-			specs->lengthmodifier = ft_strdup("l");
-			return (1);
+		specs->lengthmodifier |= L;
+		return (1);
 	}
 	if (s[0] == 'L')
-	{
-		specs->lengthmodifier = ft_strdup("L");
-	}
+		specs->lengthmodifier |= BIG_L;
 	return (0);
 }
 
@@ -103,7 +101,7 @@ int				fill_conversion(char c, t_specs *specs)
 {
 	if (is_conversion(c))
 	{
-		specs->conversion = ft_str_append(specs->conversion, c);
+		specs->conversion = c;
 		return (1);
 	}
 	return (0);

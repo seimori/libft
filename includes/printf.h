@@ -6,7 +6,7 @@
 /*   By: imorimot <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/08 12:45:30 by imorimot          #+#    #+#             */
-/*   Updated: 2019/05/10 13:52:26 by imorimot         ###   ########.fr       */
+/*   Updated: 2019/05/11 16:44:33 by imorimot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,23 +22,54 @@
 
 # define SUCCESS 1
 # define FAILURE 0
+# define ERROR -1
 
+/*
+**	flags
+*/
 # define MINUS 1 << 0
 # define PLUS 1 << 1
 # define SPACE 1 << 2
 # define ZERO 1 << 3
 # define HASH 1 << 4
 
-# define CHAR 0
-# define INT 5
+/*
+**	lengthmodifier
+*/
+# define HH 1 << 0
+# define H 1 << 1
+# define L 1 << 2
+# define LL 1 << 3
+# define BIG_L 1 << 4
+
+/*
+**	typeindex
+*/
+# define C 0
+# define HHI 1
+# define HHU 2
+# define HI 3
+# define HU 4
+# define I 5
+# define U 6
+# define LI 7
+# define LU 8
+# define LLI 9
+# define LLU 10
+# define F 11
+# define LF 12
+# define BIG_L_F 13
+# define S 14
+# define P 15
+
 
 typedef struct					s_specs
 {
 	unsigned char				flags;
 	int							width;
 	int							precision;
-	char						*lengthmodifier;
-	char						*conversion;
+	unsigned char				lengthmodifier;
+	char						conversion;
 	int							typeindex;
 }								t_specs;
 
