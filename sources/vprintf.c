@@ -6,7 +6,7 @@
 /*   By: imorimot <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/08 14:48:38 by imorimot          #+#    #+#             */
-/*   Updated: 2019/05/11 16:12:49 by imorimot         ###   ########.fr       */
+/*   Updated: 2019/10/03 15:50:35 by imorimot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,16 +58,13 @@ void			ft_vprintf(const char *format, va_list args)
 {
 	t_specs		*specs;
 	int			i;
-	int			args_count;
 
 	i = 0;
-	args_count = 0;
 	while (format[i] != '\0')
 	{
 		i += print_til_percent(format + i);
 		if (format[i] == '%')
 		{
-			args_count++;
 			specs = initialize_specs();
 			i += fill_specs(format + i, specs, args);
 			print_arg(args, specs);

@@ -10,7 +10,7 @@ SRC_PATH = sources
 #	!!!!!!!!!!!!!!!!!!!!
 SRC_NAME = printf.c vprintf.c print_args.c \
 		   tools.c fillers.c identifiers.c get_typeindex.c \
-		   put_int.c \
+		   print_int.c print_char.c print_string.c \
 		   \
 		   main.c
 

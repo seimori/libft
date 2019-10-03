@@ -6,7 +6,7 @@
 /*   By: imorimot <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/08 12:45:30 by imorimot          #+#    #+#             */
-/*   Updated: 2019/05/11 16:44:33 by imorimot         ###   ########.fr       */
+/*   Updated: 2019/10/03 17:18:35 by imorimot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,9 +102,11 @@ void					ft_printf(const char *format, ...);
 void					ft_vprintf(const char *format, va_list args);
 
 /*
-**	put_int.c
+**	sub printers
 */
-void					put_int_decimal(int n, int width);
+void					print_int(t_arg arg, t_specs *specs);
+void					print_char(t_arg arg, t_specs *specs);
+void					print_string(t_arg arg, t_specs *specs);
 
 /*
 **	print_args.c
@@ -136,21 +138,7 @@ int						fill_conversion(char c, t_specs *specs);
 /*
 **	identifiers.c
 */
-int						is_flag(char c);
-int						is_conversion(char c);
-
-/*
-**	identifiers_conversion.c
-*/
-int						is_charconversion(t_specs *specs);
-int						is_stringconversion(t_specs *specs);
-int						is_pointerconversion(t_specs *specs);
-int						is_floatconversion(t_specs *specs);
-
-/*
-**	identifiers_intconversion.c
-*/
-int						is_intconversion(t_specs *specs);
-int						is_unsignedintconversion(t_specs *specs);
+int				is_flag(char c);
+int				is_conversion(char c);
 
 #endif

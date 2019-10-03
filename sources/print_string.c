@@ -1,27 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   identifiers_intconversion.c                        :+:      :+:    :+:   */
+/*   print_string.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: imorimot <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/03/14 17:47:34 by imorimot          #+#    #+#             */
-/*   Updated: 2019/03/14 17:48:42 by imorimot         ###   ########.fr       */
+/*   Created: 2019/10/03 16:05:50 by imorimot          #+#    #+#             */
+/*   Updated: 2019/10/03 16:14:01 by imorimot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/printf.h"
 
-int			is_intconversion(t_specs *specs)
+void			print_string(t_arg arg, t_specs *specs)
 {
-	return (ft_strequ("d", specs->conversion) ||
-			ft_strequ("i", specs->conversion) ||
-			ft_strequ("o", specs->conversion) ||
-			ft_strequ("x", specs->conversion) ||
-			ft_strequ("X", specs->conversion));
-}
-
-int			is_unsignedintconversion(t_specs *specs)
-{
-	return (ft_strequ("u", specs->conversion));
+	(void)specs;
+	ft_putstr(arg.s);
 }

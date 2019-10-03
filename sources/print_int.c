@@ -1,33 +1,45 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   identifiers_conversion.c                           :+:      :+:    :+:   */
+/*   print_int.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: imorimot <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/03/14 16:34:36 by imorimot          #+#    #+#             */
-/*   Updated: 2019/03/14 17:48:25 by imorimot         ###   ########.fr       */
+/*   Created: 2019/10/03 15:57:31 by imorimot          #+#    #+#             */
+/*   Updated: 2019/10/03 16:17:49 by imorimot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/printf.h"
 
-int			is_charconversion(t_specs *specs)
+void	print_int_decimal(int n, int width)
 {
-	return (ft_strequ("c", specs->conversion));
+	unsigned int	ui_n;
+
+	if (n < 0)
+	{
+		ui_n = -n;
+		ft_putchar('-');
+	}
+	else
+		ui_n = n;
+	if (ui_n >= 10)
+	{
+		print_int_decimal(ui_n / 10, width - 1);
+		ft_putchar(ui_n % 10 + '0');
+	}
+	else
+	{
+		while (width > 1)
+		{
+			ft_putchar(' ');
+			width--;
+		}
+		ft_putchar(ui_n % 10 + '0');
+	}
 }
 
-int			is_stringconversion(t_specs *specs)
+void			print_int(t_arg arg, t_specs *specs)
 {
-	return (ft_strequ("s", specs->conversion));
-}
-
-int			is_pointerconversion(t_specs *specs)
-{
-	return (ft_strequ("p", specs->conversion));
-}
-
-int			is_floatconversion(t_specs *specs)
-{
-	return (ft_strequ("f", specs->conversion));
+	print_int_decimal(arg.i, specs->width);
 }
