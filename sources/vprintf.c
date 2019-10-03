@@ -6,7 +6,7 @@
 /*   By: imorimot <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/08 14:48:38 by imorimot          #+#    #+#             */
-/*   Updated: 2019/10/03 15:50:35 by imorimot         ###   ########.fr       */
+/*   Updated: 2019/10/03 17:54:57 by imorimot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,7 @@ void			ft_vprintf(const char *format, va_list args)
 		{
 			specs = initialize_specs();
 			i += fill_specs(format + i, specs, args);
+			print_specs(specs);
 			print_arg(args, specs);
 		}
 		else if (format[i] != '\0')
