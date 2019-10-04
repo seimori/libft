@@ -1,19 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print_char.c                                       :+:      :+:    :+:   */
+/*   print_p.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: imorimot <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/03 16:01:09 by imorimot          #+#    #+#             */
-/*   Updated: 2019/10/03 16:01:25 by imorimot         ###   ########.fr       */
+/*   Created: 2019/10/04 18:45:22 by imorimot          #+#    #+#             */
+/*   Updated: 2019/10/04 19:00:23 by imorimot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/printf.h"
 
-void			print_char(t_arg arg, t_specs *specs)
+void		print_p(t_arg arg, t_specs *specs)
 {
 	(void)specs;
-	ft_putchar(arg.c);
+	ft_putstr("0x");
+	print_hexadecimal_long((unsigned long int)arg.p, 0);
 }

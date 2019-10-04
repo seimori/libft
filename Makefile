@@ -8,9 +8,11 @@ SRC_PATH = sources
 #	!!!!!To change!!!!!!
 #	List of source files
 #	!!!!!!!!!!!!!!!!!!!!
-SRC_NAME = printf.c vprintf.c print_args.c \
+SRC_NAME = printf.c print_args.c \
 		   tools.c fillers.c identifiers.c get_typeindex.c \
-		   print_int.c print_unsigned_int.c print_char.c print_string.c \
+		   print_i.c print_u.c print_c.c print_s.c print_p.c \
+		   print_signed.c print_unsigned.c print_hexadecimal.c \
+		   print_hexadecimal_big.c print_octal.c \
 		   \
 		   main.c extra.c
 

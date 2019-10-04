@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print_int.c                                        :+:      :+:    :+:   */
+/*   print_signed_decimal.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: imorimot <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/03 15:57:31 by imorimot          #+#    #+#             */
-/*   Updated: 2019/10/03 17:31:18 by imorimot         ###   ########.fr       */
+/*   Updated: 2019/10/04 15:45:40 by imorimot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/printf.h"
 
-void	print_int_decimal(int n, int width)
+void	print_signed_decimal(long long int n, int width)
 {
 	unsigned int	ui_n;
 
@@ -25,7 +25,7 @@ void	print_int_decimal(int n, int width)
 		ui_n = n;
 	if (ui_n >= 10)
 	{
-		print_int_decimal(ui_n / 10, width - 1);
+		print_signed_decimal(ui_n / 10, width - 1);
 		ft_putchar(ui_n % 10 + '0');
 	}
 	else
@@ -37,9 +37,4 @@ void	print_int_decimal(int n, int width)
 		}
 		ft_putchar(ui_n % 10 + '0');
 	}
-}
-
-void			print_int(t_arg arg, t_specs *specs)
-{
-	print_int_decimal(arg.i, specs->width);
 }

@@ -6,7 +6,7 @@
 /*   By: imorimot <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/08 12:45:30 by imorimot          #+#    #+#             */
-/*   Updated: 2019/10/03 17:55:53 by imorimot         ###   ########.fr       */
+/*   Updated: 2019/10/04 18:51:33 by imorimot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,12 +102,42 @@ void					ft_printf(const char *format, ...);
 void					ft_vprintf(const char *format, va_list args);
 
 /*
-**	sub printers
+**	printers 
 */
-void					print_char(t_arg arg, t_specs *specs);
-void					print_int(t_arg arg, t_specs *specs);
-void					print_unsigned_int(t_arg arg, t_specs *specs);
-void					print_string(t_arg arg, t_specs *specs);
+void					print_c(t_arg arg, t_specs *specs);
+void					print_hhi(t_arg arg, t_specs *specs);
+void					print_hhu(t_arg arg, t_specs *specs);
+void					print_hi(t_arg arg, t_specs *specs);
+void					print_hu(t_arg arg, t_specs *specs);
+void					print_i(t_arg arg, t_specs *specs);
+void					print_u(t_arg arg, t_specs *specs);
+void					print_li(t_arg arg, t_specs *specs);
+void					print_lu(t_arg arg, t_specs *specs);
+void					print_lli(t_arg arg, t_specs *specs);
+void					print_llu(t_arg arg, t_specs *specs);
+void					print_s(t_arg arg, t_specs *specs);
+void					print_p(t_arg arg, t_specs *specs);
+
+/*
+**	print numbers
+*/
+void					print_signed_decimal(long long int n, int width);
+void					print_unsigned_decimal(unsigned long long int ui_n, int width);
+void					print_hexadecimal_char(unsigned char ui_n, int width);
+void					print_hexadecimal_short(unsigned short int ui_n, int width);
+void					print_hexadecimal(unsigned int ui_n, int width);
+void					print_hexadecimal_long(unsigned long int ui_n, int width);
+void					print_hexadecimal_long_long(unsigned long long int ui_n, int width);
+void					print_hexadecimal_big_char(unsigned char ui_n, int width);
+void					print_hexadecimal_big_short(unsigned short int ui_n, int width);
+void					print_hexadecimal_big(unsigned int ui_n, int width);
+void					print_hexadecimal_big_long(unsigned long int ui_n, int width);
+void					print_hexadecimal_big_long_long(unsigned long long int ui_n, int width);
+void					print_octal_char(unsigned char ui_n, int width);
+void					print_octal_short(unsigned short ui_n, int width);
+void					print_octal(unsigned int ui_n, int width);
+void					print_octal_long(unsigned long ui_n, int width);
+void					print_octal_long_long(unsigned long long ui_n, int width);
 
 /*
 **	print_args.c
