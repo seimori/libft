@@ -6,7 +6,7 @@
 /*   By: imorimot <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/08 12:45:30 by imorimot          #+#    #+#             */
-/*   Updated: 2019/10/08 18:54:18 by imorimot         ###   ########.fr       */
+/*   Updated: 2019/10/08 18:57:44 by imorimot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,7 @@ typedef void					(*fp_arg)(t_arg, t_specs*);
 **	printf.c
 */
 int						ft_printf(const char *format, ...);
-void					ft_vprintf(const char *format, va_list args);
+int						ft_vprintf(const char *format, va_list args);
 
 /*
 **	printers 

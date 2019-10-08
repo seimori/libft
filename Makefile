@@ -115,7 +115,7 @@ clean:
 
 fclean: clean
 	rm -fv $(NAME)
-	$(MAKE) -C $(LIB_PATH) fclean
+	#$(MAKE) -C $(LIB_PATH) fclean
 
 re: fclean all
 
