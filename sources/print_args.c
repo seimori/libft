@@ -6,13 +6,13 @@
 /*   By: imorimot <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/09 14:12:49 by imorimot          #+#    #+#             */
-/*   Updated: 2019/10/04 18:46:18 by imorimot         ###   ########.fr       */
+/*   Updated: 2019/10/07 19:49:41 by imorimot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/printf.h"
 
-static fp_arg	*initialize_print(void)
+static fp_arg	*initialize_print_functions(void)
 {
 	fp_arg		*print;
 
@@ -38,7 +38,11 @@ void			print_arg(va_list args, t_specs *specs)
 	fp_arg		*print;
 
 	arg = (t_arg)va_arg(args, t_arg);
-	print = initialize_print();
+	print = initialize_print_functions();
+	if (!(specs->flags & MINUS))
+		print_width(arg, specs);
 	print[specs->typeindex](arg, specs);
+	if (specs->flags & MINUS)
+		print_width(arg, specs);
 	free(print);
 }

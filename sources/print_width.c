@@ -1,39 +1,50 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print_c.c                                          :+:      :+:    :+:   */
+/*   print_width.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: imorimot <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/03 16:01:09 by imorimot          #+#    #+#             */
-/*   Updated: 2019/10/07 19:28:41 by imorimot         ###   ########.fr       */
+/*   Created: 2019/10/07 19:08:13 by imorimot          #+#    #+#             */
+/*   Updated: 2019/10/07 19:36:15 by imorimot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/printf.h"
 
-/*
-void			print_width(t_specs *specs)
+int			get_arg_len(t_arg arg, t_specs *specs)
 {
 	int		i;
-	int		char_length;
+
+	i = 1;
+	if (specs->conversion == 'd'  || specs->conversion == 'i')
+	{
+		if (arg.i < 0)
+		{
+			i++;
+			arg.i = -arg.i;
+		}
+		while (arg.i/10 > 0)
+		{
+			arg.i /= 10;
+			i++;
+		}
+	}
+	return (i);
+}
+
+void		print_width(t_arg arg, t_specs *specs)
+{
+	int		i;
 	char	fill_char;
+	int		arg_len;
 
 	i = 0;
-	char_length = 1;
 	fill_char = ' ';
-	if (specs->flags & ZERO)
-		fill_char = '0';
-	while ((specs->width - char_length) - i > 0)
+	arg_len = get_arg_len(arg, specs);
+	while ((specs->width - arg_len) - i > 0)
 	{
 		ft_putchar(fill_char);
 		i++;
 	}
-}
-*/
-
-void			print_c(t_arg arg, t_specs *specs)
-{
-	(void)specs;
-	ft_putchar(arg.c);
 }

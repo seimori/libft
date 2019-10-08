@@ -6,7 +6,7 @@
 /*   By: imorimot <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/04 18:45:22 by imorimot          #+#    #+#             */
-/*   Updated: 2019/10/04 19:00:23 by imorimot         ###   ########.fr       */
+/*   Updated: 2019/10/07 18:06:53 by imorimot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,5 +16,5 @@ void		print_p(t_arg arg, t_specs *specs)
 {
 	(void)specs;
 	ft_putstr("0x");
-	print_hexadecimal_long((unsigned long int)arg.p, 0);
+	print_hexadecimal((unsigned long int)arg.p, LI);
 }
