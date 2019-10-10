@@ -6,7 +6,7 @@
 /*   By: imorimot <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/08 14:48:38 by imorimot          #+#    #+#             */
-/*   Updated: 2019/10/08 19:10:03 by imorimot         ###   ########.fr       */
+/*   Updated: 2019/10/09 18:30:32 by imorimot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,23 +56,33 @@ static int		print_til_percent(const char *s)
 
 int				ft_vprintf(const char *format, va_list args)
 {
+	int			format_count;
+	int			print_count;
+	int			temp;
+	fp_arg		*print;
 	t_specs		*specs;
-	int			i;
 
-	i = 0;
-	while (format[i] != '\0')
+	format_count = 0;
+	print_count = 0;
+	temp = 0;
+	print = initialize_print_functions();
+	while (format[format_count] != '\0')
 	{
-		i += print_til_percent(format + i);
-		if (format[i] == '%')
+		temp += print_til_percent(format + format_count);
+		format_count += temp;
+		print_count += temp;
+		temp = 0;
+		if (format[format_count] == '%')
 		{
 			specs = initialize_specs();
-			i += fill_specs(format + i, specs, args);
-			print_arg(args, specs);
+			format_count += fill_specs(format + format_count, specs, args);
+			print_count += print_arg(args, specs, print);
 		}
-		else if (format[i] != '\0')
-			i++;
+		else if (format[format_count] != '\0')
+			format_count++;
 	}
-	return (i);
+	free (print);
+	return (print_count);
 }
 
 int				ft_printf(const char *format, ...)

@@ -6,7 +6,7 @@
 /*   By: imorimot <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/08 12:45:30 by imorimot          #+#    #+#             */
-/*   Updated: 2019/10/08 18:57:44 by imorimot         ###   ########.fr       */
+/*   Updated: 2019/10/10 19:06:42 by imorimot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,7 @@
 # define BIG_L_F 13
 # define S 14
 # define P 15
+# define PERCENT 16
 
 
 typedef struct					s_specs
@@ -93,7 +94,7 @@ typedef union					u_arg
 	void						*p;
 }								t_arg;
 
-typedef void					(*fp_arg)(t_arg, t_specs*);
+typedef int				(*fp_arg)(t_arg, t_specs*);
 
 /*
 **	printf.c
@@ -102,30 +103,27 @@ int						ft_printf(const char *format, ...);
 int						ft_vprintf(const char *format, va_list args);
 
 /*
-**	printers 
+**	initializers.c
+*/	
+fp_arg					*initialize_print_functions(void);
+
+/*
+**	printers
 */
-void					print_c(t_arg arg, t_specs *specs);
-void					print_hhi(t_arg arg, t_specs *specs);
-void					print_hhu(t_arg arg, t_specs *specs);
-void					print_hi(t_arg arg, t_specs *specs);
-void					print_hu(t_arg arg, t_specs *specs);
-void					print_i(t_arg arg, t_specs *specs);
-void					print_u(t_arg arg, t_specs *specs);
-void					print_li(t_arg arg, t_specs *specs);
-void					print_lu(t_arg arg, t_specs *specs);
-void					print_lli(t_arg arg, t_specs *specs);
-void					print_llu(t_arg arg, t_specs *specs);
-void					print_s(t_arg arg, t_specs *specs);
-void					print_p(t_arg arg, t_specs *specs);
+int						print_c(t_arg arg, t_specs *specs);
+int						print_int(t_arg arg, t_specs *specs);
+int						print_s(t_arg arg, t_specs *specs);
+int						print_p(t_arg arg, t_specs *specs);
+int						print_percent(t_arg arg, t_specs *specs);
 
 /*
 **	print_numbers.c
 */
-void					print_signed_decimal(long long int n, int type);
-void					print_unsigned_decimal(unsigned long long int ui_n, int type);
-void					print_hexadecimal(unsigned long long int ui_n, int type);
-void					print_hexadecimal_big(unsigned long long int ui_n, int type);
-void					print_octal(unsigned long long int ui_n, int type);
+void					print_signed_decimal(long long int n, t_specs *specs);
+void					print_unsigned_decimal(unsigned long long int ui_n, t_specs *specs);
+void					print_hexadecimal(unsigned long long int ui_n, t_specs *specs);
+void					print_hexadecimal_big(unsigned long long int ui_n, t_specs *specs);
+void					print_octal(unsigned long long int ui_n, t_specs *specs);
 
 /*
 **	print_width.c
@@ -135,7 +133,13 @@ void					print_width(t_arg arg, t_specs *specs);
 /*
 **	print_args.c
 */
-void					print_arg(va_list args, t_specs *specs);
+int						print_arg(va_list args, t_specs *specs, fp_arg *print);
+
+/*
+**	ft_len.c
+*/
+int						ft_decimal_len(long long int i);
+int						get_arg_len(t_arg arg, t_specs *specs);
 
 /*
 **	tools.c

@@ -10,8 +10,9 @@ SRC_PATH = sources
 #	!!!!!!!!!!!!!!!!!!!!
 SRC_NAME = printf.c print_args.c \
 		   tools.c fillers.c identifiers.c get_typeindex.c \
-		   print_i.c print_u.c print_c.c print_s.c print_p.c \
-		   print_numbers.c print_width.c \
+		   print_i.c print_c.c print_s.c print_p.c \
+		   print_numbers.c print_width.c initializers.c \
+		   print_percent.c ft_len.c \
 		   \
 		   extra.c \
 		   \
@@ -111,7 +112,7 @@ $(OBJ_PATH)/%.o: $(LIBFT_SRC_PATH)/%.c
 clean:
 	rm -fv $(OBJ)
 	@rmdir $(OBJ_PATH) 2> /dev/null || true
-	$(MAKE) -C $(LIB_PATH) clean
+	#$(MAKE) -C $(LIB_PATH) clean
 
 fclean: clean
 	rm -fv $(NAME)

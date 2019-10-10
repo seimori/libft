@@ -6,68 +6,23 @@
 /*   By: imorimot <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/04 15:45:19 by imorimot          #+#    #+#             */
-/*   Updated: 2019/10/07 19:39:38 by imorimot         ###   ########.fr       */
+/*   Updated: 2019/10/10 19:05:25 by imorimot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/printf.h"
 
-void			print_lli(t_arg arg, t_specs *specs)
+int			print_int(t_arg arg, t_specs *specs)
 {
 	if (specs->conversion == 'd' || specs->conversion == 'i')
-		print_signed_decimal(arg.lli, LLI);
+		print_signed_decimal(arg.lli, specs);
+	else if (specs->conversion == 'u')
+		print_unsigned_decimal(arg.llu, specs);
 	else if (specs->conversion == 'o')
-		print_octal(arg.lli, LLI);
+		print_octal(arg.llu, specs);
 	else if (specs->conversion == 'x')
-		print_hexadecimal(arg.lli, LLI);
+		print_hexadecimal(arg.llu, specs);
 	else if (specs->conversion == 'X')
-		print_hexadecimal_big(arg.lli, LLI);
-}
-
-void			print_li(t_arg arg, t_specs *specs)
-{
-	if (specs->conversion == 'd' || specs->conversion == 'i')
-		print_signed_decimal(arg.li, LI);
-	else if (specs->conversion == 'o')
-		print_octal(arg.li, LI);
-	else if (specs->conversion == 'x')
-		print_hexadecimal(arg.li, LI);
-	else if (specs->conversion == 'X')
-		print_hexadecimal_big(arg.li, LI);
-}
-
-void			print_i(t_arg arg, t_specs *specs)
-{
-	if (specs->conversion == 'd' || specs->conversion == 'i')
-		print_signed_decimal(arg.i, I);
-	else if (specs->conversion == 'o')
-		print_octal(arg.i, I);
-	else if (specs->conversion == 'x')
-		print_hexadecimal(arg.i, I);
-	else if (specs->conversion == 'X')
-		print_hexadecimal_big(arg.i, I);
-}
-
-void			print_hi(t_arg arg, t_specs *specs)
-{
-	if (specs->conversion == 'd' || specs->conversion == 'i')
-		print_signed_decimal(arg.hi, HI);
-	else if (specs->conversion == 'o')
-		print_octal(arg.hi, HI);
-	else if (specs->conversion == 'x')
-		print_hexadecimal(arg.hi, HI);
-	else if (specs->conversion == 'X')
-		print_hexadecimal_big(arg.hi, HI);
-}
-
-void			print_hhi(t_arg arg, t_specs *specs)
-{
-	if (specs->conversion == 'd' || specs->conversion == 'i')
-		print_signed_decimal(arg.hhi, HHI);
-	else if (specs->conversion == 'o')
-		print_octal(arg.hhi, HHI);
-	else if (specs->conversion == 'x')
-		print_hexadecimal(arg.hhi, HHI);
-	else if (specs->conversion == 'X')
-		print_hexadecimal_big(arg.hhi, HHI);
+		print_hexadecimal_big(arg.llu, specs);
+	return (0);
 }

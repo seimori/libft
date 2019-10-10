@@ -6,7 +6,7 @@
 /*   By: imorimot <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/14 16:26:39 by imorimot          #+#    #+#             */
-/*   Updated: 2019/05/11 16:45:01 by imorimot         ###   ########.fr       */
+/*   Updated: 2019/10/09 18:29:32 by imorimot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,8 @@ int			get_typeindex(t_specs *specs)
 		return (S);
 	if (specs->conversion == 'p')
 		return (P);
+	if (specs->conversion == '%')
+		return (PERCENT);
 	if (specs->conversion == 'd' || specs->conversion == 'i'
 			|| specs->conversion == 'o' || specs->conversion == 'x'
 			|| specs->conversion == 'X')

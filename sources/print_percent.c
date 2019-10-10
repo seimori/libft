@@ -1,29 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print_args.c                                       :+:      :+:    :+:   */
+/*   print_percent.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: imorimot <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/03/09 14:12:49 by imorimot          #+#    #+#             */
-/*   Updated: 2019/10/10 15:02:52 by imorimot         ###   ########.fr       */
+/*   Created: 2019/10/09 18:22:42 by imorimot          #+#    #+#             */
+/*   Updated: 2019/10/09 18:44:00 by imorimot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/printf.h"
 
-int				print_arg(va_list args, t_specs *specs, fp_arg *print)
+int			print_percent(t_arg arg, t_specs *specs)
 {
-	t_arg		arg;
-	int			arg_len;
+	int		arg_len;
 
-	arg = (t_arg)va_arg(args, t_arg);
-	if (!(specs->flags & MINUS))
-		print_width(arg, specs);
-	arg_len = print[specs->typeindex](arg, specs);
-	if (specs->flags & MINUS)
-		print_width(arg, specs);
-	if (specs->width > arg_len)
-		arg_len = specs->width;
+	arg_len = 1;
+	(void)specs;
+	(void)arg;
+	ft_putchar('%');
 	return (arg_len);
 }

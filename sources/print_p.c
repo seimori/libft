@@ -6,15 +6,19 @@
 /*   By: imorimot <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/04 18:45:22 by imorimot          #+#    #+#             */
-/*   Updated: 2019/10/07 18:06:53 by imorimot         ###   ########.fr       */
+/*   Updated: 2019/10/09 18:43:37 by imorimot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/printf.h"
 
-void		print_p(t_arg arg, t_specs *specs)
+int			print_p(t_arg arg, t_specs *specs)
 {
+	int		arg_len;
+
+	arg_len = 0;
 	(void)specs;
 	ft_putstr("0x");
 	print_hexadecimal((unsigned long int)arg.p, LI);
+	return (arg_len);
 }
