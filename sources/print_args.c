@@ -6,7 +6,7 @@
 /*   By: imorimot <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/09 14:12:49 by imorimot          #+#    #+#             */
-/*   Updated: 2019/10/10 15:02:52 by imorimot         ###   ########.fr       */
+/*   Updated: 2019/10/15 15:00:33 by imorimot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,7 @@ int				print_arg(va_list args, t_specs *specs, fp_arg *print)
 	int			arg_len;
 
 	arg = (t_arg)va_arg(args, t_arg);
-	if (!(specs->flags & MINUS))
-		print_width(arg, specs);
 	arg_len = print[specs->typeindex](arg, specs);
-	if (specs->flags & MINUS)
-		print_width(arg, specs);
 	if (specs->width > arg_len)
 		arg_len = specs->width;
 	return (arg_len);

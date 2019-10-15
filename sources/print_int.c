@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print_i.c                                          :+:      :+:    :+:   */
+/*   print_int.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: imorimot <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/04 15:45:19 by imorimot          #+#    #+#             */
-/*   Updated: 2019/10/10 19:05:25 by imorimot         ###   ########.fr       */
+/*   Updated: 2019/10/15 15:04:32 by imorimot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,5 +24,5 @@ int			print_int(t_arg arg, t_specs *specs)
 		print_hexadecimal(arg.llu, specs);
 	else if (specs->conversion == 'X')
 		print_hexadecimal_big(arg.llu, specs);
-	return (0);
+	return (get_arg_len(arg, specs));
 }

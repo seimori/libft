@@ -6,7 +6,7 @@
 /*   By: imorimot <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/04 16:49:03 by imorimot          #+#    #+#             */
-/*   Updated: 2019/10/10 19:04:39 by imorimot         ###   ########.fr       */
+/*   Updated: 2019/10/15 15:23:53 by imorimot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ void	print_hexadecimal(unsigned long long int ui_n, t_specs *specs)
 		ui_n = (unsigned short)ui_n;
 	else if (specs->lengthmodifier & L)
 		ui_n = (unsigned long)ui_n;
-	else if (specs->lengthmodifier & LL)
+	else if (specs->lengthmodifier & LL || specs->conversion == 'p')
 		ui_n = (unsigned long long)ui_n;
 	else
 		ui_n = (unsigned int)ui_n;
