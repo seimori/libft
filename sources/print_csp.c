@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print_p.c                                          :+:      :+:    :+:   */
+/*   print_csp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: imorimot <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/04 18:45:22 by imorimot          #+#    #+#             */
-/*   Updated: 2019/10/15 15:26:31 by imorimot         ###   ########.fr       */
+/*   Updated: 2019/10/15 19:02:50 by imorimot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,5 @@ int				print_s(t_arg arg, t_specs *specs)
 int			print_p(t_arg arg, t_specs *specs)
 {
 	ft_putstr("0x");
-	print_hexadecimal((unsigned long int)arg.p, specs);
-	return (get_arg_len(arg, specs) + 2);
+	return (print_hexadecimal((unsigned long int)arg.p, specs) + 2);
 }

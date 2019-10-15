@@ -6,7 +6,7 @@
 /*   By: imorimot <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/08 12:45:30 by imorimot          #+#    #+#             */
-/*   Updated: 2019/10/10 19:06:42 by imorimot         ###   ########.fr       */
+/*   Updated: 2019/10/15 19:02:07 by imorimot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,11 +119,11 @@ int						print_percent(t_arg arg, t_specs *specs);
 /*
 **	print_numbers.c
 */
-void					print_signed_decimal(long long int n, t_specs *specs);
-void					print_unsigned_decimal(unsigned long long int ui_n, t_specs *specs);
-void					print_hexadecimal(unsigned long long int ui_n, t_specs *specs);
-void					print_hexadecimal_big(unsigned long long int ui_n, t_specs *specs);
-void					print_octal(unsigned long long int ui_n, t_specs *specs);
+int						print_signed_decimal(long long int n, t_specs *specs);
+int						print_unsigned_decimal(unsigned long long ui_n, t_specs *specs);
+int						print_hexadecimal(unsigned long long int ui_n, t_specs *specs);
+int						print_hexadecimal_big(unsigned long long int ui_n, t_specs *specs);
+int						print_octal(unsigned long long int ui_n, t_specs *specs);
 
 /*
 **	print_width.c
@@ -138,7 +138,6 @@ int						print_arg(va_list args, t_specs *specs, fp_arg *print);
 /*
 **	ft_len.c
 */
-int						ft_decimal_len(long long int i);
 int						get_arg_len(t_arg arg, t_specs *specs);
 
 /*

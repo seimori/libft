@@ -6,14 +6,15 @@
 /*   By: imorimot <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/04 16:49:03 by imorimot          #+#    #+#             */
-/*   Updated: 2019/10/15 15:23:53 by imorimot         ###   ########.fr       */
+/*   Updated: 2019/10/15 19:04:21 by imorimot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/printf.h"
 
-void	print_signed_decimal(long long int n, t_specs *specs)
+int		print_signed_decimal(long long int n, t_specs *specs)
 {
+	static int	count = 1;
 	unsigned long long int	ui_n;
 
 	if (specs->lengthmodifier & HH)
@@ -30,16 +31,23 @@ void	print_signed_decimal(long long int n, t_specs *specs)
 	{
 		ui_n = -n;
 		ft_putchar('-');
+		count++;
 	}
 	else
 		ui_n = n;
 	if (ui_n >= 10)
+	{
+		count++;
 		print_signed_decimal(ui_n / 10, specs);
+	}
 	ft_putchar(ui_n % 10 + '0');
+	return (count);
 }
 
-void	print_unsigned_decimal(unsigned long long int ui_n, t_specs *specs)
+int		print_unsigned_decimal(unsigned long long ui_n, t_specs *specs)
 {
+	static int	count = 1;
+
 	if (specs->lengthmodifier & HH)
 		ui_n = (unsigned char)ui_n;
 	else if (specs->lengthmodifier & H)
@@ -51,12 +59,18 @@ void	print_unsigned_decimal(unsigned long long int ui_n, t_specs *specs)
 	else
 		ui_n = (unsigned int)ui_n;
 	if (ui_n >= 10)
+	{
+		count++;
 		print_unsigned_decimal(ui_n / 10, specs);
+	}
 	ft_putchar(ui_n % 10 + '0');
+	return (count);
 }
 
-void	print_octal(unsigned long long ui_n, t_specs *specs)
+int		print_octal(unsigned long long ui_n, t_specs *specs)
 {
+	static int	count = 1;
+
 	if (specs->lengthmodifier & HH)
 		ui_n = (unsigned char)ui_n;
 	else if (specs->lengthmodifier & H)
@@ -68,12 +82,17 @@ void	print_octal(unsigned long long ui_n, t_specs *specs)
 	else
 		ui_n = (unsigned int)ui_n;
 	if (ui_n >= 8)
+	{
+		count++;
 		print_octal(ui_n / 8, specs);
+	}
 	ft_putchar(ui_n % 8 + '0');
+	return (count);
 }
 
-void	print_hexadecimal(unsigned long long int ui_n, t_specs *specs)
+int		print_hexadecimal(unsigned long long int ui_n, t_specs *specs)
 {
+	static int	count = 1;
 	static char hexa[16] = {'0', '1', '2', '3', '4', '5', '6', '7', '8',
 		'9', 'a', 'b', 'c', 'd', 'e', 'f'};
 
@@ -88,12 +107,17 @@ void	print_hexadecimal(unsigned long long int ui_n, t_specs *specs)
 	else
 		ui_n = (unsigned int)ui_n;
 	if (ui_n >= 16)
+	{
+		count++;
 		print_hexadecimal(ui_n / 16, specs);
+	}
 	ft_putchar(hexa[ui_n % 16]);
+	return (count);
 }
 
-void	print_hexadecimal_big(unsigned long long int ui_n, t_specs *specs)
+int		print_hexadecimal_big(unsigned long long int ui_n, t_specs *specs)
 {
+	static int	count = 1;
 	static char hexa[16] = {'0', '1', '2', '3', '4', '5', '6', '7', '8',
 		'9', 'A', 'B', 'C', 'D', 'E', 'F'};
 
@@ -108,6 +132,10 @@ void	print_hexadecimal_big(unsigned long long int ui_n, t_specs *specs)
 	else
 		ui_n = (unsigned int)ui_n;
 	if (ui_n >= 16)
+	{
+		count++;
 		print_hexadecimal_big(ui_n / 16, specs);
+	}
 	ft_putchar(hexa[ui_n % 16]);
+	return (count);
 }
