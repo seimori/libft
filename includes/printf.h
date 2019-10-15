@@ -6,7 +6,7 @@
 /*   By: imorimot <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/08 12:45:30 by imorimot          #+#    #+#             */
-/*   Updated: 2019/10/15 19:02:07 by imorimot         ###   ########.fr       */
+/*   Updated: 2019/10/15 19:12:17 by imorimot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,11 +134,6 @@ void					print_width(t_arg arg, t_specs *specs);
 **	print_args.c
 */
 int						print_arg(va_list args, t_specs *specs, fp_arg *print);
-
-/*
-**	ft_len.c
-*/
-int						get_arg_len(t_arg arg, t_specs *specs);
 
 /*
 **	tools.c
