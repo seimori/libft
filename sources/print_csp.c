@@ -6,7 +6,7 @@
 /*   By: imorimot <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/04 18:45:22 by imorimot          #+#    #+#             */
-/*   Updated: 2019/10/15 19:11:45 by imorimot         ###   ########.fr       */
+/*   Updated: 2019/10/16 14:24:09 by imorimot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,20 +17,28 @@ int				print_c(t_arg arg, t_specs *specs)
 	int		arg_len;
 
 	arg_len = 1;
-	(void)specs;
+	if (!(specs->flags & MINUS))
+		arg_len = print_width(arg_len, specs->width);
 	ft_putchar(arg.c);
 	return (arg_len);
 }
 
 int				print_s(t_arg arg, t_specs *specs)
 {
-	(void)specs;
+	int		arg_len;
+
+	arg_len = ft_strlen(arg.s);
+	if (!(specs->flags & MINUS))
+		arg_len = print_width(arg_len, specs->width);
 	ft_putstr(arg.s);
-	return (ft_strlen(arg.s));
+	return (arg_len);
 }
 
 int			print_p(t_arg arg, t_specs *specs)
 {
+	int		arg_len;
+
 	ft_putstr("0x");
-	return (print_hexadecimal((unsigned long int)arg.p, specs) + 2);
+	arg_len = print_hexadecimal((unsigned long)arg.p, specs) + 2;
+	return (arg_len);
 }
