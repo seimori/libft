@@ -6,7 +6,7 @@
 /*   By: imorimot <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/11 18:25:29 by imorimot          #+#    #+#             */
-/*   Updated: 2019/10/03 18:17:34 by imorimot         ###   ########.fr       */
+/*   Updated: 2019/10/18 16:23:57 by imorimot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,10 @@ int				fill_lengthmodifier(const char *s, t_specs *specs)
 		return (1);
 	}
 	if (s[0] == 'L')
+	{
 		specs->lengthmodifier |= BIG_L;
+		return (1);
+	}
 	return (0);
 }
 

@@ -6,7 +6,7 @@
 /*   By: imorimot <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/14 16:26:39 by imorimot          #+#    #+#             */
-/*   Updated: 2019/10/09 18:29:32 by imorimot         ###   ########.fr       */
+/*   Updated: 2019/10/18 16:25:45 by imorimot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ static int	get_float_typeindex(t_specs *specs)
 		return (F);
 	if (specs->lengthmodifier & L)
 		return (LF);
-	if (specs->lengthmodifier & LL)
+	if (specs->lengthmodifier & BIG_L)
 		return (BIG_L_F);
 	return (ERROR);
 }

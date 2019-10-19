@@ -6,11 +6,13 @@
 /*   By: imorimot <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/04 18:45:22 by imorimot          #+#    #+#             */
-/*   Updated: 2019/10/16 14:24:09 by imorimot         ###   ########.fr       */
+/*   Updated: 2019/10/19 17:38:20 by imorimot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/printf.h"
+
+#define G_COUNT_INIT_INT 0
 
 int				print_c(t_arg arg, t_specs *specs)
 {
@@ -39,6 +41,7 @@ int			print_p(t_arg arg, t_specs *specs)
 	int		arg_len;
 
 	ft_putstr("0x");
+	g_count = G_COUNT_INIT_INT;
 	arg_len = print_hexadecimal((unsigned long)arg.p, specs) + 2;
 	return (arg_len);
 }

@@ -6,7 +6,7 @@
 /*   By: imorimot <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/08 12:45:30 by imorimot          #+#    #+#             */
-/*   Updated: 2019/10/16 13:45:23 by imorimot         ###   ########.fr       */
+/*   Updated: 2019/10/19 17:28:52 by imorimot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,8 @@
 # define PERCENT 16
 
 
+unsigned int					g_count;
+
 typedef struct					s_specs
 {
 	unsigned char				flags;
@@ -112,6 +114,7 @@ fp_arg					*initialize_print_functions(void);
 */
 int						print_c(t_arg arg, t_specs *specs);
 int						print_int(t_arg arg, t_specs *specs);
+int						print_float(t_arg arg, t_specs *specs);
 int						print_s(t_arg arg, t_specs *specs);
 int						print_p(t_arg arg, t_specs *specs);
 int						print_percent(t_arg arg, t_specs *specs);

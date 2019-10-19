@@ -1,108 +1,61 @@
-#include <stdio.h>
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   print_float.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: imorimot <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/10/18 15:53:42 by imorimot          #+#    #+#             */
+/*   Updated: 2019/10/19 19:43:27 by imorimot         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-#define EXPONENT_SIZE 8
-#define MANTISSA_SIZE 23
+#include "../includes/printf.h"
 
-union				u_double
+#define FPN_G_COUNT_INIT 0
+#define ROUND_UP 0.5
+
+void		ft_putnbr_ull(unsigned long long n)
 {
-	float		dbl;
-	int			i;
-};
-
-void				print_bits_dbl(union u_double d)
-{
-	int			n;
-
-	n = sizeof(d.dbl) * 8 - 1;
-	while (n >= 0)
-	{
-		if (1 << n & d.i)
-			printf("1");
-		else
-			printf("0");
-		n--;
-	}
-	printf("\n");
+	if (n >= 10)
+		ft_putnbr_ull(n/10);
+	ft_putchar(n % 10 + '0');
 }
 
-void				print_bits_int(int i)
+void		ft_putnbr_ull_nofirstdigit(unsigned long long n)
 {
-	int			n;
-
-	//n = sizeof(i) * 8 - 1;
-	n = MANTISSA_SIZE - 1;
-	while (n >= 0)
-	{
-		if (1 << n & i)
-			printf("1");
-		else
-			printf("0");
-		n--;
-	}
-	printf("\n");
+	if (n >= 10)
+		ft_putnbr_ull_nofirstdigit(n / 10);
+	if (g_count > 0)
+		ft_putchar(n % 10 + '0');
+	g_count++;
 }
 
-void				print_sign(union u_double d)
+void		print_fpn(long double f, int precision, t_specs *specs)
 {
-	if (d.i & 1 << (sizeof(d.dbl) * 8 - 1))
-		printf("negative\n");
+	if (!(specs->lengthmodifier & BIG_L))
+		f = (double)f;
+	if (f < 0)
+	{
+		ft_putchar('-');
+		f = -f;
+	}
+	ft_putnbr_ull((unsigned long long)f);
+	ft_putchar('.');
+	f -= (unsigned long long)f;
+	f += 1;
+	while (precision--)
+		f *= 10;
+	g_count = 0;
+	ft_putnbr_ull_nofirstdigit((unsigned long long)(f + ROUND_UP));
+}
+
+int			print_float(t_arg arg, t_specs *specs)
+{
+	(void)specs;
+	if (specs->lengthmodifier & BIG_L)
+		print_fpn(arg.Lf, 6, specs);
 	else
-		printf("positive\n");
-}
-
-unsigned int		get_exponent(union u_double d)
-{
-	int					exponent;
-	int					exponent_n;
-	int					d_n;
-
-
-	exponent = 0;
-	exponent_n = EXPONENT_SIZE - 1;
-	d_n = sizeof(d.dbl) * 8 - 2;
-	while (exponent_n >= 0)
-	{
-		if (d.i & 1 << d_n)
-			exponent |= 1 << exponent_n;
-		d_n--;
-		exponent_n--;
-	}
-	exponent -= 0x7f;
-	return (exponent);
-}
-
-unsigned int		get_mantissa(union u_double d)
-{
-	unsigned int		mantissa;
-	int					mantissa_n;
-
-	mantissa = 0;
-	mantissa_n = MANTISSA_SIZE - 1;
-	while (mantissa_n >= 0)
-	{
-		if (1 << mantissa_n & d.i)
-			mantissa |= 1 << mantissa_n;
-		mantissa_n--;
-	}
-	return (mantissa);
-}
-
-void				print_float(union u_double d)
-{
-	unsigned int			exponent;
-	unsigned int			mantissa;
-
-	print_sign(d);
-	exponent = get_exponent(d);
-	mantissa = get_mantissa(d);
-}
-
-int					main(void)
-{
-	union u_double			d;
-
-	d.dbl = 85.125;
-	print_float(d);
-
+		print_fpn((long double)arg.lf, 6, specs);
 	return (0);
 }

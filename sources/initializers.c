@@ -6,7 +6,7 @@
 /*   By: imorimot <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/09 16:16:27 by imorimot          #+#    #+#             */
-/*   Updated: 2019/10/10 19:06:11 by imorimot         ###   ########.fr       */
+/*   Updated: 2019/10/19 17:02:07 by imorimot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,9 @@ fp_arg			*initialize_print_functions(void)
 	print[LU] = &print_int;
 	print[LLI] = &print_int;
 	print[LLU] = &print_int;
+	print[F] = &print_float;
+	print[LF] = &print_float;
+	print[BIG_L_F] = &print_float;
 	print[S] = &print_s;
 	print[P] = &print_p;
 	print[PERCENT] = &print_percent;

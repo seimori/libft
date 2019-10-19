@@ -6,17 +6,20 @@
 /*   By: imorimot <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/04 15:45:19 by imorimot          #+#    #+#             */
-/*   Updated: 2019/10/15 19:02:34 by imorimot         ###   ########.fr       */
+/*   Updated: 2019/10/19 17:36:27 by imorimot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/printf.h"
+
+#define G_COUNT_INIT_INT 1
 
 int			print_int(t_arg arg, t_specs *specs)
 {
 	int		arg_len;
 
 	arg_len = 1;
+	g_count = G_COUNT_INIT_INT;
 	if (specs->conversion == 'd' || specs->conversion == 'i')
 		arg_len = print_signed_decimal(arg.lli, specs);
 	else if (specs->conversion == 'u')
