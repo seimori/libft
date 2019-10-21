@@ -6,7 +6,7 @@
 /*   By: imorimot <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/08 12:45:30 by imorimot          #+#    #+#             */
-/*   Updated: 2019/10/19 17:28:52 by imorimot         ###   ########.fr       */
+/*   Updated: 2019/10/21 19:49:57 by imorimot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,6 @@
 # define P 15
 # define PERCENT 16
 
-
 unsigned int					g_count;
 
 typedef struct					s_specs
@@ -74,6 +73,7 @@ typedef struct					s_specs
 	unsigned char				lengthmodifier;
 	char						conversion;
 	int							typeindex;
+	int							is_negative;
 }								t_specs;
 
 typedef union					u_arg

@@ -6,7 +6,7 @@
 /*   By: imorimot <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/11 18:25:29 by imorimot          #+#    #+#             */
-/*   Updated: 2019/10/18 16:23:57 by imorimot         ###   ########.fr       */
+/*   Updated: 2019/10/21 16:33:48 by imorimot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,8 @@ int				fill_precision(const char *s, t_specs *specs, va_list args)
 			i++;
 		specs->precision = ft_antoi(s + 1, i - 1);
 	}
+	else
+		specs->precision = -1;
 	return (i);
 }
 
