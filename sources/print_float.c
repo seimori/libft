@@ -6,7 +6,7 @@
 /*   By: imorimot <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/18 15:53:42 by imorimot          #+#    #+#             */
-/*   Updated: 2019/10/21 17:08:18 by imorimot         ###   ########.fr       */
+/*   Updated: 2019/10/22 16:54:53 by imorimot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ unsigned int	print_fpn(long double f, t_specs *specs)
 		precision = specs->precision;
 	if (!(specs->lengthmodifier & BIG_L))
 		f = (double)f;
-	if (f < 0)
+	if (f < 0 || (1.0 / f == -1.0 / 0.0))
 	{
 		ft_putchar('-');
 		f = -f;
