@@ -6,7 +6,7 @@
 /*   By: imorimot <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/18 15:53:42 by imorimot          #+#    #+#             */
-/*   Updated: 2019/10/22 16:54:53 by imorimot         ###   ########.fr       */
+/*   Updated: 2019/10/22 21:04:22 by imorimot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,10 +103,18 @@ int			print_float(t_arg arg, t_specs *specs)
 {
 	int			count;
 	
-	(void)specs;
+	count = 0;
 	if (specs->lengthmodifier & BIG_L)
-		count = print_fpn(arg.Lf, specs);
+	{
+		if (!(specs->flags & MINUS))
+			count = print_fpn_width(arg.Lf, specs);
+		count += print_fpn(arg.Lf, specs);
+	}
 	else
-		count = print_fpn((long double)arg.lf, specs);
+	{
+		if (!(specs->flags & MINUS))
+			count = print_fpn_width((long double)arg.lf, specs);
+		count += print_fpn((long double)arg.lf, specs);
+	}
 	return (count);
 }
