@@ -6,7 +6,7 @@
 /*   By: imorimot <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/07 19:08:13 by imorimot          #+#    #+#             */
-/*   Updated: 2019/10/22 21:10:02 by imorimot         ###   ########.fr       */
+/*   Updated: 2019/10/23 16:48:07 by imorimot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,10 @@ int						llint_len(long long int n)
 	else
 		u_n = (unsigned long long)n;
 	while (u_n >= 10)
+	{
 		count++;
+		u_n /= 10;
+	}
 	return (count);
 }
 
