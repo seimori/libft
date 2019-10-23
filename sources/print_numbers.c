@@ -6,7 +6,7 @@
 /*   By: imorimot <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/04 16:49:03 by imorimot          #+#    #+#             */
-/*   Updated: 2019/10/23 19:10:18 by imorimot         ###   ########.fr       */
+/*   Updated: 2019/10/23 19:50:41 by imorimot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,7 +117,7 @@ int		print_hexadecimal(unsigned long long int ui_n, t_specs *specs)
 		g_count++;
 		print_hexadecimal(ui_n / 16, specs);
 	}
-	else if (!(specs->flags & MINUS) && !(specs->conversion == 'p'))
+	else if (!(specs->flags & MINUS))
 		g_count = print_width(g_count, specs);
 	print_precision(specs);
 	ft_putchar(hexa[ui_n % 16]);
