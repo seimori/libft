@@ -6,7 +6,7 @@
 /*   By: imorimot <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/09 16:16:27 by imorimot          #+#    #+#             */
-/*   Updated: 2019/10/19 17:02:07 by imorimot         ###   ########.fr       */
+/*   Updated: 2019/10/23 17:21:50 by imorimot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ fp_arg			*initialize_print_functions(void)
 {
 	fp_arg		*print;
 
-	print = (fp_arg*)ft_memalloc(sizeof(fp_arg) * 16);
+	print = (fp_arg*)ft_memalloc(sizeof(fp_arg) * 17);
 	print[C] = &print_c;
 	print[HHI] = &print_int;
 	print[HHU] = &print_int;
