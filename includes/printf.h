@@ -6,7 +6,7 @@
 /*   By: imorimot <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/08 12:45:30 by imorimot          #+#    #+#             */
-/*   Updated: 2019/10/23 17:03:13 by imorimot         ###   ########.fr       */
+/*   Updated: 2019/10/23 17:30:32 by imorimot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,7 +131,7 @@ int						print_octal(unsigned long long int ui_n, t_specs *specs);
 /*
 **	print_width.c
 */
-int						print_width(int count, int width);
+int						print_width(int count, t_specs *specs);
 int						print_fpn_width(long double f, t_specs *specs);
 
 /*

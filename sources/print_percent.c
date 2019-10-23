@@ -6,7 +6,7 @@
 /*   By: imorimot <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/09 18:22:42 by imorimot          #+#    #+#             */
-/*   Updated: 2019/10/23 17:21:30 by imorimot         ###   ########.fr       */
+/*   Updated: 2019/10/23 17:31:22 by imorimot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int			print_percent(t_arg arg, t_specs *specs)
 	(void)specs;
 	arg_len = 1;
 	if (!(specs->flags & MINUS))
-		arg_len = print_width(arg_len, specs->width);
+		arg_len = print_width(arg_len, specs);
 	ft_putchar('%');
 	return (arg_len);
 }

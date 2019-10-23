@@ -6,7 +6,7 @@
 /*   By: imorimot <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/18 15:53:42 by imorimot          #+#    #+#             */
-/*   Updated: 2019/10/22 21:04:22 by imorimot         ###   ########.fr       */
+/*   Updated: 2019/10/23 19:25:24 by imorimot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,8 @@
 #define FPN_G_COUNT_INIT 0
 #define ROUND_UP 0.5
 
-unsigned int	fpn_special_cases(long double f, t_specs *specs)
+unsigned int	fpn_special_cases(long double f)
 {
-	(void)specs;
 	if (f >= 1.0/0)
 	{
 		ft_putstr("inf");
@@ -72,7 +71,7 @@ unsigned int	print_fpn(long double f, t_specs *specs)
 	int					precision;
 
 
-	if ((count = fpn_special_cases(f, specs)))
+	if ((count = fpn_special_cases(f)))
 		return (count);
 	if (specs->precision < 0)
 		precision = 6;
@@ -82,7 +81,8 @@ unsigned int	print_fpn(long double f, t_specs *specs)
 		f = (double)f;
 	if (f < 0 || (1.0 / f == -1.0 / 0.0))
 	{
-		ft_putchar('-');
+		if (!(specs->flags & ZERO))
+			ft_putchar('-');
 		f = -f;
 		g_count = 1;
 	}
