@@ -6,7 +6,7 @@
 /*   By: imorimot <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/08 12:45:30 by imorimot          #+#    #+#             */
-/*   Updated: 2019/10/22 20:57:10 by imorimot         ###   ########.fr       */
+/*   Updated: 2019/10/23 17:03:13 by imorimot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@
 # define P 15
 # define PERCENT 16
 
-unsigned int					g_count;
+int								g_count;
 
 typedef struct					s_specs
 {
@@ -133,6 +133,11 @@ int						print_octal(unsigned long long int ui_n, t_specs *specs);
 */
 int						print_width(int count, int width);
 int						print_fpn_width(long double f, t_specs *specs);
+
+/*
+**	print_precision.c
+*/
+void					print_precision(t_specs *specs);
 
 /*
 **	print_args.c

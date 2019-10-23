@@ -6,7 +6,7 @@
 /*   By: imorimot <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/04 16:49:03 by imorimot          #+#    #+#             */
-/*   Updated: 2019/10/21 19:51:26 by imorimot         ###   ########.fr       */
+/*   Updated: 2019/10/23 17:11:51 by imorimot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,11 +42,10 @@ int		print_signed_decimal(long long int n, t_specs *specs)
 	else if (!(specs->flags & MINUS))
 		g_count = print_width(g_count, specs->width);
 	if (specs->is_negative)
-	{
 		ft_putchar('-');
-		specs->is_negative = 0;
-	}
+	print_precision(specs);
 	ft_putchar(ui_n % 10 + '0');
+	specs->is_negative = 0;
 	return (g_count);
 }
 
@@ -69,6 +68,7 @@ int		print_unsigned_decimal(unsigned long long ui_n, t_specs *specs)
 	}
 	else if (!(specs->flags & MINUS))
 		g_count = print_width(g_count, specs->width);
+	print_precision(specs);
 	ft_putchar(ui_n % 10 + '0');
 	return (g_count);
 }
@@ -92,6 +92,7 @@ int		print_octal(unsigned long long ui_n, t_specs *specs)
 	}
 	else if (!(specs->flags & MINUS))
 		g_count = print_width(g_count, specs->width);
+	print_precision(specs);
 	ft_putchar(ui_n % 8 + '0');
 	return (g_count);
 }
@@ -118,6 +119,7 @@ int		print_hexadecimal(unsigned long long int ui_n, t_specs *specs)
 	}
 	else if (!(specs->flags & MINUS) && !(specs->conversion == 'p'))
 		g_count = print_width(g_count, specs->width);
+	print_precision(specs);
 	ft_putchar(hexa[ui_n % 16]);
 	return (g_count);
 }
@@ -144,6 +146,7 @@ int		print_hexadecimal_big(unsigned long long int ui_n, t_specs *specs)
 	}
 	else if (!(specs->flags & MINUS))
 		g_count = print_width(g_count, specs->width);
+	print_precision(specs);
 	ft_putchar(hexa[ui_n % 16]);
 	return (g_count);
 }

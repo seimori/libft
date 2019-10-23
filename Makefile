@@ -12,7 +12,7 @@ SRC_NAME = printf.c print_args.c \
 		   tools.c fillers.c identifiers.c get_typeindex.c \
 		   print_int.c print_float.c print_csp.c \
 		   print_numbers.c print_width.c initializers.c \
-		   print_percent.c \
+		   print_percent.c print_precision.c \
 		   \
 		   extra.c \
 		   \
