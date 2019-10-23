@@ -6,7 +6,7 @@
 /*   By: imorimot <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/07 19:08:13 by imorimot          #+#    #+#             */
-/*   Updated: 2019/10/23 19:32:47 by imorimot         ###   ########.fr       */
+/*   Updated: 2019/10/23 20:03:27 by imorimot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,15 @@ int			print_width(int count, t_specs *specs)
 {
 	char		width_char;
 
+	if (specs->flags & PLUS)
+		count++;
 	if (specs->flags & ZERO)
 	{
 		width_char = '0';
 		if (specs->is_negative)
 			ft_putchar('-');
+		else if (specs->flags & PLUS)
+			ft_putchar('+');
 	}
 	else
 		width_char = ' ';
