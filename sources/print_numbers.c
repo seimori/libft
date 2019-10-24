@@ -6,7 +6,7 @@
 /*   By: imorimot <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/04 16:49:03 by imorimot          #+#    #+#             */
-/*   Updated: 2019/10/24 19:39:16 by imorimot         ###   ########.fr       */
+/*   Updated: 2019/10/24 20:07:32 by imorimot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ int		print_signed_decimal(long long int n, t_specs *specs)
 	{
 		ui_n = -n;
 		specs->is_negative = 1;
-		g_count++;
 	}
 	else
 		ui_n = n;
@@ -42,7 +41,6 @@ int		print_signed_decimal(long long int n, t_specs *specs)
 	else if (!(specs->flags & MINUS))
 		g_count = print_width(g_count, specs);
 	ft_putchar(ui_n % 10 + '0');
-	specs->is_negative = -1;
 	return (g_count);
 }
 
