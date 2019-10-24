@@ -6,7 +6,7 @@
 /*   By: imorimot <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/18 15:53:42 by imorimot          #+#    #+#             */
-/*   Updated: 2019/10/23 19:36:53 by imorimot         ###   ########.fr       */
+/*   Updated: 2019/10/24 15:12:12 by imorimot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,33 @@ unsigned int	print_dot(int precision)
 		return (0);
 }
 
+int				get_precision(int precision)
+{
+	if (precision < 0)
+		return (6);
+	else
+		return (precision);
+}
+
+int				print_sign(long double f, t_specs *specs)
+{
+	if (f < 0 || (1.0 / f == -1.0 / 0.0))
+	{
+		if (!(specs->flags & ZERO))
+			ft_putchar('-');
+		f = -f;
+		return (1);
+	}
+	else if (specs->flags & PLUS)
+	{
+		if (!(specs->flags & ZERO))
+			ft_putchar('+');
+		return (1);
+	}
+	else
+		return (0);
+}
+
 unsigned int	print_fpn(long double f, t_specs *specs)
 {
 	unsigned int		count;
@@ -73,21 +100,10 @@ unsigned int	print_fpn(long double f, t_specs *specs)
 
 	if ((count = fpn_special_cases(f)))
 		return (count);
-	if (specs->precision < 0)
-		precision = 6;
-	else
-		precision = specs->precision;
+	precision = get_precision(specs->precision);
 	if (!(specs->lengthmodifier & BIG_L))
 		f = (double)f;
-	if (f < 0 || (1.0 / f == -1.0 / 0.0))
-	{
-		if (!(specs->flags & ZERO))
-			ft_putchar('-');
-		f = -f;
-		g_count = 1;
-	}
-	else
-		g_count = 0;
+	g_count = print_sign(f, specs);
 	count = ft_putnbr_ull((unsigned long long)f);
 	count += print_dot(precision);
 	f -= (unsigned long long)f;

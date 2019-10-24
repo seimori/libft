@@ -6,7 +6,7 @@
 /*   By: imorimot <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/07 19:08:13 by imorimot          #+#    #+#             */
-/*   Updated: 2019/10/23 20:03:27 by imorimot         ###   ########.fr       */
+/*   Updated: 2019/10/24 15:18:55 by imorimot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,20 +54,22 @@ int						llint_len(long long int n)
 	return (count);
 }
 
-int						get_longdouble_len(long double f, int precision)
+int						get_longdouble_len(long double f, t_specs *specs)
 {
 	int	count;
 
 	count = 0;
 	if (f < 0 || (1.0 / f == -1.0 / 0.0))
 		count++;
-	count += llint_len((long long int)f);
-	if (precision != 0)
+	else if (specs->flags & PLUS)
 		count++;
-	if (precision < 0)
+	count += llint_len((long long int)f);
+	if (specs->precision != 0)
+		count++;
+	if (specs->precision < 0)
 		count += 6;
 	else
-		count += precision;
+		count += specs->precision;
 	return (count);
 }
 
@@ -98,9 +100,11 @@ int						print_fpn_width(long double f, t_specs *specs)
 			width_char = '0';
 			if (f < 0 || (1.0 / f == -1.0 / 0.0))
 				ft_putchar('-');
+			if (specs->flags & PLUS)
+				ft_putchar('+');
 		}
 		count = 0;
-		arg_len = get_longdouble_len(f, specs->precision);
+		arg_len = get_longdouble_len(f, specs);
 	}
 	while (arg_len + count < specs->width)
 	{
