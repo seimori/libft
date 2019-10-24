@@ -6,18 +6,16 @@
 /*   By: imorimot <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/07 19:08:13 by imorimot          #+#    #+#             */
-/*   Updated: 2019/10/24 15:18:55 by imorimot         ###   ########.fr       */
+/*   Updated: 2019/10/24 19:46:50 by imorimot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/printf.h"
 
-int			print_width(int count, t_specs *specs)
+char			print_flag_zero(t_specs *specs)
 {
 	char		width_char;
 
-	if (specs->flags & PLUS)
-		count++;
 	if (specs->flags & ZERO)
 	{
 		width_char = '0';
@@ -28,11 +26,40 @@ int			print_width(int count, t_specs *specs)
 	}
 	else
 		width_char = ' ';
-	while (count < specs->width)
+	return (width_char);
+}
+
+static void		print_sign(t_specs *specs)
+{
+	if (!(specs->flags & ZERO))
+	{
+		if (specs->is_negative == 1)
+			ft_putchar('-');
+		else if (specs->flags & PLUS)
+			ft_putchar('+');
+	}
+}
+
+int				print_width(int count, t_specs *specs)
+{
+	int			num_len;
+	int			spaces_len;
+	char		width_char;
+
+	num_len = count;
+	spaces_len = 0;
+	if (specs->is_negative == 1 || specs->flags & PLUS)
+		spaces_len++;
+	width_char = print_flag_zero(specs);
+	while (spaces_len + specs->precision < specs->width
+			&& spaces_len + num_len < specs->width)
 	{
 		ft_putchar(width_char);
-		count++;
+		spaces_len++;
 	}
+	print_sign(specs);
+	num_len = print_precision(specs, num_len);
+	count = spaces_len + num_len;
 	return (count);
 }
 

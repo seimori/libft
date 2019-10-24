@@ -6,7 +6,7 @@
 /*   By: imorimot <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/18 15:53:42 by imorimot          #+#    #+#             */
-/*   Updated: 2019/10/24 15:12:12 by imorimot         ###   ########.fr       */
+/*   Updated: 2019/10/24 19:32:20 by imorimot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ int				get_precision(int precision)
 		return (precision);
 }
 
-int				print_sign(long double f, t_specs *specs)
+static int				print_sign(long double f, t_specs *specs)
 {
 	if (f < 0 || (1.0 / f == -1.0 / 0.0))
 	{
