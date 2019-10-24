@@ -6,7 +6,7 @@
 /*   By: imorimot <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/07 19:08:13 by imorimot          #+#    #+#             */
-/*   Updated: 2019/10/24 20:07:42 by imorimot         ###   ########.fr       */
+/*   Updated: 2019/10/24 20:41:04 by imorimot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,38 @@ static void		print_sign(t_specs *specs)
 	}
 }
 
+int				sign_and_hash_offset(t_specs *specs, int num_len)
+{
+	int			offset;
+
+	offset = 0;
+	if (specs->is_negative == 1 || specs->flags & PLUS)
+		offset += 1;
+	if (specs->flags & HASH)
+	{
+		if (specs->conversion == 'x' || specs->conversion == 'X'
+				|| specs->conversion == 'p')
+			offset += 2;
+		else if (specs->conversion == 'o' && specs->precision < num_len)
+			offset += 1;
+	}
+	return (offset);
+}
+
+void			print_hash(t_specs *specs, int num_len)
+{
+	if (specs->flags & HASH)
+	{
+		if (specs->conversion == 'x' || specs->conversion == 'p')
+			ft_putstr("0x");
+		else if (specs->conversion == 'X')
+			ft_putstr("0X");
+		else if (specs->conversion == 'o'
+				&& specs->precision <= num_len)
+			ft_putstr("0");
+	}
+}
+
 int				print_width(int count, t_specs *specs)
 {
 	int			num_len;
@@ -48,8 +80,7 @@ int				print_width(int count, t_specs *specs)
 
 	num_len = count;
 	spaces_len = 0;
-	if (specs->is_negative == 1 || specs->flags & PLUS)
-		spaces_len++;
+	spaces_len += sign_and_hash_offset(specs, num_len);
 	width_char = print_flag_zero(specs);
 	while (spaces_len + specs->precision < specs->width
 			&& spaces_len + num_len < specs->width)
@@ -58,6 +89,7 @@ int				print_width(int count, t_specs *specs)
 		spaces_len++;
 	}
 	print_sign(specs);
+	print_hash(specs, num_len);
 	num_len = print_precision(specs, num_len);
 	count = spaces_len + num_len;
 	return (count);

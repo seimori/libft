@@ -6,7 +6,7 @@
 /*   By: imorimot <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/04 18:45:22 by imorimot          #+#    #+#             */
-/*   Updated: 2019/10/24 17:19:38 by imorimot         ###   ########.fr       */
+/*   Updated: 2019/10/24 20:32:06 by imorimot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,8 @@ int			print_p(t_arg arg, t_specs *specs)
 {
 	int		arg_len;
 
-	ft_putstr("0x");
 	g_count = G_COUNT_INIT_INT;
-	arg_len = print_hexadecimal((unsigned long)arg.p, specs) + 2;
+	specs->flags |= HASH;
+	arg_len = print_hexadecimal((unsigned long)arg.p, specs);
 	return (arg_len);
 }
