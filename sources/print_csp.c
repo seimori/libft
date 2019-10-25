@@ -6,7 +6,7 @@
 /*   By: imorimot <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/04 18:45:22 by imorimot          #+#    #+#             */
-/*   Updated: 2019/10/25 17:20:51 by imorimot         ###   ########.fr       */
+/*   Updated: 2019/10/25 21:33:03 by imorimot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int				print_c(t_arg arg, t_specs *specs)
 
 	arg_len = 1;
 	if (!(specs->flags & MINUS))
-		arg_len = print_width(arg_len, specs);
+		arg_len = print_options(arg_len, specs);
 	ft_putchar(arg.c);
 	return (arg_len);
 }
@@ -31,7 +31,7 @@ int				print_s(t_arg arg, t_specs *specs)
 
 	arg_len = ft_strlen(arg.s);
 	if (!(specs->flags & MINUS))
-		arg_len = print_width(arg_len, specs);
+		arg_len = print_options(arg_len, specs);
 	ft_putstr(arg.s);
 	return (arg_len);
 }

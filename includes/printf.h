@@ -6,7 +6,7 @@
 /*   By: imorimot <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/08 12:45:30 by imorimot          #+#    #+#             */
-/*   Updated: 2019/10/25 17:45:15 by imorimot         ###   ########.fr       */
+/*   Updated: 2019/10/25 21:43:53 by imorimot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,8 @@ typedef struct					s_specs
 	int							typeindex;
 	int							is_negative;
 	int							is_zero;
+	int							num_len;
+	int							spaces_len;
 }								t_specs;
 
 typedef union					u_arg
@@ -132,13 +134,13 @@ int						print_octal(unsigned long long int ui_n, t_specs *specs);
 /*
 **	print_width.c
 */
-int						print_width(int count, t_specs *specs);
+int						print_options(int count, t_specs *specs);
 int						print_fpn_width(long double f, t_specs *specs);
 
 /*
 **	print_precision.c
 */
-int						print_precision(t_specs *specs, int num_len);
+int						print_precision(t_specs *specs);
 
 /*
 **	print_args.c

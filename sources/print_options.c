@@ -6,7 +6,7 @@
 /*   By: imorimot <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/07 19:08:13 by imorimot          #+#    #+#             */
-/*   Updated: 2019/10/25 21:25:33 by imorimot         ###   ########.fr       */
+/*   Updated: 2019/10/25 21:46:45 by imorimot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ static void		print_sign(t_specs *specs)
 	}
 }
 
-int				sign_and_hash_offset(t_specs *specs, int num_len)
+int				sign_and_hash_offset(t_specs *specs)
 {
 	int			offset;
 
@@ -48,14 +48,14 @@ int				sign_and_hash_offset(t_specs *specs, int num_len)
 		if (specs->conversion == 'x' || specs->conversion == 'X'
 				|| specs->conversion == 'p')
 			offset += 2;
-		else if (specs->conversion == 'o' && specs->precision < num_len
+		else if (specs->conversion == 'o' && specs->precision < specs->num_len
 				&& !(specs->is_zero))
 			offset += 1;
 	}
 	return (offset);
 }
 
-void			print_hash(t_specs *specs, int num_len)
+void			print_hash(t_specs *specs)
 {
 	if (specs->flags & HASH && !(specs->is_zero))
 	{
@@ -64,13 +64,13 @@ void			print_hash(t_specs *specs, int num_len)
 		else if (specs->conversion == 'X')
 			ft_putstr("0X");
 		else if (specs->conversion == 'o'
-				&& specs->precision <= num_len
+				&& specs->precision <= specs->num_len
 				&& !(specs->is_zero))
 			ft_putstr("0");
 	}
 }
 
-char			print_flag_zero(t_specs *specs, int num_len)
+char			print_flag_zero(t_specs *specs)
 {
 	char		width_char;
 
@@ -80,7 +80,7 @@ char			print_flag_zero(t_specs *specs, int num_len)
 		if (specs->is_negative)
 			ft_putchar('-');
 		else if (specs->flags & HASH && (is_hex_or_octal(specs)))
-			print_hash(specs, num_len);
+			print_hash(specs);
 		else if (specs->flags & PLUS && !(is_hex_or_octal(specs)))
 			ft_putchar('+');
 	}
@@ -89,27 +89,30 @@ char			print_flag_zero(t_specs *specs, int num_len)
 	return (width_char);
 }
 
-int				print_width(int count, t_specs *specs)
+int				print_width(t_specs *specs, char width_char)
 {
-	int			num_len;
-	int			spaces_len;
-	char		width_char;
-
-	num_len = count;
-	spaces_len = 0;
-	spaces_len += sign_and_hash_offset(specs, num_len);
-	width_char = print_flag_zero(specs, num_len);
-	while (spaces_len + specs->precision < specs->width
-			&& spaces_len + num_len < specs->width)
+	while (specs->spaces_len + specs->precision < specs->width
+			&& specs->spaces_len + specs->num_len < specs->width)
 	{
 		ft_putchar(width_char);
-		spaces_len++;
+		specs->spaces_len++;
 	}
+	return (specs->spaces_len);
+}
+
+int				print_options(int count, t_specs *specs)
+{
+	char		width_char;
+
+	specs->num_len = count;
+	specs->spaces_len += sign_and_hash_offset(specs);
+	width_char = print_flag_zero(specs);
+	specs->spaces_len = print_width(specs, width_char);
 	print_sign(specs);
 	if (!(specs->flags & ZERO))
-			print_hash(specs, num_len);
-	num_len = print_precision(specs, num_len);
-	count = spaces_len + num_len;
+			print_hash(specs);
+	specs->num_len = print_precision(specs);
+	count = specs->spaces_len + specs->num_len;
 	return (count);
 }
 
@@ -165,11 +168,10 @@ int						print_fpn_width(long double f, t_specs *specs)
 {
 	char	width_char;
 	int		count;
-	int		num_len;
 
 	width_char = ' ';
 	count = 0;
-	num_len = count_special_cases(f);
+	specs->num_len = count_special_cases(f);
 	if (specs->flags & ZERO)
 	{
 		width_char = '0';
@@ -180,9 +182,9 @@ int						print_fpn_width(long double f, t_specs *specs)
 		else if (specs->flags & SPACE)
 			ft_putchar(' ');
 	}
-	if (num_len == NO_SPECIAL_CASES)
-		num_len = get_num_len(f, specs);
-	while (num_len + count < specs->width)
+	if (specs->num_len == NO_SPECIAL_CASES)
+		specs->num_len = get_num_len(f, specs);
+	while (specs->num_len + count < specs->width)
 	{
 		ft_putchar(width_char);
 		count++;
