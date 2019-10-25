@@ -6,12 +6,13 @@
 /*   By: imorimot <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/07 19:08:13 by imorimot          #+#    #+#             */
-/*   Updated: 2019/10/25 17:46:51 by imorimot         ###   ########.fr       */
+/*   Updated: 2019/10/25 20:03:42 by imorimot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/printf.h"
 
+#define NO_SPECIAL_CASES 0
 int				is_hex_or_octal(t_specs *specs)
 {
 	return (specs->conversion == 'x' || specs->conversion == 'X'
@@ -26,6 +27,8 @@ static void		print_sign(t_specs *specs)
 			ft_putchar('-');
 		else if (specs->flags & PLUS)
 			ft_putchar('+');
+		else if (specs->flags & SPACE)
+			ft_putchar(' ');
 	}
 }
 
@@ -34,7 +37,8 @@ int				sign_and_hash_offset(t_specs *specs, int num_len)
 	int			offset;
 
 	offset = 0;
-	if ((specs->is_negative == 1 || specs->flags & PLUS)
+	if ((specs->is_negative == 1 || specs->flags & PLUS
+				|| specs->flags & SPACE)
 			&& !(is_hex_or_octal(specs)))
 		offset += 1;
 	if (specs->flags & HASH)
@@ -107,7 +111,7 @@ int				print_width(int count, t_specs *specs)
 	return (count);
 }
 
-int						llint_len(long long int n)
+int						dot_left_len(long long int n)
 {
 	unsigned long long	u_n;
 	int					count;
@@ -125,16 +129,16 @@ int						llint_len(long long int n)
 	return (count);
 }
 
-int						get_longdouble_len(long double f, t_specs *specs)
+int						get_num_len(long double f, t_specs *specs)
 {
 	int	count;
 
 	count = 0;
-	if (f < 0 || (1.0 / f == -1.0 / 0.0))
+	if (f < 0 || (1.0 / f == -1.0 / 0.0)
+			|| specs->flags & PLUS
+			|| specs->flags & SPACE)
 		count++;
-	else if (specs->flags & PLUS)
-		count++;
-	count += llint_len((long long int)f);
+	count += dot_left_len((long long int)f);
 	if (specs->precision != 0)
 		count++;
 	if (specs->precision < 0)
@@ -159,25 +163,24 @@ int						print_fpn_width(long double f, t_specs *specs)
 {
 	char	width_char;
 	int		count;
-	int		arg_len;
+	int		num_len;
 
 	width_char = ' ';
-	if ((arg_len = count_special_cases(f)))
-		count = 0;
-	else
+	count = 0;
+	num_len = count_special_cases(f);
+	if (specs->flags & ZERO)
 	{
-		if (specs->flags & ZERO)
-		{
-			width_char = '0';
-			if (f < 0 || (1.0 / f == -1.0 / 0.0))
-				ft_putchar('-');
-			if (specs->flags & PLUS)
-				ft_putchar('+');
-		}
-		count = 0;
-		arg_len = get_longdouble_len(f, specs);
+		width_char = '0';
+		if (f < 0 || (1.0 / f == -1.0 / 0.0))
+			ft_putchar('-');
+		else if (specs->flags & PLUS)
+			ft_putchar('+');
+		else if (specs->flags & SPACE)
+			ft_putchar(' ');
 	}
-	while (arg_len + count < specs->width)
+	if (num_len == NO_SPECIAL_CASES)
+		num_len = get_num_len(f, specs);
+	while (num_len + count < specs->width)
 	{
 		ft_putchar(width_char);
 		count++;

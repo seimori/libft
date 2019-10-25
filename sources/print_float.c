@@ -6,7 +6,7 @@
 /*   By: imorimot <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/18 15:53:42 by imorimot          #+#    #+#             */
-/*   Updated: 2019/10/25 19:14:17 by imorimot         ###   ########.fr       */
+/*   Updated: 2019/10/25 20:03:05 by imorimot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,8 +56,7 @@ unsigned int	ft_putnbr_ull_nofirstdigit(unsigned long long n)
 
 unsigned int	print_dot(int precision, t_specs *specs)
 {
-	(void)specs;
-	if (precision > 0)
+	if (precision > 0 || specs->flags & HASH)
 	{
 		ft_putchar('.');
 		return (1);
@@ -76,20 +75,24 @@ int				get_precision(int precision)
 
 static int				print_sign(long double f, t_specs *specs)
 {
-	if (f < 0 || (1.0 / f == -1.0 / 0.0))
+	if (!(specs->flags & ZERO))
 	{
-		if (!(specs->flags & ZERO))
+		if (f < 0 || (1.0 / f == -1.0 / 0.0))
 			ft_putchar('-');
-		return (1);
-	}
-	else if (specs->flags & PLUS)
-	{
-		if (!(specs->flags & ZERO))
+		else if (specs->flags & PLUS)
 			ft_putchar('+');
+		else if (specs->flags & SPACE)
+			ft_putchar(' ');
+		else
+			return (0);
 		return (1);
 	}
 	else
-		return (0);
+		if (f < 0 || (1.0 / f == -1.0 / 0.0)
+				|| specs->flags & PLUS
+				|| specs->flags & SPACE)
+			return (1);
+	return (0);
 }
 
 
