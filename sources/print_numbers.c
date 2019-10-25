@@ -6,7 +6,7 @@
 /*   By: imorimot <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/04 16:49:03 by imorimot          #+#    #+#             */
-/*   Updated: 2019/10/24 20:39:08 by imorimot         ###   ########.fr       */
+/*   Updated: 2019/10/25 17:44:55 by imorimot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,8 @@ int		print_octal(unsigned long long ui_n, t_specs *specs)
 		ui_n = (unsigned long long)ui_n;
 	else
 		ui_n = (unsigned int)ui_n;
+	if (ui_n == 0)
+		specs->is_zero = 1;
 	if (ui_n >= 8)
 	{
 		g_count++;

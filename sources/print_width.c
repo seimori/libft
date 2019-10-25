@@ -6,7 +6,7 @@
 /*   By: imorimot <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/07 19:08:13 by imorimot          #+#    #+#             */
-/*   Updated: 2019/10/25 17:35:12 by imorimot         ###   ########.fr       */
+/*   Updated: 2019/10/25 17:46:51 by imorimot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,8 @@ int				sign_and_hash_offset(t_specs *specs, int num_len)
 		if (specs->conversion == 'x' || specs->conversion == 'X'
 				|| specs->conversion == 'p')
 			offset += 2;
-		else if (specs->conversion == 'o' && specs->precision < num_len)
+		else if (specs->conversion == 'o' && specs->precision < num_len
+				&& !(specs->is_zero))
 			offset += 1;
 	}
 	return (offset);
@@ -57,7 +58,8 @@ void			print_hash(t_specs *specs, int num_len)
 		else if (specs->conversion == 'X')
 			ft_putstr("0X");
 		else if (specs->conversion == 'o'
-				&& specs->precision <= num_len)
+				&& specs->precision <= num_len
+				&& !(specs->is_zero))
 			ft_putstr("0");
 	}
 }

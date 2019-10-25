@@ -6,7 +6,7 @@
 /*   By: imorimot <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/18 15:53:42 by imorimot          #+#    #+#             */
-/*   Updated: 2019/10/24 19:32:20 by imorimot         ###   ########.fr       */
+/*   Updated: 2019/10/25 19:14:17 by imorimot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,8 +54,9 @@ unsigned int	ft_putnbr_ull_nofirstdigit(unsigned long long n)
 	return (g_count - 1);
 }
 
-unsigned int	print_dot(int precision)
+unsigned int	print_dot(int precision, t_specs *specs)
 {
+	(void)specs;
 	if (precision > 0)
 	{
 		ft_putchar('.');
@@ -79,7 +80,6 @@ static int				print_sign(long double f, t_specs *specs)
 	{
 		if (!(specs->flags & ZERO))
 			ft_putchar('-');
-		f = -f;
 		return (1);
 	}
 	else if (specs->flags & PLUS)
@@ -91,6 +91,7 @@ static int				print_sign(long double f, t_specs *specs)
 	else
 		return (0);
 }
+
 
 unsigned int	print_fpn(long double f, t_specs *specs)
 {
@@ -104,8 +105,10 @@ unsigned int	print_fpn(long double f, t_specs *specs)
 	if (!(specs->lengthmodifier & BIG_L))
 		f = (double)f;
 	g_count = print_sign(f, specs);
+	if (f < 0 || (1.0 / f == -1.0 / 0.0))
+		f = -f;
 	count = ft_putnbr_ull((unsigned long long)f);
-	count += print_dot(precision);
+	count += print_dot(precision, specs);
 	f -= (unsigned long long)f;
 	f += 1;
 	while (precision--)

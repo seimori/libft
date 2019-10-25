@@ -6,7 +6,7 @@
 /*   By: imorimot <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/08 12:45:30 by imorimot          #+#    #+#             */
-/*   Updated: 2019/10/24 19:41:10 by imorimot         ###   ########.fr       */
+/*   Updated: 2019/10/25 17:45:15 by imorimot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,7 @@ typedef struct					s_specs
 	char						conversion;
 	int							typeindex;
 	int							is_negative;
+	int							is_zero;
 }								t_specs;
 
 typedef union					u_arg
