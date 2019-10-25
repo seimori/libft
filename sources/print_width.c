@@ -6,27 +6,16 @@
 /*   By: imorimot <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/07 19:08:13 by imorimot          #+#    #+#             */
-/*   Updated: 2019/10/24 20:41:04 by imorimot         ###   ########.fr       */
+/*   Updated: 2019/10/25 17:35:12 by imorimot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/printf.h"
 
-char			print_flag_zero(t_specs *specs)
+int				is_hex_or_octal(t_specs *specs)
 {
-	char		width_char;
-
-	if (specs->flags & ZERO)
-	{
-		width_char = '0';
-		if (specs->is_negative)
-			ft_putchar('-');
-		else if (specs->flags & PLUS)
-			ft_putchar('+');
-	}
-	else
-		width_char = ' ';
-	return (width_char);
+	return (specs->conversion == 'x' || specs->conversion == 'X'
+			|| specs->conversion == 'o' || specs->conversion == 'p');
 }
 
 static void		print_sign(t_specs *specs)
@@ -45,7 +34,8 @@ int				sign_and_hash_offset(t_specs *specs, int num_len)
 	int			offset;
 
 	offset = 0;
-	if (specs->is_negative == 1 || specs->flags & PLUS)
+	if ((specs->is_negative == 1 || specs->flags & PLUS)
+			&& !(is_hex_or_octal(specs)))
 		offset += 1;
 	if (specs->flags & HASH)
 	{
@@ -72,6 +62,25 @@ void			print_hash(t_specs *specs, int num_len)
 	}
 }
 
+char			print_flag_zero(t_specs *specs, int num_len)
+{
+	char		width_char;
+
+	if (specs->flags & ZERO)
+	{
+		width_char = '0';
+		if (specs->is_negative)
+			ft_putchar('-');
+		else if (specs->flags & HASH && (is_hex_or_octal(specs)))
+			print_hash(specs, num_len);
+		else if (specs->flags & PLUS && !(is_hex_or_octal(specs)))
+			ft_putchar('+');
+	}
+	else
+		width_char = ' ';
+	return (width_char);
+}
+
 int				print_width(int count, t_specs *specs)
 {
 	int			num_len;
@@ -81,7 +90,7 @@ int				print_width(int count, t_specs *specs)
 	num_len = count;
 	spaces_len = 0;
 	spaces_len += sign_and_hash_offset(specs, num_len);
-	width_char = print_flag_zero(specs);
+	width_char = print_flag_zero(specs, num_len);
 	while (spaces_len + specs->precision < specs->width
 			&& spaces_len + num_len < specs->width)
 	{
@@ -89,7 +98,8 @@ int				print_width(int count, t_specs *specs)
 		spaces_len++;
 	}
 	print_sign(specs);
-	print_hash(specs, num_len);
+	if (!(specs->flags & ZERO))
+			print_hash(specs, num_len);
 	num_len = print_precision(specs, num_len);
 	count = spaces_len + num_len;
 	return (count);

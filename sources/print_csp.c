@@ -6,13 +6,13 @@
 /*   By: imorimot <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/04 18:45:22 by imorimot          #+#    #+#             */
-/*   Updated: 2019/10/24 20:32:06 by imorimot         ###   ########.fr       */
+/*   Updated: 2019/10/25 17:20:51 by imorimot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/printf.h"
 
-#define G_COUNT_INIT_INT 0
+#define G_COUNT_INIT_INT 1
 
 int				print_c(t_arg arg, t_specs *specs)
 {
