@@ -6,7 +6,7 @@
 /*   By: imorimot <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/07 19:08:13 by imorimot          #+#    #+#             */
-/*   Updated: 2019/10/25 20:03:42 by imorimot         ###   ########.fr       */
+/*   Updated: 2019/10/25 20:16:30 by imorimot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int				is_hex_or_octal(t_specs *specs)
 
 static void		print_sign(t_specs *specs)
 {
-	if (!(specs->flags & ZERO))
+	if (!(specs->flags & ZERO) && !(specs->conversion == '%'))
 	{
 		if (specs->is_negative == 1)
 			ft_putchar('-');
@@ -37,6 +37,8 @@ int				sign_and_hash_offset(t_specs *specs, int num_len)
 	int			offset;
 
 	offset = 0;
+	if (specs->conversion == '%')
+		return (0);
 	if ((specs->is_negative == 1 || specs->flags & PLUS
 				|| specs->flags & SPACE)
 			&& !(is_hex_or_octal(specs)))
