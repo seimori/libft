@@ -6,7 +6,7 @@
 /*   By: imorimot <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/23 16:59:38 by imorimot          #+#    #+#             */
-/*   Updated: 2019/10/25 21:48:29 by imorimot         ###   ########.fr       */
+/*   Updated: 2019/10/27 19:23:44 by imorimot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,11 @@
 
 int			print_precision(t_specs *specs)
 {
-	while (specs->num_len < specs->precision)
+	while (specs->arg_len < specs->precision)
 	{
-		specs->num_len++;
+		specs->arg_len++;
 		ft_putchar('0');
 	}
 
-	return (specs->num_len);
+	return (specs->arg_len);
 }

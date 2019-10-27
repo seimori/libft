@@ -6,7 +6,7 @@
 /*   By: imorimot <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/07 19:08:13 by imorimot          #+#    #+#             */
-/*   Updated: 2019/10/27 14:40:24 by imorimot         ###   ########.fr       */
+/*   Updated: 2019/10/27 19:21:19 by imorimot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ int				sign_and_hash_offset(t_specs *specs)
 		if (specs->conversion == 'x' || specs->conversion == 'X'
 				|| specs->conversion == 'p')
 			offset += 2;
-		else if (specs->conversion == 'o' && specs->precision < specs->num_len
+		else if (specs->conversion == 'o' && specs->precision < specs->arg_len
 				&& !(specs->is_zero))
 			offset += 1;
 	}
@@ -63,7 +63,7 @@ void			print_hash(t_specs *specs)
 		else if (specs->conversion == 'X')
 			ft_putstr("0X");
 		else if (specs->conversion == 'o'
-				&& specs->precision <= specs->num_len
+				&& specs->precision <= specs->arg_len
 				&& !(specs->is_zero))
 			ft_putstr("0");
 	}
@@ -94,7 +94,7 @@ int				print_width(t_specs *specs)
 
 	width_char = print_flag_zero(specs);
 	while (specs->spaces_len + specs->precision < specs->width
-			&& specs->spaces_len + specs->num_len < specs->width)
+			&& specs->spaces_len + specs->arg_len < specs->width)
 	{
 		ft_putchar(width_char);
 		specs->spaces_len++;
@@ -104,14 +104,14 @@ int				print_width(t_specs *specs)
 
 int				print_options(int count, t_specs *specs)
 {
-	specs->num_len = count;
+	specs->arg_len = count;
 	specs->spaces_len += sign_and_hash_offset(specs);
 	if (!(specs->flags & MINUS))
 		specs->spaces_len = print_width(specs);
 	print_sign(specs);
 	if (!(specs->flags & ZERO) || specs->flags & MINUS)
 			print_hash(specs);
-	specs->num_len = print_precision(specs);
-	count = specs->spaces_len + specs->num_len;
+	specs->arg_len = print_precision(specs);
+	count = specs->spaces_len + specs->arg_len;
 	return (count);
 }

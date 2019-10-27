@@ -6,7 +6,7 @@
 /*   By: imorimot <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/08 12:45:30 by imorimot          #+#    #+#             */
-/*   Updated: 2019/10/27 14:15:19 by imorimot         ###   ########.fr       */
+/*   Updated: 2019/10/27 19:21:05 by imorimot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ typedef struct					s_specs
 	int							typeindex;
 	int							is_negative;
 	int							is_zero;
-	int							num_len;
+	int							arg_len;
 	int							spaces_len;
 }								t_specs;
 
@@ -154,6 +154,7 @@ int						print_arg(va_list args, t_specs *specs, fp_arg *print);
 char					*ft_str_append(char *s, char c);
 int						ft_pow(int n, int pow);
 int						ft_antoi(const char *s, int length);
+void					ft_putstrn(const char *s, int length);
 
 
 /*

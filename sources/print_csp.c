@@ -6,7 +6,7 @@
 /*   By: imorimot <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/04 18:45:22 by imorimot          #+#    #+#             */
-/*   Updated: 2019/10/25 21:33:03 by imorimot         ###   ########.fr       */
+/*   Updated: 2019/10/27 19:27:59 by imorimot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,13 +27,16 @@ int				print_c(t_arg arg, t_specs *specs)
 
 int				print_s(t_arg arg, t_specs *specs)
 {
-	int		arg_len;
-
-	arg_len = ft_strlen(arg.s);
+	specs->arg_len = ft_strlen(arg.s);
+	if (specs->arg_len > specs->precision && specs->precision > -1)
+		specs->arg_len = specs->precision;
 	if (!(specs->flags & MINUS))
-		arg_len = print_options(arg_len, specs);
-	ft_putstr(arg.s);
-	return (arg_len);
+		specs->spaces_len = print_width(specs);
+	if (specs->precision <= -1 || specs->arg_len < specs->precision)
+		ft_putstr(arg.s);
+	else
+		ft_putstrn(arg.s, specs->precision);
+	return (specs->arg_len + specs->spaces_len);
 }
 
 int			print_p(t_arg arg, t_specs *specs)
