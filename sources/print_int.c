@@ -6,7 +6,7 @@
 /*   By: imorimot <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/04 15:45:19 by imorimot          #+#    #+#             */
-/*   Updated: 2019/10/25 21:24:42 by imorimot         ###   ########.fr       */
+/*   Updated: 2019/10/27 18:46:51 by imorimot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,11 @@ int			print_int(t_arg arg, t_specs *specs)
 	arg_len = 1;
 	g_count = G_COUNT_INIT_INT;
 	if (arg.lli == 0 || arg.llu == 0)
+	{
 		specs->is_zero = 1;
+		if (specs->precision == 0)
+			return (print_width(specs));
+	}
 	if (specs->conversion == 'd' || specs->conversion == 'i')
 		arg_len = print_signed_decimal(arg.lli, specs);
 	else if (specs->conversion == 'u')

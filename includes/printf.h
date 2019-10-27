@@ -6,7 +6,7 @@
 /*   By: imorimot <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/08 12:45:30 by imorimot          #+#    #+#             */
-/*   Updated: 2019/10/25 21:43:53 by imorimot         ###   ########.fr       */
+/*   Updated: 2019/10/27 14:15:19 by imorimot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,10 +132,11 @@ int						print_hexadecimal_big(unsigned long long int ui_n, t_specs *specs);
 int						print_octal(unsigned long long int ui_n, t_specs *specs);
 
 /*
-**	print_width.c
+**	print_options.c
 */
 int						print_options(int count, t_specs *specs);
-int						print_fpn_width(long double f, t_specs *specs);
+int						print_width(t_specs *specs);
+int						print_options_fpn(long double f, t_specs *specs);
 
 /*
 **	print_precision.c

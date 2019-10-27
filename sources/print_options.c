@@ -1,18 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print_width.c                                      :+:      :+:    :+:   */
+/*   print_options.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: imorimot <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/07 19:08:13 by imorimot          #+#    #+#             */
-/*   Updated: 2019/10/25 21:46:45 by imorimot         ###   ########.fr       */
+/*   Updated: 2019/10/27 14:40:24 by imorimot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/printf.h"
 
-#define NO_SPECIAL_CASES 0
 int				is_hex_or_octal(t_specs *specs)
 {
 	return (specs->conversion == 'x' || specs->conversion == 'X'
@@ -74,7 +73,7 @@ char			print_flag_zero(t_specs *specs)
 {
 	char		width_char;
 
-	if (specs->flags & ZERO)
+	if (specs->flags & ZERO && !(specs->flags & MINUS))
 	{
 		width_char = '0';
 		if (specs->is_negative)
@@ -89,8 +88,11 @@ char			print_flag_zero(t_specs *specs)
 	return (width_char);
 }
 
-int				print_width(t_specs *specs, char width_char)
+int				print_width(t_specs *specs)
 {
+	char		width_char;
+
+	width_char = print_flag_zero(specs);
 	while (specs->spaces_len + specs->precision < specs->width
 			&& specs->spaces_len + specs->num_len < specs->width)
 	{
@@ -102,92 +104,14 @@ int				print_width(t_specs *specs, char width_char)
 
 int				print_options(int count, t_specs *specs)
 {
-	char		width_char;
-
 	specs->num_len = count;
 	specs->spaces_len += sign_and_hash_offset(specs);
-	width_char = print_flag_zero(specs);
-	specs->spaces_len = print_width(specs, width_char);
+	if (!(specs->flags & MINUS))
+		specs->spaces_len = print_width(specs);
 	print_sign(specs);
-	if (!(specs->flags & ZERO))
+	if (!(specs->flags & ZERO) || specs->flags & MINUS)
 			print_hash(specs);
 	specs->num_len = print_precision(specs);
 	count = specs->spaces_len + specs->num_len;
-	return (count);
-}
-
-int						dot_left_len(long long int n)
-{
-	unsigned long long	u_n;
-	int					count;
-
-	count = 1;
-	if (n < 0)
-		u_n = (unsigned long long)-n;
-	else
-		u_n = (unsigned long long)n;
-	while (u_n >= 10)
-	{
-		count++;
-		u_n /= 10;
-	}
-	return (count);
-}
-
-int						get_num_len(long double f, t_specs *specs)
-{
-	int	count;
-
-	count = 0;
-	if (f < 0 || (1.0 / f == -1.0 / 0.0)
-			|| specs->flags & PLUS
-			|| specs->flags & SPACE)
-		count++;
-	count += dot_left_len((long long int)f);
-	if (specs->precision != 0)
-		count++;
-	if (specs->precision < 0)
-		count += 6;
-	else
-		count += specs->precision;
-	return (count);
-}
-
-int						count_special_cases(long double f)
-{
-	if (f >= 1.0/0)
-		return (3);
-	if (f <= -1.0/0)
-		return (4);
-	if (f != f)
-		return (3);
-	return (0);
-}
-
-int						print_fpn_width(long double f, t_specs *specs)
-{
-	char	width_char;
-	int		count;
-
-	width_char = ' ';
-	count = 0;
-	specs->num_len = count_special_cases(f);
-	if (specs->flags & ZERO)
-	{
-		width_char = '0';
-		if (f < 0 || (1.0 / f == -1.0 / 0.0))
-			ft_putchar('-');
-		else if (specs->flags & PLUS)
-			ft_putchar('+');
-		else if (specs->flags & SPACE)
-			ft_putchar(' ');
-	}
-	if (specs->num_len == NO_SPECIAL_CASES)
-		specs->num_len = get_num_len(f, specs);
-	while (specs->num_len + count < specs->width)
-	{
-		ft_putchar(width_char);
-		count++;
-	}
 	return (count);
 }
