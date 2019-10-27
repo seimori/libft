@@ -6,11 +6,13 @@
 /*   By: imorimot <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/11 18:10:59 by imorimot          #+#    #+#             */
-/*   Updated: 2019/10/27 18:57:23 by imorimot         ###   ########.fr       */
+/*   Updated: 2019/10/27 19:46:33 by imorimot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/printf.h"
+
+#define NULL_LEN 6
 
 char			*ft_str_append(char *s, char c)
 {
@@ -73,4 +75,10 @@ void			ft_putstrn(const char *s, int length)
 		ft_putchar(s[i]);
 		i++;
 	}
+}
+
+int				print_null(void)
+{
+	ft_putstr("(null)");
+	return (NULL_LEN);
 }
