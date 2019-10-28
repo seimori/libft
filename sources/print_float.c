@@ -6,7 +6,7 @@
 /*   By: imorimot <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/18 15:53:42 by imorimot          #+#    #+#             */
-/*   Updated: 2019/10/27 14:02:12 by imorimot         ###   ########.fr       */
+/*   Updated: 2019/10/28 13:45:43 by imorimot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,23 +35,23 @@ unsigned int	fpn_special_cases(long double f)
 	return (0);
 }
 
-unsigned int	ft_putnbr_ull(unsigned long long n)
+unsigned int	ft_putnbr_ull(unsigned long long n, t_specs *specs)
 {
 	if (n >= 10)
-		ft_putnbr_ull(n/10);
+		ft_putnbr_ull(n/10, specs);
 	ft_putchar(n % 10 + '0');
-	g_count++;
-	return (g_count);
+	specs->arg_len++;
+	return (specs->arg_len);
 }
 
-unsigned int	ft_putnbr_ull_nofirstdigit(unsigned long long n)
+unsigned int	ft_putnbr_ull_nofirstdigit(unsigned long long n, t_specs *specs)
 {
 	if (n >= 10)
-		ft_putnbr_ull_nofirstdigit(n / 10);
-	if (g_count > 0)
+		ft_putnbr_ull_nofirstdigit(n / 10, specs);
+	if (specs->arg_len > 0)
 		ft_putchar(n % 10 + '0');
-	g_count++;
-	return (g_count - 1);
+	specs->arg_len++;
+	return (specs->arg_len - 1);
 }
 
 unsigned int	print_dot(int precision, t_specs *specs)
@@ -107,17 +107,18 @@ unsigned int	print_fpn(long double f, t_specs *specs)
 	precision = get_precision(specs->precision);
 	if (!(specs->lengthmodifier & BIG_L))
 		f = (double)f;
-	g_count = print_sign(f, specs);
+	specs->arg_len = print_sign(f, specs);
 	if (f < 0 || (1.0 / f == -1.0 / 0.0))
 		f = -f;
-	count = ft_putnbr_ull((unsigned long long)f);
+	count = ft_putnbr_ull((unsigned long long)f, specs);
 	count += print_dot(precision, specs);
 	f -= (unsigned long long)f;
 	f += 1;
 	while (precision--)
 		f *= 10;
-	g_count = 0;
-	count += ft_putnbr_ull_nofirstdigit((unsigned long long)(f + ROUND_UP));
+	specs->arg_len = 0;
+	count += ft_putnbr_ull_nofirstdigit((unsigned long long)(f + ROUND_UP),
+			specs);
 	return (count);
 }
 

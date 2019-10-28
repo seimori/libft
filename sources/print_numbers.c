@@ -6,7 +6,7 @@
 /*   By: imorimot <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/04 16:49:03 by imorimot          #+#    #+#             */
-/*   Updated: 2019/10/27 14:27:04 by imorimot         ###   ########.fr       */
+/*   Updated: 2019/10/28 13:37:02 by imorimot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,13 +35,13 @@ int		print_signed_decimal(long long int n, t_specs *specs)
 		ui_n = n;
 	if (ui_n >= 10)
 	{
-		g_count++;
+		specs->arg_len++;
 		print_signed_decimal(ui_n / 10, specs);
 	}
 	else if (!(specs->flags & MINUS))
-		g_count = print_options(g_count, specs);
+		specs->arg_len = print_options(specs);
 	ft_putchar(ui_n % 10 + '0');
-	return (g_count);
+	return (specs->arg_len);
 }
 
 int		print_unsigned_decimal(unsigned long long ui_n, t_specs *specs)
@@ -58,13 +58,13 @@ int		print_unsigned_decimal(unsigned long long ui_n, t_specs *specs)
 		ui_n = (unsigned int)ui_n;
 	if (ui_n >= 10)
 	{
-		g_count++;
+		specs->arg_len++;
 		print_unsigned_decimal(ui_n / 10, specs);
 	}
 	else if (!(specs->flags & MINUS))
-		g_count = print_options(g_count, specs);
+		specs->arg_len = print_options(specs);
 	ft_putchar(ui_n % 10 + '0');
-	return (g_count);
+	return (specs->arg_len);
 }
 
 int		print_octal(unsigned long long ui_n, t_specs *specs)
@@ -81,13 +81,13 @@ int		print_octal(unsigned long long ui_n, t_specs *specs)
 		ui_n = (unsigned int)ui_n;
 	if (ui_n >= 8)
 	{
-		g_count++;
+		specs->arg_len++;
 		print_octal(ui_n / 8, specs);
 	}
 	else if (!(specs->flags & MINUS))
-		g_count = print_options(g_count, specs);
+		specs->arg_len = print_options(specs);
 	ft_putchar(ui_n % 8 + '0');
-	return (g_count);
+	return (specs->arg_len);
 }
 
 int		print_hexadecimal(unsigned long long int ui_n, t_specs *specs)
@@ -107,13 +107,13 @@ int		print_hexadecimal(unsigned long long int ui_n, t_specs *specs)
 		ui_n = (unsigned int)ui_n;
 	if (ui_n >= 16)
 	{
-		g_count++;
+		specs->arg_len++;
 		print_hexadecimal(ui_n / 16, specs);
 	}
 	else
-		g_count = print_options(g_count, specs);
+		specs->arg_len = print_options(specs);
 	ft_putchar(hexa[ui_n % 16]);
-	return (g_count);
+	return (specs->arg_len);
 }
 
 int		print_hexadecimal_big(unsigned long long int ui_n, t_specs *specs)
@@ -133,11 +133,11 @@ int		print_hexadecimal_big(unsigned long long int ui_n, t_specs *specs)
 		ui_n = (unsigned int)ui_n;
 	if (ui_n >= 16)
 	{
-		g_count++;
+		specs->arg_len++;
 		print_hexadecimal_big(ui_n / 16, specs);
 	}
 	else if (!(specs->flags & MINUS))
-		g_count = print_options(g_count, specs);
+		specs->arg_len = print_options(specs);
 	ft_putchar(hexa[ui_n % 16]);
-	return (g_count);
+	return (specs->arg_len);
 }
