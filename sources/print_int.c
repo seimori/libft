@@ -6,7 +6,7 @@
 /*   By: imorimot <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/04 15:45:19 by imorimot          #+#    #+#             */
-/*   Updated: 2019/10/28 14:03:33 by imorimot         ###   ########.fr       */
+/*   Updated: 2019/10/28 16:32:20 by imorimot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,14 @@
 
 int			print_int(t_arg arg, t_specs *specs)
 {
+	if (specs->flags & ZERO && specs->flags & MINUS)
+		specs->flags ^= ZERO;
 	specs->arg_len = ARG_LEN_INIT_INT;
 	if (arg.lli == 0 || arg.llu == 0)
 	{
 		specs->is_zero = 1;
-		if (specs->precision == 0)
+		if (specs->precision == 0
+				&& (!(specs->flags & HASH && specs->conversion == 'o')))
 		{
 			specs->arg_len = 0;
 			return (print_width(specs));
