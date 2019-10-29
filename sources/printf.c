@@ -6,7 +6,7 @@
 /*   By: imorimot <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/08 14:48:38 by imorimot          #+#    #+#             */
-/*   Updated: 2019/10/29 20:48:11 by imorimot         ###   ########.fr       */
+/*   Updated: 2019/10/29 23:04:20 by imorimot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ int				ft_vprintf(const char *format, va_list args)
 	int			format_count;
 	int			print_count;
 	int			temp;
-	fp_arg		*print;
+	t_fp_arg	*print;
 	t_specs		*specs;
 
 	format_count = 0;

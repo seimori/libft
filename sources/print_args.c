@@ -6,13 +6,13 @@
 /*   By: imorimot <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/09 14:12:49 by imorimot          #+#    #+#             */
-/*   Updated: 2019/10/29 22:06:24 by imorimot         ###   ########.fr       */
+/*   Updated: 2019/10/29 23:05:44 by imorimot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/printf.h"
 
-int				print_arg(va_list args, t_specs *specs, fp_arg *print)
+int				print_arg(va_list args, t_specs *specs, t_fp_arg *print)
 {
 	t_arg		arg;
 	int			count;

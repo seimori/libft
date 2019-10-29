@@ -6,17 +6,17 @@
 /*   By: imorimot <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/09 16:16:27 by imorimot          #+#    #+#             */
-/*   Updated: 2019/10/29 22:09:32 by imorimot         ###   ########.fr       */
+/*   Updated: 2019/10/29 23:07:13 by imorimot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/printf.h"
 
-fp_arg			*initialize_print_functions(void)
+t_fp_arg			*initialize_print_functions(void)
 {
-	fp_arg		*print;
+	t_fp_arg		*print;
 
-	print = (fp_arg*)ft_memalloc(sizeof(fp_arg) * 17);
+	print = (t_fp_arg*)ft_memalloc(sizeof(t_fp_arg) * 6);
 	print[C] = &print_c;
 	print[I] = &print_int;
 	print[F] = &print_float;
