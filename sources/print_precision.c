@@ -6,7 +6,7 @@
 /*   By: imorimot <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/23 16:59:38 by imorimot          #+#    #+#             */
-/*   Updated: 2019/10/28 16:46:44 by imorimot         ###   ########.fr       */
+/*   Updated: 2019/10/30 00:07:03 by imorimot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,5 @@ int			print_precision(t_specs *specs)
 		specs->arg_len++;
 		ft_putchar('0');
 	}
-
 	return (specs->arg_len);
 }

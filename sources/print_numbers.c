@@ -6,43 +6,11 @@
 /*   By: imorimot <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/04 16:49:03 by imorimot          #+#    #+#             */
-/*   Updated: 2019/10/29 17:48:19 by imorimot         ###   ########.fr       */
+/*   Updated: 2019/10/29 23:27:15 by imorimot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/printf.h"
-
-int		print_signed_decimal(long long int n, t_specs *specs)
-{
-	unsigned long long int	ui_n;
-
-	if (specs->lengthmodifier & HH)
-		n = (char)n;
-	else if (specs->lengthmodifier & H)
-		n = (short)n;
-	else if (specs->lengthmodifier & L)
-		n = (long)n;
-	else if (specs->lengthmodifier & LL)
-		n = (long long)n;
-	else
-		n = (int)n;
-	if (n < 0)
-	{
-		ui_n = -n;
-		specs->is_negative = 1;
-	}
-	else
-		ui_n = n;
-	if (ui_n >= 10)
-	{
-		specs->arg_len++;
-		print_signed_decimal(ui_n / 10, specs);
-	}
-	else
-		specs->arg_len = print_options(specs);
-	ft_putchar(ui_n % 10 + '0');
-	return (specs->arg_len);
-}
 
 int		print_unsigned_decimal(unsigned long long ui_n, t_specs *specs)
 {

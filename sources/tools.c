@@ -6,28 +6,13 @@
 /*   By: imorimot <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/11 18:10:59 by imorimot          #+#    #+#             */
-/*   Updated: 2019/10/29 20:37:53 by imorimot         ###   ########.fr       */
+/*   Updated: 2019/10/30 00:00:32 by imorimot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/printf.h"
 
 #define NULL_LEN 6
-
-int					ft_pow(int n, int pow)
-{
-	int			i;
-
-	i = 1;
-	if (pow == 0)
-		return (1);
-	while (i < pow)
-	{
-		n *= n;
-		i++;
-	}
-	return (n);
-}
 
 int				ft_antoi(const char *s, int length)
 {
@@ -60,7 +45,7 @@ int				print_null(t_specs *specs)
 	else
 		specs->arg_len = specs->precision;
 	if (!(specs->flags & MINUS))
-	specs->spaces_len = print_width_string(specs);
+		specs->spaces_len = print_width_string(specs);
 	if (specs->precision <= -1 || specs->arg_len < specs->precision)
 		ft_putstr("(null)");
 	else
@@ -70,5 +55,5 @@ int				print_null(t_specs *specs)
 
 int				is_error(t_specs *specs)
 {
-			return (!(is_conversion(specs->conversion)));
+	return (!(is_conversion(specs->conversion)));
 }

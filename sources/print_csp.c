@@ -6,7 +6,7 @@
 /*   By: imorimot <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/04 18:45:22 by imorimot          #+#    #+#             */
-/*   Updated: 2019/10/29 19:01:32 by imorimot         ###   ########.fr       */
+/*   Updated: 2019/10/30 00:24:19 by imorimot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int				print_s(t_arg arg, t_specs *specs)
 	return (specs->arg_len + specs->spaces_len);
 }
 
-int			print_p(t_arg arg, t_specs *specs)
+int				print_p(t_arg arg, t_specs *specs)
 {
 	if (arg.p == 0 && specs->precision == 0)
 	{

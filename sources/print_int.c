@@ -6,7 +6,7 @@
 /*   By: imorimot <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/04 15:45:19 by imorimot          #+#    #+#             */
-/*   Updated: 2019/10/29 21:57:31 by imorimot         ###   ########.fr       */
+/*   Updated: 2019/10/30 00:07:32 by imorimot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ t_specs		*remove_undefined_flags(t_specs *specs)
 	if ((specs->conversion == 'd' || specs->conversion == 'i')
 			&& specs->lengthmodifier & BIG_L)
 		specs->lengthmodifier ^= BIG_L;
-
 	return (specs);
 }
 
@@ -51,7 +50,7 @@ int			print_int(t_arg arg, t_specs *specs)
 	specs = remove_undefined_flags(specs);
 	specs->arg_len = ARG_LEN_INIT_INT;
 	if (is_zero_exception(arg, specs))
-		return(print_options(specs));
+		return (print_options(specs));
 	if (specs->conversion == 'd' || specs->conversion == 'i')
 		specs->arg_len = print_signed_decimal(arg.lli, specs);
 	else if (specs->conversion == 'u')

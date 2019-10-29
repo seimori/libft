@@ -6,7 +6,7 @@
 /*   By: imorimot <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/08 14:48:38 by imorimot          #+#    #+#             */
-/*   Updated: 2019/10/29 23:04:20 by imorimot         ###   ########.fr       */
+/*   Updated: 2019/10/29 23:58:55 by imorimot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,24 +26,6 @@ static int		fill_specs(const char *s, t_specs *specs, va_list args)
 	return (i);
 }
 
-static t_specs	*initialize_specs(void)
-{
-	t_specs	*specs;
-
-	specs = (t_specs*)ft_memalloc(sizeof(t_specs));
-	specs->flags = 0;
-	specs->width = 0;
-	specs->precision = 0;
-	specs->lengthmodifier = 0;
-	specs->conversion = 0;
-	specs->typeindex = -1;
-	specs->is_negative = 0;
-	specs->is_zero = 0;
-	specs->arg_len = 0;
-	specs->spaces_len = 0;
-	return (specs);
-}
-
 static int		print_til_percent(const char *s)
 {
 	int			i;
@@ -58,48 +40,45 @@ static int		print_til_percent(const char *s)
 	return (i);
 }
 
-int				ft_vprintf(const char *format, va_list args)
+int				ft_vprintf(const char *format, va_list args, t_fp_arg *print
+		, t_count *count)
 {
-	int			format_count;
-	int			print_count;
-	int			temp;
-	t_fp_arg	*print;
 	t_specs		*specs;
 
-	format_count = 0;
-	print_count = 0;
-	temp = 0;
-	print = initialize_print_functions();
-	while (format[format_count] != '\0')
+	while (format[count->format] != '\0')
 	{
-		temp += print_til_percent(format + format_count);
-		format_count += temp;
-		print_count += temp;
-		temp = 0;
-		if (format[format_count] == '%')
+		count->temp += print_til_percent(format + count->format);
+		count->format += count->temp;
+		count->print += count->temp;
+		count->temp = 0;
+		if (format[count->format] == '%')
 		{
 			specs = initialize_specs();
-			format_count += fill_specs(format + format_count, specs, args);
+			count->format += fill_specs(format + count->format, specs, args);
 			if (is_error(specs))
-				return (print_count);
-			print_count += print_arg(args, specs, print);
-			free (specs);
+				return (count->print);
+			count->print += print_arg(args, specs, print);
+			free(specs);
 		}
-		else if (format[format_count] != '\0')
-			format_count++;
+		else if (format[count->format] != '\0')
+			count->format++;
 	}
-	free (print);
-	return (print_count);
+	return (count->print);
 }
 
 int				ft_printf(const char *format, ...)
 {
 	va_list		args;
-	int			count;
+	t_fp_arg	*print;
+	t_count		*count;
+	int			total_count;
 
 	va_start(args, format);
-	count = ft_vprintf(format, args);
+	print = initialize_print_functions();
+	count = initialize_count();
+	total_count = ft_vprintf(format, args, print, count);
+	free(count);
+	free(print);
 	va_end(args);
-
-	return (count);
+	return (total_count);
 }

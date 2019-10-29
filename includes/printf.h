@@ -6,7 +6,7 @@
 /*   By: imorimot <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/08 12:45:30 by imorimot          #+#    #+#             */
-/*   Updated: 2019/10/29 23:14:57 by imorimot         ###   ########.fr       */
+/*   Updated: 2019/10/30 00:31:07 by imorimot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,13 @@
 # define P 4
 # define PERCENT 5
 
+typedef struct					s_count
+{
+	int							format;
+	int							print;
+	int							temp;
+}								t_count;
+
 typedef struct					s_specs
 {
 	unsigned char				flags;
@@ -91,12 +98,15 @@ typedef int						(*t_fp_arg)(t_arg, t_specs*);
 **	printf.c
 */
 int								ft_printf(const char *format, ...);
-int								ft_vprintf(const char *format, va_list args);
+int								ft_vprintf(const char *format, va_list args
+		, t_fp_arg *print, t_count *count);
 
 /*
 **	initializers.c
 */
+t_count							*initialize_count(void);
 t_fp_arg						*initialize_print_functions(void);
+t_specs							*initialize_specs(void);
 
 /*
 **	printers
@@ -107,6 +117,16 @@ int								print_float(t_arg arg, t_specs *specs);
 int								print_s(t_arg arg, t_specs *specs);
 int								print_p(t_arg arg, t_specs *specs);
 int								print_percent(t_arg arg, t_specs *specs);
+
+/*
+**	print_float_tools.c
+*/
+int								print_sign_fpn(long double f, t_specs *specs);
+int								get_precision(int precision);
+unsigned int					print_dot(t_specs *specs);
+unsigned int					ft_putnbr_ull(unsigned long long n,
+		t_specs *specs);
+unsigned int					fpn_special_cases(long double f);
 
 /*
 **	print_numbers.c
@@ -131,6 +151,15 @@ int								print_options_fpn(long double f,
 		t_specs *specs);
 
 /*
+**	print_options.c
+*/
+void							print_sign(t_specs *specs);
+void							print_hash(t_specs *specs);
+int								sign_and_hash_offset(t_specs *specs);
+int								hash_offset(t_specs *specs);
+int								sign_offset(t_specs *specs);
+
+/*
 **	print_width_string.c
 */
 int								print_width_string(t_specs *specs);
@@ -141,7 +170,7 @@ int								print_width_string(t_specs *specs);
 int								print_precision(t_specs *specs);
 
 /*
-**	print_args.c
+**	print_arg.c
 */
 int								print_arg(va_list args, t_specs *specs,
 		t_fp_arg *print);
@@ -149,7 +178,6 @@ int								print_arg(va_list args, t_specs *specs,
 /*
 **	tools.c
 */
-int								ft_pow(int n, int pow);
 int								ft_antoi(const char *s, int length);
 void							ft_putstrn(const char *s, int length);
 int								print_null(t_specs *specs);
@@ -177,6 +205,7 @@ int								fill_conversion(char c, t_specs *specs);
 */
 int								is_flag(char c);
 int								is_conversion(char c);
+int								is_hex_or_octal(t_specs *specs);
 
 /*
 **	extra.c

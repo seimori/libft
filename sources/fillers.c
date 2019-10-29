@@ -6,7 +6,7 @@
 /*   By: imorimot <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/11 18:25:29 by imorimot          #+#    #+#             */
-/*   Updated: 2019/10/29 18:52:46 by imorimot         ###   ########.fr       */
+/*   Updated: 2019/10/30 00:19:06 by imorimot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,32 +84,23 @@ int				fill_precision(const char *s, t_specs *specs, va_list args)
 
 int				fill_lengthmodifier(const char *s, t_specs *specs)
 {
-	if (s[0] == 'h')
-	{
-		if (s[1] == 'h')
-		{
-			specs->lengthmodifier |= HH;
-			return (2);
-		}
+	if (ft_strnequ(s, "hh", 2))
+		specs->lengthmodifier |= HH;
+	else if (ft_strnequ(s, "ll", 2))
+		specs->lengthmodifier |= LL;
+	else if (s[0] == 'h')
 		specs->lengthmodifier |= H;
-		return (1);
-	}
-	if (s[0] == 'l')
-	{
-		if (s[1] == 'l')
-		{
-			specs->lengthmodifier |= LL;
-			return (2);
-		}
+	else if (s[0] == 'l')
 		specs->lengthmodifier |= L;
-		return (1);
-	}
-	if (s[0] == 'L')
-	{
+	else if (s[0] == 'L')
 		specs->lengthmodifier |= BIG_L;
+	if (specs->lengthmodifier & HH || specs->lengthmodifier & LL)
+		return (2);
+	if (specs->lengthmodifier & H || specs->lengthmodifier & L
+			|| specs->lengthmodifier & BIG_L)
 		return (1);
-	}
-	return (0);
+	else
+		return (0);
 }
 
 int				fill_conversion(char c, t_specs *specs)

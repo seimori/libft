@@ -8,12 +8,14 @@ SRC_PATH = sources
 #	!!!!!To change!!!!!!
 #	List of source files
 #	!!!!!!!!!!!!!!!!!!!!
-SRC_NAME = printf.c print_args.c \
+SRC_NAME = printf.c print_arg.c \
 		   tools.c fillers.c identifiers.c get_typeindex.c \
 		   print_int.c print_float.c print_csp.c \
-		   print_numbers.c print_options.c print_options_fpn.c \
+		   print_numbers.c print_numbers_signed.c \
+		   print_options.c print_options_fpn.c \
 		   initializers.c  print_width_string.c \
 		   print_percent.c print_precision.c \
+		   print_sign_and_hash.c print_float_tools.c \
 		   \
 		   extra.c \
 		   \
