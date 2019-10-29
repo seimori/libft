@@ -6,7 +6,7 @@
 /*   By: imorimot <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/08 12:45:30 by imorimot          #+#    #+#             */
-/*   Updated: 2019/10/29 18:59:05 by imorimot         ###   ########.fr       */
+/*   Updated: 2019/10/29 21:20:49 by imorimot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,7 @@ typedef struct					s_specs
 	int							is_zero;
 	int							arg_len;
 	int							spaces_len;
+	unsigned long long			dot_left;
 }								t_specs;
 
 typedef union					u_arg

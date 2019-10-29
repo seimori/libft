@@ -6,7 +6,7 @@
 /*   By: imorimot <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/04 15:45:19 by imorimot          #+#    #+#             */
-/*   Updated: 2019/10/29 18:23:00 by imorimot         ###   ########.fr       */
+/*   Updated: 2019/10/29 20:52:48 by imorimot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,8 @@ t_specs		*remove_undefined_flags(t_specs *specs)
 	return (specs);
 }
 
-int			print_int(t_arg arg, t_specs *specs)
+int			is_zero_exception(t_arg arg, t_specs *specs)
 {
-	specs = remove_undefined_flags(specs);
-	specs->arg_len = ARG_LEN_INIT_INT;
 	if (arg.i == 0)
 	{
 		specs->is_zero = 1;
@@ -38,9 +36,18 @@ int			print_int(t_arg arg, t_specs *specs)
 				&& (!(specs->flags & HASH && specs->conversion == 'o')))
 		{
 			specs->arg_len = 0;
-			return (print_width(specs));
+			return (1);
 		}
 	}
+	return (0);
+}
+
+int			print_int(t_arg arg, t_specs *specs)
+{
+	specs = remove_undefined_flags(specs);
+	specs->arg_len = ARG_LEN_INIT_INT;
+	if (is_zero_exception(arg, specs))
+		return(print_options(specs));
 	if (specs->conversion == 'd' || specs->conversion == 'i')
 		specs->arg_len = print_signed_decimal(arg.lli, specs);
 	else if (specs->conversion == 'u')
