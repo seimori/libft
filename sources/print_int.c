@@ -6,7 +6,7 @@
 /*   By: imorimot <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/04 15:45:19 by imorimot          #+#    #+#             */
-/*   Updated: 2019/10/29 13:05:27 by imorimot         ###   ########.fr       */
+/*   Updated: 2019/10/29 18:23:00 by imorimot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,11 @@ t_specs		*remove_undefined_flags(t_specs *specs)
 {
 	if (specs->flags & ZERO && specs->flags & MINUS)
 		specs->flags ^= ZERO;
-	if (!(specs->conversion == 'd') && specs->flags & PLUS)
+	if ((!(specs->conversion == 'd') && !(specs->conversion == 'i'))
+			&& specs->flags & PLUS)
 		specs->flags ^= PLUS;
-	if (!(specs->conversion == 'd') && specs->flags & SPACE)
+	if ((!(specs->conversion == 'd') && !(specs->conversion == 'i'))
+			&& specs->flags & SPACE)
 		specs->flags ^= SPACE;
 	return (specs);
 }
@@ -29,7 +31,7 @@ int			print_int(t_arg arg, t_specs *specs)
 {
 	specs = remove_undefined_flags(specs);
 	specs->arg_len = ARG_LEN_INIT_INT;
-	if (arg.lli == 0 || arg.llu == 0)
+	if (arg.i == 0)
 	{
 		specs->is_zero = 1;
 		if (specs->precision == 0

@@ -6,7 +6,7 @@
 /*   By: imorimot <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/04 18:45:22 by imorimot          #+#    #+#             */
-/*   Updated: 2019/10/28 13:40:58 by imorimot         ###   ########.fr       */
+/*   Updated: 2019/10/29 18:27:33 by imorimot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,13 @@ int				print_s(t_arg arg, t_specs *specs)
 
 int			print_p(t_arg arg, t_specs *specs)
 {
+	if (arg.p == 0 && specs->precision == 0)
+	{
+		specs->is_zero = 1;
+		specs->arg_len += 2;
+		ft_putstr("0x");
+		return (print_width(specs) + specs->arg_len);
+	}
 	specs->arg_len = ARG_LEN_INIT_INT;
 	specs->flags |= HASH;
 	specs->arg_len = print_hexadecimal((unsigned long)arg.p, specs);

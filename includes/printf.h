@@ -6,7 +6,7 @@
 /*   By: imorimot <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/08 12:45:30 by imorimot          #+#    #+#             */
-/*   Updated: 2019/10/28 13:41:19 by imorimot         ###   ########.fr       */
+/*   Updated: 2019/10/29 18:44:38 by imorimot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -154,11 +154,11 @@ int						print_arg(va_list args, t_specs *specs, fp_arg *print);
 /*
 **	tools.c
 */
-char					*ft_str_append(char *s, char c);
 int						ft_pow(int n, int pow);
 int						ft_antoi(const char *s, int length);
 void					ft_putstrn(const char *s, int length);
 int						print_null(void);
+int						is_error(t_specs *specs);
 
 
 /*

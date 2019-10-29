@@ -6,7 +6,7 @@
 /*   By: imorimot <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/11 18:25:29 by imorimot          #+#    #+#             */
-/*   Updated: 2019/10/21 16:33:48 by imorimot         ###   ########.fr       */
+/*   Updated: 2019/10/29 18:52:46 by imorimot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,16 +37,26 @@ int				fill_flags(const char *s, t_specs *specs)
 int				fill_width(const char *s, t_specs *specs, va_list args)
 {
 	int			i;
+	int			has_wildcard;
 
 	i = 0;
+	has_wildcard = 0;
 	if (s[i] == '*')
 	{
 		specs->width = va_arg(args, int);
-		return (i + 1);
+		if (specs->width < 0)
+		{
+			specs->flags |= MINUS;
+			specs->width = -specs->width;
+		}
+		i++;
+		has_wildcard = 1;
 	}
+	if (!(ft_isdigit(s[i])))
+		return (i);
 	while (ft_isdigit(s[i]))
 		i++;
-	specs->width = ft_antoi(s, i);
+	specs->width = ft_antoi(s + has_wildcard, i);
 	return (i);
 }
 
@@ -109,5 +119,6 @@ int				fill_conversion(char c, t_specs *specs)
 		specs->conversion = c;
 		return (1);
 	}
-	return (0);
+	else
+		return (0);
 }

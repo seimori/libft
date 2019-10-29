@@ -6,7 +6,7 @@
 /*   By: imorimot <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/07 19:08:13 by imorimot          #+#    #+#             */
-/*   Updated: 2019/10/28 19:58:17 by imorimot         ###   ########.fr       */
+/*   Updated: 2019/10/29 18:13:27 by imorimot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,6 +104,8 @@ char			print_flag_zero(t_specs *specs)
 			print_hash(specs);
 		else if (specs->flags & PLUS && !(is_hex_or_octal(specs)))
 			ft_putchar('+');
+		else if (specs->flags & SPACE && !(is_hex_or_octal(specs)))
+			ft_putchar(' ');
 	}
 	else
 		width_char = ' ';
