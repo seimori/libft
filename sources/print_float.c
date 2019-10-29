@@ -6,7 +6,7 @@
 /*   By: imorimot <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/18 15:53:42 by imorimot          #+#    #+#             */
-/*   Updated: 2019/10/29 21:34:14 by imorimot         ###   ########.fr       */
+/*   Updated: 2019/10/29 21:49:57 by imorimot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,7 +124,8 @@ unsigned int	assemble_fpn(long double f, t_specs *specs)
 	specs->arg_len = 0;
 	count += print_fpn((unsigned long long)(f + ROUND_UP),
 			specs);
-	return (count);
+	specs->arg_len = count;
+	return (specs->arg_len);
 }
 
 int			print_float(t_arg arg, t_specs *specs)

@@ -6,7 +6,7 @@
 /*   By: imorimot <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/04 15:45:19 by imorimot          #+#    #+#             */
-/*   Updated: 2019/10/29 20:52:48 by imorimot         ###   ########.fr       */
+/*   Updated: 2019/10/29 21:57:31 by imorimot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,10 @@ t_specs		*remove_undefined_flags(t_specs *specs)
 	if ((!(specs->conversion == 'd') && !(specs->conversion == 'i'))
 			&& specs->flags & SPACE)
 		specs->flags ^= SPACE;
+	if ((specs->conversion == 'd' || specs->conversion == 'i')
+			&& specs->lengthmodifier & BIG_L)
+		specs->lengthmodifier ^= BIG_L;
+
 	return (specs);
 }
 

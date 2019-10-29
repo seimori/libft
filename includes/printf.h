@@ -6,7 +6,7 @@
 /*   By: imorimot <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/08 12:45:30 by imorimot          #+#    #+#             */
-/*   Updated: 2019/10/29 21:20:49 by imorimot         ###   ########.fr       */
+/*   Updated: 2019/10/29 22:04:01 by imorimot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,22 +46,11 @@
 **	typeindex
 */
 # define C 0
-# define HHI 1
-# define HHU 2
-# define HI 3
-# define HU 4
-# define I 5
-# define U 6
-# define LI 7
-# define LU 8
-# define LLI 9
-# define LLU 10
-# define F 11
-# define LF 12
-# define BIG_L_F 13
-# define S 14
-# define P 15
-# define PERCENT 16
+# define I 1
+# define F 2
+# define S 3
+# define P 4
+# define PERCENT 5
 
 typedef struct					s_specs
 {
