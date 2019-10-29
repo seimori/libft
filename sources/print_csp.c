@@ -6,7 +6,7 @@
 /*   By: imorimot <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/04 18:45:22 by imorimot          #+#    #+#             */
-/*   Updated: 2019/10/29 18:27:33 by imorimot         ###   ########.fr       */
+/*   Updated: 2019/10/29 19:01:32 by imorimot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int				print_c(t_arg arg, t_specs *specs)
 int				print_s(t_arg arg, t_specs *specs)
 {
 	if (arg.s == NULL)
-		return (print_null());
+		return (print_null(specs));
 	specs->arg_len = ft_strlen(arg.s);
 	if (specs->arg_len > specs->precision && specs->precision > -1)
 		specs->arg_len = specs->precision;
