@@ -6,7 +6,7 @@
 /*   By: imorimot <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/08 14:48:38 by imorimot          #+#    #+#             */
-/*   Updated: 2019/10/30 15:35:21 by imorimot         ###   ########.fr       */
+/*   Updated: 2019/10/30 18:47:10 by imorimot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 **	fill_flags > fill_width > fill_precision > fill_lengthmodifier
 **	> fill_conversion
 */
+
 static int		fill_specs(const char *s, t_specs *specs, va_list args)
 {
 	int			i;
