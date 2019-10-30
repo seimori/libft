@@ -6,7 +6,7 @@
 /*   By: imorimot <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/07 19:08:13 by imorimot          #+#    #+#             */
-/*   Updated: 2019/10/29 23:32:21 by imorimot         ###   ########.fr       */
+/*   Updated: 2019/10/30 15:52:15 by imorimot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,9 @@ char			print_flag_zero(t_specs *specs)
 			ft_putchar('-');
 		else if (specs->flags & HASH && (is_hex_or_octal(specs)))
 			print_hash(specs);
-		else if (specs->flags & PLUS && !(is_hex_or_octal(specs)))
+		else if (specs->flags & PLUS && is_signed(specs))
 			ft_putchar('+');
-		else if (specs->flags & SPACE && !(is_hex_or_octal(specs)))
+		else if (specs->flags & SPACE && is_signed(specs))
 			ft_putchar(' ');
 	}
 	else

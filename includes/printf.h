@@ -6,7 +6,7 @@
 /*   By: imorimot <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/08 12:45:30 by imorimot          #+#    #+#             */
-/*   Updated: 2019/10/30 00:31:07 by imorimot         ###   ########.fr       */
+/*   Updated: 2019/10/30 14:51:48 by imorimot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -198,14 +198,16 @@ int								fill_precision(const char *s, t_specs *specs,
 		va_list args);
 int								fill_lengthmodifier(const char *s,
 		t_specs *specs);
-int								fill_conversion(char c, t_specs *specs);
+int								fill_conversion(const char *s, t_specs *specs);
 
 /*
 **	identifiers.c
 */
 int								is_flag(char c);
 int								is_conversion(char c);
+int								is_lengthmodifier(const char *s);
 int								is_hex_or_octal(t_specs *specs);
+int								is_signed(t_specs *specs);
 
 /*
 **	extra.c

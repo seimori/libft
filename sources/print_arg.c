@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print_args.c                                       :+:      :+:    :+:   */
+/*   print_arg.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: imorimot <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/09 14:12:49 by imorimot          #+#    #+#             */
-/*   Updated: 2019/10/30 00:24:53 by imorimot         ###   ########.fr       */
+/*   Updated: 2019/10/30 15:54:37 by imorimot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,9 @@ int				print_arg(va_list args, t_specs *specs, t_fp_arg *print)
 	if (specs->flags & MINUS && specs->conversion == 's')
 		count = print_width_string(specs) + specs->arg_len;
 	else if (specs->flags & MINUS)
+	{
+		specs->arg_len = print_precision(specs);
 		count = print_width(specs) + specs->arg_len;
+	}
 	return (count);
 }

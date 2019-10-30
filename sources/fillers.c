@@ -6,7 +6,7 @@
 /*   By: imorimot <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/11 18:25:29 by imorimot          #+#    #+#             */
-/*   Updated: 2019/10/30 00:19:06 by imorimot         ###   ########.fr       */
+/*   Updated: 2019/10/30 15:35:28 by imorimot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,32 +84,40 @@ int				fill_precision(const char *s, t_specs *specs, va_list args)
 
 int				fill_lengthmodifier(const char *s, t_specs *specs)
 {
+	int				i;
+
+	i = 1;
 	if (ft_strnequ(s, "hh", 2))
 		specs->lengthmodifier |= HH;
 	else if (ft_strnequ(s, "ll", 2))
 		specs->lengthmodifier |= LL;
 	else if (s[0] == 'h')
 		specs->lengthmodifier |= H;
-	else if (s[0] == 'l')
+	else if (s[0] == 'l' || s[0] == 'j' || s[0] == 'z')
 		specs->lengthmodifier |= L;
 	else if (s[0] == 'L')
 		specs->lengthmodifier |= BIG_L;
-	if (specs->lengthmodifier & HH || specs->lengthmodifier & LL)
-		return (2);
-	if (specs->lengthmodifier & H || specs->lengthmodifier & L
-			|| specs->lengthmodifier & BIG_L)
-		return (1);
+	while (is_lengthmodifier(s + i))
+		i++;
+	if (specs->lengthmodifier > 0)
+		return (i);
 	else
 		return (0);
 }
 
-int				fill_conversion(char c, t_specs *specs)
+int				fill_conversion(const char *s, t_specs *specs)
 {
-	if (is_conversion(c))
+	if (is_conversion(s[0]))
 	{
-		specs->conversion = c;
+		specs->conversion = s[0];
 		return (1);
 	}
-	else
-		return (0);
+	else if (s[0] == 'U')
+	{
+		specs->conversion = 'd';
+		specs->lengthmodifier = 0;
+		specs->lengthmodifier |= L;
+		return (1);
+	}
+	return (0);
 }

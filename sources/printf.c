@@ -6,12 +6,19 @@
 /*   By: imorimot <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/08 14:48:38 by imorimot          #+#    #+#             */
-/*   Updated: 2019/10/30 13:21:57 by imorimot         ###   ########.fr       */
+/*   Updated: 2019/10/30 15:35:21 by imorimot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/printf.h"
 
+/*
+**	The repetition of calls in fill_specs are to account for undefined
+**	behaviors.
+**	Originally, it should be:
+**	fill_flags > fill_width > fill_precision > fill_lengthmodifier
+**	> fill_conversion
+*/
 static int		fill_specs(const char *s, t_specs *specs, va_list args)
 {
 	int			i;
@@ -21,7 +28,10 @@ static int		fill_specs(const char *s, t_specs *specs, va_list args)
 	i += fill_width(s + i, specs, args);
 	i += fill_precision(s + i, specs, args);
 	i += fill_lengthmodifier(s + i, specs);
-	i += fill_conversion(s[i], specs);
+	i += fill_width(s + i, specs, args);
+	i += fill_flags(s + i, specs);
+	i += fill_width(s + i, specs, args);
+	i += fill_conversion(s + i, specs);
 	specs->typeindex = get_typeindex(specs);
 	return (i);
 }
