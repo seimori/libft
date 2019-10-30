@@ -6,7 +6,7 @@
 /*   By: imorimot <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/07 19:08:13 by imorimot          #+#    #+#             */
-/*   Updated: 2019/10/30 15:52:15 by imorimot         ###   ########.fr       */
+/*   Updated: 2019/10/30 17:08:25 by imorimot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,21 +16,22 @@ char			print_flag_zero(t_specs *specs)
 {
 	char		width_char;
 
-	if (specs->flags & ZERO && !(specs->flags & MINUS)
-			&& specs->precision <= -1)
+	width_char = ' ';
+	if (specs->flags & ZERO && !(specs->flags & MINUS))
 	{
-		width_char = '0';
-		if (specs->is_negative)
-			ft_putchar('-');
-		else if (specs->flags & HASH && (is_hex_or_octal(specs)))
+		if (specs->precision <= -1)
+		{
+			width_char = '0';
+			if (specs->is_negative)
+				ft_putchar('-');
+			else if (specs->flags & PLUS && is_signed(specs))
+				ft_putchar('+');
+			else if (specs->flags & SPACE && is_signed(specs))
+				ft_putchar(' ');
+		}
+		if (specs->flags & HASH && (is_hex_or_octal(specs)))
 			print_hash(specs);
-		else if (specs->flags & PLUS && is_signed(specs))
-			ft_putchar('+');
-		else if (specs->flags & SPACE && is_signed(specs))
-			ft_putchar(' ');
 	}
-	else
-		width_char = ' ';
 	return (width_char);
 }
 
