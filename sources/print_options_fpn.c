@@ -6,7 +6,7 @@
 /*   By: imorimot <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/27 14:02:44 by imorimot          #+#    #+#             */
-/*   Updated: 2019/10/30 00:06:19 by imorimot         ###   ########.fr       */
+/*   Updated: 2019/10/30 17:30:21 by imorimot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ int						get_arg_len(long double f, t_specs *specs)
 			|| specs->flags & SPACE)
 		count++;
 	count += dot_left_len((long long int)f);
-	if (specs->precision != 0)
+	if (specs->precision != 0 || specs->flags & HASH)
 		count++;
 	if (specs->precision < 0)
 		count += 6;
