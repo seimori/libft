@@ -6,14 +6,14 @@
 /*   By: imorimot <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/18 15:53:42 by imorimot          #+#    #+#             */
-/*   Updated: 2019/10/30 00:20:52 by imorimot         ###   ########.fr       */
+/*   Updated: 2019/10/30 18:38:37 by imorimot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/printf.h"
 
 #define FPN_G_COUNT_INIT 0
-#define ROUND_UP 0.5
+#define ROUND_UP 0.4999999999999999
 
 unsigned int	print_fpn(unsigned long long n, t_specs *specs)
 {
@@ -37,7 +37,7 @@ unsigned int	assemble_fpn(long double f, t_specs *specs)
 	unsigned int		count;
 	int					precision;
 
-	if ((count = fpn_special_cases(f)))
+	if ((count = fpn_special_cases(f, specs)))
 		return (count);
 	specs->precision = get_precision(specs->precision);
 	if (!(specs->lengthmodifier & BIG_L))

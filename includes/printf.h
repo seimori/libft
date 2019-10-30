@@ -6,7 +6,7 @@
 /*   By: imorimot <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/08 12:45:30 by imorimot          #+#    #+#             */
-/*   Updated: 2019/10/30 14:51:48 by imorimot         ###   ########.fr       */
+/*   Updated: 2019/10/30 17:57:13 by imorimot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,13 @@
 # define P 4
 # define PERCENT 5
 
+/*
+**	special
+*/
+# define INF 1 << 0
+# define N_INF 1 << 1
+# define NAN 1 << 2
+
 typedef struct					s_count
 {
 	int							format;
@@ -70,6 +77,7 @@ typedef struct					s_specs
 	int							arg_len;
 	int							spaces_len;
 	unsigned long long			dot_left;
+	int							special;
 }								t_specs;
 
 typedef union					u_arg
@@ -126,7 +134,8 @@ int								get_precision(int precision);
 unsigned int					print_dot(t_specs *specs);
 unsigned int					ft_putnbr_ull(unsigned long long n,
 		t_specs *specs);
-unsigned int					fpn_special_cases(long double f);
+unsigned int					fpn_special_cases(long double f,
+		t_specs *specs);
 
 /*
 **	print_numbers.c
@@ -212,6 +221,7 @@ int								is_signed(t_specs *specs);
 /*
 **	extra.c
 */
+void							print_bits(int bits, int size);
 void							print_specs(t_specs *specs);
 
 #endif

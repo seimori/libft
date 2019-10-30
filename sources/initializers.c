@@ -6,7 +6,7 @@
 /*   By: imorimot <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/09 16:16:27 by imorimot          #+#    #+#             */
-/*   Updated: 2019/10/29 23:58:17 by imorimot         ###   ########.fr       */
+/*   Updated: 2019/10/30 17:44:41 by imorimot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ t_specs				*initialize_specs(void)
 	specs->is_zero = 0;
 	specs->arg_len = 0;
 	specs->spaces_len = 0;
+	specs->special = 0;
 	return (specs);
 }
 

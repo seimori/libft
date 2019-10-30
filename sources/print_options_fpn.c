@@ -6,7 +6,7 @@
 /*   By: imorimot <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/27 14:02:44 by imorimot          #+#    #+#             */
-/*   Updated: 2019/10/30 17:30:21 by imorimot         ###   ########.fr       */
+/*   Updated: 2019/10/30 18:18:23 by imorimot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,13 +62,24 @@ int						count_special_cases(long double f)
 	return (0);
 }
 
+int						print_width_fpn(t_specs *specs, char width_char)
+{
+	int					count;
+
+	count = 0;
+	while (specs->arg_len + count < specs->width)
+	{
+		ft_putchar(width_char);
+		count++;
+	}
+	return (count);
+}
+
 int						print_options_fpn(long double f, t_specs *specs)
 {
 	char	width_char;
-	int		count;
 
 	width_char = ' ';
-	count = 0;
 	specs->arg_len = count_special_cases(f);
 	if (specs->flags & ZERO)
 	{
@@ -82,10 +93,5 @@ int						print_options_fpn(long double f, t_specs *specs)
 	}
 	if (specs->arg_len == NO_SPECIAL_CASES)
 		specs->arg_len = get_arg_len(f, specs);
-	while (specs->arg_len + count < specs->width)
-	{
-		ft_putchar(width_char);
-		count++;
-	}
-	return (count);
+	return (print_width_fpn(specs, width_char));
 }

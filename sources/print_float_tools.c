@@ -6,27 +6,30 @@
 /*   By: imorimot <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/30 00:01:51 by imorimot          #+#    #+#             */
-/*   Updated: 2019/10/30 00:23:53 by imorimot         ###   ########.fr       */
+/*   Updated: 2019/10/30 17:53:37 by imorimot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/printf.h"
 
-unsigned int	fpn_special_cases(long double f)
+unsigned int	fpn_special_cases(long double f, t_specs *specs)
 {
 	if (f >= 1.0 / 0)
 	{
 		ft_putstr("inf");
+		specs->special |= INF;
 		return (3);
 	}
 	if (f <= -1.0 / 0)
 	{
 		ft_putstr("-inf");
+		specs->special |= N_INF;
 		return (4);
 	}
 	if (f != f)
 	{
 		ft_putstr("nan");
+		specs->special |= NAN;
 		return (3);
 	}
 	return (0);

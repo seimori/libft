@@ -6,7 +6,7 @@
 /*   By: imorimot <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/07 19:08:13 by imorimot          #+#    #+#             */
-/*   Updated: 2019/10/30 17:08:25 by imorimot         ###   ########.fr       */
+/*   Updated: 2019/10/30 17:57:51 by imorimot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,13 @@ int				print_width(t_specs *specs)
 {
 	char		width_char;
 
+	if (specs->conversion == 'f')
+	{
+		if (specs->special & INF || specs->special & NAN)
+			specs->arg_len = 3;
+		else if (specs->special & N_INF)
+			specs->arg_len = 4;
+	}
 	width_char = print_flag_zero(specs);
 	while (specs->spaces_len + specs->precision < specs->width
 			&& specs->spaces_len + specs->arg_len < specs->width)
