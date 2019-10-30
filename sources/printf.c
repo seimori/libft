@@ -6,7 +6,7 @@
 /*   By: imorimot <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/08 14:48:38 by imorimot          #+#    #+#             */
-/*   Updated: 2019/10/29 23:58:55 by imorimot         ###   ########.fr       */
+/*   Updated: 2019/10/30 13:21:57 by imorimot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,8 +56,9 @@ int				ft_vprintf(const char *format, va_list args, t_fp_arg *print
 			specs = initialize_specs();
 			count->format += fill_specs(format + count->format, specs, args);
 			if (is_error(specs))
-				return (count->print);
-			count->print += print_arg(args, specs, print);
+				count->print += print_til_percent(format);
+			else
+				count->print += print_arg(args, specs, print);
 			free(specs);
 		}
 		else if (format[count->format] != '\0')
