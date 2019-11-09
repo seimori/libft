@@ -53,9 +53,9 @@ int						get_arg_len(long double f, t_specs *specs)
 
 int						count_special_cases(long double f)
 {
-	if (f >= 1.0 / 0)
+	if (f >= 1.0 / 0.0)
 		return (3);
-	if (f <= -1.0 / 0)
+	if (f <= -1.0 / 0.0)
 		return (4);
 	if (f != f)
 		return (3);

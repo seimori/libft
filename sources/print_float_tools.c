@@ -14,13 +14,13 @@
 
 unsigned int	fpn_special_cases(long double f, t_specs *specs)
 {
-	if (f >= 1.0 / 0)
+	if (f >= 1.0 / 0.0)
 	{
 		ft_putstr("inf");
 		specs->special |= INF;
 		return (3);
 	}
-	if (f <= -1.0 / 0)
+	if (f <= -1.0 / 0.0)
 	{
 		ft_putstr("-inf");
 		specs->special |= N_INF;
