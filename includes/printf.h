@@ -16,7 +16,7 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include <stdarg.h>
-# include "../libft/includes/libft.h"
+# include "libft.h"
 
 # define SUCCESS 1
 # define FAILURE 0

@@ -93,4 +93,6 @@ char				*ft_strmap_uc(char const *s, int (*f)(int));
 char				*ft_strrev(char *s);
 char				*ft_strndup(const char *s1, size_t n);
 
+int					ft_printf(const char *format, ...);
+
 #endif

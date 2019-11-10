@@ -3,24 +3,13 @@
 #
 
 #	Path of source files
-SRC_PATH = sources
+LIBFT_SRC_PATH = sources
+
+PRINTF_SRC_PATH = sources/printf
 
 #	!!!!!To change!!!!!!
 #	List of source files
 #	!!!!!!!!!!!!!!!!!!!!
-SRC_NAME = printf.c print_arg.c \
-		   tools.c fillers.c identifiers.c get_typeindex.c \
-		   print_int.c print_float.c print_csp.c \
-		   print_numbers.c print_numbers_signed.c \
-		   print_options.c print_options_fpn.c \
-		   initializers.c  print_width_string.c \
-		   print_percent.c print_precision.c \
-		   print_sign_and_hash.c print_float_tools.c \
-		   \
-		   extra.c \
-		   \
-
-LIBFT_SRC_PATH = libft/sources
 
 LIBFT_SRC_NAME = ft_memset.c ft_bzero.c ft_memcpy.c ft_memccpy.c ft_memmove.c \
 		   ft_memchr.c ft_memcmp.c ft_strlen.c ft_strdup.c ft_strcpy.c \
@@ -38,18 +27,28 @@ LIBFT_SRC_NAME = ft_memset.c ft_bzero.c ft_memcpy.c ft_memccpy.c ft_memmove.c \
 		   ft_isspace.c ft_isupper.c ft_islower.c ft_strtolower.c ft_strtoupper.c \
 		   ft_strmap_uc.c ft_strrev.c ft_strndup.c
 
-#	Source full name
-SRC = $(addprefix $(SRC_PATH)/, $(SRC_NAME))
+PRINTF_SRC_NAME = printf.c print_arg.c \
+		   tools.c fillers.c identifiers.c get_typeindex.c \
+		   print_int.c print_float.c print_csp.c \
+		   print_numbers.c print_numbers_signed.c \
+		   print_options.c print_options_fpn.c \
+		   initializers.c  print_width_string.c \
+		   print_percent.c print_precision.c \
+		   print_sign_and_hash.c print_float_tools.c \
+		   extra.c \
 
-SRC += $(addprefix $(LIBFT_SRC_PATH)/, $(LIBFT_SRC_NAME))
+#	Source full name
+SRC = $(addprefix $(LIBFT_SRC_PATH)/, $(LIBFT_SRC_NAME))
+
+SRC += $(addprefix $(PRINTF_SRC_PATH)/, $(PRINTF_SRC_NAME))
 
 #	Path of object files
 OBJ_PATH = objects
 
 #	Get objects names from source files
-OBJ_NAME = $(SRC_NAME:.c=.o)
+OBJ_NAME = $(LIBFT_SRC_NAME:.c=.o)
 
-OBJ_NAME += $(LIBFT_SRC_NAME:.c=.o)
+OBJ_NAME += $(PRINTF_SRC_NAME:.c=.o)
 
 #	Object full name
 OBJ = $(addprefix $(OBJ_PATH)/, $(OBJ_NAME))
@@ -58,7 +57,7 @@ OBJ = $(addprefix $(OBJ_PATH)/, $(OBJ_NAME))
 #	Include files path
 #	!!!!!!!!!!!!!!!!!!
 
-INC = includes/printf.h
+INC = includes/libft.h
 
 #	Include files path
 INC_PATH = includes
@@ -67,19 +66,19 @@ INC_PATH = includes
 CPPFLAGS = -Iincludes
 
 #	Uncomment if you want to compile libft
-LIB_PATH = libft
+#LIB_PATH = libft
 
 #	Lib file path flag
-LDFLAGS = -Llibft
+#LDFLAGS = -Llibft
 
 #	-lft represents libft.a
-LDLIBS = -lft
+#LDLIBS = -lft
 
 #	!!!!!To change!!!!!!
 #	Output name
 #	!!!!!!!!!!!!!!!!!!!!
 #NAME = a.out
-NAME = libftprintf.a
+NAME = libft.a
 
 #	Compilator
 CC = gcc
@@ -104,7 +103,7 @@ $(NAME): $(OBJ)
 
 #	2> /dev/null || true is to avoid errors and messages if folder already exists
 #	$< is first dependance ($(SRC_PATH)%.c)
-$(OBJ_PATH)/%.o: $(SRC_PATH)/%.c
+$(OBJ_PATH)/%.o: $(PRINTF_SRC_PATH)/%.c
 	@mkdir $(OBJ_PATH) 2> /dev/null || true
 	$(CC) $(CFLAGS) $(CPPFLAGS) -o $@ -c $<
 
@@ -115,11 +114,9 @@ $(OBJ_PATH)/%.o: $(LIBFT_SRC_PATH)/%.c
 clean:
 	rm -fv $(OBJ)
 	@rmdir $(OBJ_PATH) 2> /dev/null || true
-	#$(MAKE) -C $(LIB_PATH) clean
 
 fclean: clean
 	rm -fv $(NAME)
-	#$(MAKE) -C $(LIB_PATH) fclean
 
 re: fclean all
 
