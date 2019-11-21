@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: imorimot <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: imorimot <imorimot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/12 15:26:56 by imorimot          #+#    #+#             */
-/*   Updated: 2019/03/09 17:15:54 by imorimot         ###   ########.fr       */
+/*   Updated: 2019/11/21 18:16:09 by imorimot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,8 @@ char				*ft_strtoupper(char *s);
 char				*ft_strmap_uc(char const *s, int (*f)(int));
 char				*ft_strrev(char *s);
 char				*ft_strndup(const char *s1, size_t n);
+
+int					get_next_line(const int fd, char **line);
 
 int					ft_printf(const char *format, ...);
 
