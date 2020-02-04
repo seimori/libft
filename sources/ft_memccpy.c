@@ -27,7 +27,11 @@ void	*ft_memccpy(void *dst, const void *src, int c, size_t n)
 	{
 		c_dst[i] = c_src[i];
 		if ((unsigned char)c_src[i] == uc_c)
+<<<<<<< HEAD
 			return (&dst[i + 1]);
+=======
+			return (dst + i + 1);
+>>>>>>> fabc428a3ab11a356757706c6375ecc610678aab
 		i++;
 	}
 	return (NULL);

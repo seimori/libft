@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # **************************************************************************** #
 #                                                                              #
 #                                                         :::      ::::::::    #
@@ -10,15 +11,29 @@
 #                                                                              #
 # **************************************************************************** #
 
+=======
+>>>>>>> fabc428a3ab11a356757706c6375ecc610678aab
 #
 #	Variables
 #
 
 #	Path of source files
+<<<<<<< HEAD
 SRC_PATH = sources
 
 #	List of source files
 SRC_NAME = ft_memset.c ft_bzero.c ft_memcpy.c ft_memccpy.c ft_memmove.c \
+=======
+LIBFT_SRC_PATH = sources
+GNL_SRC_PATH = sources/get_next_line
+PRINTF_SRC_PATH = sources/printf
+
+#	!!!!!To change!!!!!!
+#	List of source files
+#	!!!!!!!!!!!!!!!!!!!!
+
+LIBFT_SRC_NAME = ft_memset.c ft_bzero.c ft_memcpy.c ft_memccpy.c ft_memmove.c \
+>>>>>>> fabc428a3ab11a356757706c6375ecc610678aab
 		   ft_memchr.c ft_memcmp.c ft_strlen.c ft_strdup.c ft_strcpy.c \
 		   ft_strncpy.c ft_strcat.c ft_strncat.c ft_strlcat.c ft_strchr.c \
 		   ft_strrchr.c ft_strstr.c ft_strnstr.c ft_strcmp.c ft_strncmp.c ft_atoi.c \
@@ -32,33 +47,82 @@ SRC_NAME = ft_memset.c ft_bzero.c ft_memcpy.c ft_memccpy.c ft_memmove.c \
 		   ft_lstnew.c ft_lstdelone.c ft_lstdel.c ft_lstadd.c ft_lstiter.c \
 		   ft_lstmap.c \
 		   ft_isspace.c ft_isupper.c ft_islower.c ft_strtolower.c ft_strtoupper.c \
+<<<<<<< HEAD
 		   ft_strmap_uc.c ft_strrev.c ft_strndup.c
 
 #	Source full name
 SRC = $(addprefix $(SRC_PATH)/, $(SRC_NAME))
+=======
+		   ft_strmap_uc.c ft_strrev.c ft_strndup.c \
+
+GNL_SRC_NAME = get_next_line.c \
+
+PRINTF_SRC_NAME = printf.c print_arg.c \
+		   tools.c fillers.c identifiers.c get_typeindex.c \
+		   print_int.c print_float.c print_csp.c \
+		   print_numbers.c print_numbers_signed.c \
+		   print_options.c print_options_fpn.c \
+		   initializers.c  print_width_string.c \
+		   print_percent.c print_precision.c \
+		   print_sign_and_hash.c print_float_tools.c \
+		   extra.c \
+
+#	Source full name
+SRC = $(addprefix $(LIBFT_SRC_PATH)/, $(LIBFT_SRC_NAME))
+SRC += $(addprefix $(GNL_SRC_PATH)/, $(GNL_SRC_NAME))
+SRC += $(addprefix $(PRINTF_SRC_PATH)/, $(PRINTF_SRC_NAME))
+>>>>>>> fabc428a3ab11a356757706c6375ecc610678aab
 
 #	Path of object files
 OBJ_PATH = objects
 
 #	Get objects names from source files
+<<<<<<< HEAD
 OBJ_NAME = $(SRC_NAME:.c=.o)
+=======
+OBJ_NAME = $(LIBFT_SRC_NAME:.c=.o)
+OBJ_NAME += $(GNL_SRC_NAME:.c=.o)
+OBJ_NAME += $(PRINTF_SRC_NAME:.c=.o)
+>>>>>>> fabc428a3ab11a356757706c6375ecc610678aab
 
 #	Object full name
 OBJ = $(addprefix $(OBJ_PATH)/, $(OBJ_NAME))
 
+<<<<<<< HEAD
+=======
+#	!!!!!To change!!!!
+#	Include files path
+#	!!!!!!!!!!!!!!!!!!
+
+INC = includes/libft.h
+
+>>>>>>> fabc428a3ab11a356757706c6375ecc610678aab
 #	Include files path
 INC_PATH = includes
 
 #	Include files path flag
 CPPFLAGS = -Iincludes
 
+<<<<<<< HEAD
+=======
+#	Uncomment if you want to compile libft
+#LIB_PATH = libft
+
+>>>>>>> fabc428a3ab11a356757706c6375ecc610678aab
 #	Lib file path flag
 #LDFLAGS = -Llibft
 
 #	-lft represents libft.a
 #LDLIBS = -lft
 
+<<<<<<< HEAD
 #	Output name
+=======
+#	!!!!!To change!!!!!!
+#	Output name
+#	!!!!!!!!!!!!!!!!!!!!
+#NAME = a.out
+>>>>>>> fabc428a3ab11a356757706c6375ecc610678aab
 NAME = libft.a
 
 #	Compilator
@@ -77,6 +141,7 @@ all: $(NAME)
 
 #	$^ is $(OBJ)
 #	$@ is $(NAME)
+<<<<<<< HEAD
 $(NAME): $(OBJ)
 	@ar rc $(NAME) $(OBJ)
 	@ranlib $(NAME)
@@ -93,9 +158,40 @@ clean:
 
 fclean: clean
 	@rm -fv $(NAME)
+=======
+# 	Uncomment "@cd $(LIB_PATH) && $(MAKE)" if you want to compile lib
+$(NAME): $(OBJ)
+	ar -rc $(NAME) $(OBJ)
+	ranlib $(NAME)
+
+#	2> /dev/null || true is to avoid errors and messages if folder already exists
+#	$< is first dependance ($(SRC_PATH)%.c)
+$(OBJ_PATH)/%.o: $(LIBFT_SRC_PATH)/%.c
+	@mkdir $(OBJ_PATH) 2> /dev/null || true
+	$(CC) $(CFLAGS) $(CPPFLAGS) -o $@ -c $<
+
+$(OBJ_PATH)/%.o: $(GNL_SRC_PATH)/%.c
+	@mkdir $(OBJ_PATH) 2> /dev/null || true
+	$(CC) $(CFLAGS) $(CPPFLAGS) -o $@ -c $<
+
+$(OBJ_PATH)/%.o: $(PRINTF_SRC_PATH)/%.c
+	@mkdir $(OBJ_PATH) 2> /dev/null || true
+	$(CC) $(CFLAGS) $(CPPFLAGS) -o $@ -c $<
+
+clean:
+	rm -fv $(OBJ)
+	@rmdir $(OBJ_PATH) 2> /dev/null || true
+
+fclean: clean
+	rm -fv $(NAME)
+>>>>>>> fabc428a3ab11a356757706c6375ecc610678aab
 
 re: fclean all
 
 norm:
 	norminette $(SRC)
+<<<<<<< HEAD
 	norminette $(INC_PATH)/*.h
+=======
+	norminette $(INC)
+>>>>>>> fabc428a3ab11a356757706c6375ecc610678aab
