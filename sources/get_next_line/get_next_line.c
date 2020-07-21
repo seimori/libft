@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: imorimot <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: seimori <seimori@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/11 11:10:29 by imorimot          #+#    #+#             */
-/*   Updated: 2019/10/27 17:24:33 by imorimot         ###   ########.fr       */
+/*   Updated: 2020/07/21 19:25:52 by seimori          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -148,8 +148,11 @@ int			get_next_line(const int fd, char **line)
 	int					ret;
 
 	if (!line || fd < 0 || BUFF_SIZE < 1 ||
-			!(buffer = set_buffer(fd, &buffer_head)))
+		!(buffer = set_buffer(fd, &buffer_head)))
+	{
+		free_get_next_line(buffer_head);
 		return (-1);
+	}
 	*line = ft_memalloc(LINE_SIZE + 1);
 	if ((ft_has_new_line(*line, buffer->str, buffer->str)))
 		return (1);
@@ -158,14 +161,6 @@ int			get_next_line(const int fd, char **line)
 	ret = ft_fill_line(line, buffer);
 	if (ret > 0)
 		return (ret);
-	while (buffer_head->next)
-	{
-		buffer = buffer_head;
-		buffer_head = buffer_head->next;
-		free(buffer->str);
-		free(buffer);
-	}
-	free(buffer_head->str);
-	free(buffer_head);
+	free_get_next_line(buffer_head);
 	return (ret);
 }
