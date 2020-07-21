@@ -29,7 +29,7 @@ LIBFT_SRC_NAME = ft_memset.c ft_bzero.c ft_memcpy.c ft_memccpy.c ft_memmove.c \
 		   ft_issign.c \
 		   ft_strmap_uc.c ft_strrev.c ft_strndup.c \
 
-GNL_SRC_NAME = get_next_line.c \
+GNL_SRC_NAME = get_next_line.c free_get_next_line.c \
 
 PRINTF_SRC_NAME = printf.c print_arg.c \
 		   tools.c fillers.c identifiers.c get_typeindex.c \

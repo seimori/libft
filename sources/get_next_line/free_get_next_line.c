@@ -1,29 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   free_get_next_line.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: seimori <seimori@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/27 18:45:26 by imorimot          #+#    #+#             */
-/*   Updated: 2020/07/21 18:58:42 by seimori          ###   ########.fr       */
+/*   Created: 2020/07/21 18:57:26 by seimori           #+#    #+#             */
+/*   Updated: 2020/07/21 18:58:29 by seimori          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_H
-# define GET_NEXT_LINE_H
+#include <stdlib.h>
+#include <unistd.h>
+#include "get_next_line.h"
+#include "../includes/libft.h"
 
-# define BUFF_SIZE 42
-# define LINE_SIZE 4086
-
-typedef struct			s_buffer
+void		free_get_next_line(t_buffer *buffer_head)
 {
-	int					fd;
-	char				*str;
-	struct s_buffer		*next;
-}						t_buffer;
+	t_buffer	*buffer;
 
-int						get_next_line(const int fd, char **line);
-void					free_get_next_line(t_buffer *buffer_head);
-
-#endif
+	while (buffer_head->next)
+	{
+		buffer = buffer_head;
+		buffer_head = buffer_head->next;
+		free(buffer->str);
+		free(buffer);
+	}
+	free(buffer_head->str);
+	free(buffer_head);
+}
